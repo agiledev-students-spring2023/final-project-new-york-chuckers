@@ -30,9 +30,14 @@ First time profile set up for the user.
 <img src="./ux-design/0c-profile-setup.png" width="25%">
 
 ## Main Page
-Landing page, entices users to sign up or search for positions.
+Landing page, entices users to sign up or search for positions. This is what a user would see before logging in (log-in, CTA to sign in).
 
 <img src="./ux-design/1a-main-before-login.png" width="25%">
+
+## Main Page (after login)
+Landing page, entices users to sign up or search for positions. This is what a user would see after logging in (no log-in, no CTA to sign in).
+
+<img src="./ux-design/1b-main-after-login.png" width="25%">
 
 ## List of Freelancers
 For businesses, search a list of freelancers that you could contact.
