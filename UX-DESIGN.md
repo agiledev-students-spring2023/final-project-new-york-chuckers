@@ -13,41 +13,37 @@ Replace the contents of this file with the completed assignments, as described i
 </br>
 
 # [App Map](https://app.diagrams.net/?src=about#G1YDXIvWCTYoabwn2q6m4KW9jER4VrwIQR)
-
+<img src="./ux-design/testconnnector-app-map-diagram.png">
 </br>
 
 # [Wireframes](https://www.figma.com/file/PimAf8no5JKQo8u2jWVifd/Tester-Connector?node-id=0%3A1&t=HW00Osw2jAYHLdEX-0)
 
 ## Sign Up/ Login
-
+Sign up or login flow that allows the user to sign in.
 <img src="./ux-design/0a-signup.png" width="25%">
 
 ## Profile Set up
-
+First time profile set up for the user.
 <img src="./ux-design/0c-profile-setup.png" width="25%">
 
 ## Main Page
-
+Landing page, entices users to sign up or search for positions.
 <img src="./ux-design/1a-main-after-login.png" width="25%">
 
 ## List of Freelancers
-
+For businesses, search a list of freelancers that you could contact.
 <img src="./ux-design/2a-list-of-freelancers.png" width="25%">
 
 ## Freelancer Info Page
-
-<img src="./ux-design/2b-freelancer-info-page.png" width="25%">
-
-## Freelancer Contact
-
+Learn about the freelancer. Background on who they are and what may qualify them for the position.
 <img src="./ux-design/2b-freelancer-info-page.png" width="25%">
 
 ## Search for Positions
-
+For freelancers, search for possible positions.
 <img src="./ux-design/3a-search-positions.png" width="25%">
 
 ## Position Info
-
+Learn more about a position. I.e. what company is posting it, what the work is, what would be required to be successful 
 <img src="./ux-design/3b-position-info.png" width="25%">
 
 ## Recruiter Pop-up
