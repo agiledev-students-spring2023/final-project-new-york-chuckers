@@ -20,12 +20,12 @@ Replace the contents of this file with the completed assignments, as described i
 # [Wireframes](https://www.figma.com/file/PimAf8no5JKQo8u2jWVifd/Tester-Connector?node-id=0%3A1&t=HW00Osw2jAYHLdEX-0)
 
 ## Sign Up/ Login
-Sign up or login flow that allows the user to sign in.
+Sign up or login flow that allows the user to sign in to their account or to create their account.
 
 <img src="./ux-design/0a-signup.png" width="25%">
 
 ## Profile Set up
-First time profile set up for the user.
+First time profile set up for the user that allows them to create their account.
 
 <img src="./ux-design/0c-profile-setup.png" width="25%">
 
@@ -40,7 +40,7 @@ Landing page, entices users to sign up or search for positions. This is what a u
 <img src="./ux-design/1b-main-after-login.png" width="25%">
 
 ## List of Freelancers
-For businesses, search a list of freelancers that you could contact.
+For businesses, search a list of freelancers that you could contact and connect with.
 
 <img src="./ux-design/2a-list-of-freelancers.png" width="25%">
 
@@ -50,7 +50,7 @@ Learn about the freelancer. Background on who they are and what may qualify them
 <img src="./ux-design/2b-freelancer-info-page.png" width="25%">
 
 ## Search for Positions
-For freelancers, search for possible positions.
+For freelancers, search for possible positions that companies are offering.
 
 <img src="./ux-design/3a-search-positions.png" width="25%">
 
