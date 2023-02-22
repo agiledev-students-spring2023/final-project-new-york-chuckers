@@ -36,7 +36,7 @@ For businesses, search a list of freelancers that you could contact.
 
 ## Freelancer Info Page
 Learn about the freelancer. Background on who they are and what may qualify them for the position.
-<\br>
+
 <img src="./ux-design/2b-freelancer-info-page.png" width="25%">
 
 ## Search for Positions
@@ -52,7 +52,7 @@ A popup with information on the recruiter that helps potentially interested cand
 <img src="./ux-design/3c-recruiter-popup.png" width="25%">
 
 ## Profile Settings
-
+Change the settings of your profile.
 <img src="./ux-design/4a-profile-setting-freelancer.png" width="25%">
 
 ## Saved Positions
