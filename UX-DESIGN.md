@@ -8,6 +8,7 @@ Replace the contents of this file with the completed assignments, as described i
 - [prototype instructions](instructions-0b-prototyping.md)
 
 > ## [TesterConnector Prototype on Figma](https://www.figma.com/proto/PimAf8no5JKQo8u2jWVifd/Tester-Connector?node-id=1%3A3&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A3)
+[Link](https://www.figma.com/proto/PimAf8no5JKQo8u2jWVifd/Tester-Connector?node-id=1%3A3&scaling=min-zoom&page-id=0%3A1&starting-point-node-id=1%3A3)
 
 </br>
 </br>
