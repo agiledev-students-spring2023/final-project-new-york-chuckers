@@ -32,7 +32,7 @@ First time profile set up for the user.
 ## Main Page
 Landing page, entices users to sign up or search for positions.
 
-<img src="./ux-design/1a-main-after-login.png" width="25%">
+<img src="./ux-design/1a-main-before-login.png" width="25%">
 
 ## List of Freelancers
 For businesses, search a list of freelancers that you could contact.
