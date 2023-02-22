@@ -40,7 +40,7 @@ Landing page, entices users to sign up or search for positions. This is what a u
 <img src="./ux-design/1b-main-after-login.png" width="25%">
 
 ## List of Freelancers
-For businesses, search a list of freelancers that you could contact and connect with on the website.
+For businesses, search a list of freelancers that you could contact and connect with.
 
 <img src="./ux-design/2a-list-of-freelancers.png" width="25%">
 
