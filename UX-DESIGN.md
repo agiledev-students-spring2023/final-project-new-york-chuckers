@@ -33,3 +33,47 @@ Replace the contents of this file with the completed assignments, as described i
 ## List of Freelancers
 
 <img src="./ux-design/2a-list-of-freelancers.png" width="25%">
+
+## Freelancer Info Page
+
+<img src="./ux-design/2b-freelancer-info-page.png" width="25%">
+
+## Freelancer Contact
+
+<img src="./ux-design/2b-freelancer-info-page.png" width="25%">
+
+## Search for Positions
+
+<img src="./ux-design/3a-search-positions.png" width="25%">
+
+## Position Info
+
+<img src="./ux-design/3b-position-info.png" width="25%">
+
+## Recruiter Pop-up
+
+<img src="./ux-design/3c-recruiter-popup.png" width="25%">
+
+## Profile Settings
+
+<img src="./ux-design/4a-profile-setting-freelancer.png" width="25%">
+
+## Saved Positions
+
+<img src="./ux-design/4b-saved-positions.png" width="25%">
+
+## Freelancer Profile
+
+<img src="./ux-design/4c-freelancer-profile-edit.png" width="25%">
+
+## Profile Settings
+
+<img src="./ux-design/5a-profile-setting-recruiter.png" width="25%">
+
+## Saved Freelancers
+
+<img src = "./ux-design/5b-saved-freelancers.png">
+
+## Recruiter Profile
+
+<img src="./ux-design/5c-recruiter-profile-company-info-edit.png">
