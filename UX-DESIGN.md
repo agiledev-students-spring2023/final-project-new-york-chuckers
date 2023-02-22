@@ -36,6 +36,7 @@ For businesses, search a list of freelancers that you could contact.
 
 ## Freelancer Info Page
 Learn about the freelancer. Background on who they are and what may qualify them for the position.
+<\br>
 <img src="./ux-design/2b-freelancer-info-page.png" width="25%">
 
 ## Search for Positions
@@ -43,11 +44,11 @@ For freelancers, search for possible positions.
 <img src="./ux-design/3a-search-positions.png" width="25%">
 
 ## Position Info
-Learn more about a position. I.e. what company is posting it, what the work is, what would be required to be successful 
+Learn more about a position. I.e. what company is posting it, what the work is, what would be required to be successful.
 <img src="./ux-design/3b-position-info.png" width="25%">
 
 ## Recruiter Pop-up
-
+A popup with information on the recruiter that helps potentially interested candidates learn more/ask questions.
 <img src="./ux-design/3c-recruiter-popup.png" width="25%">
 
 ## Profile Settings
