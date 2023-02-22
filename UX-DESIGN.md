@@ -20,18 +20,22 @@ Replace the contents of this file with the completed assignments, as described i
 
 ## Sign Up/ Login
 Sign up or login flow that allows the user to sign in.
+
 <img src="./ux-design/0a-signup.png" width="25%">
 
 ## Profile Set up
 First time profile set up for the user.
+
 <img src="./ux-design/0c-profile-setup.png" width="25%">
 
 ## Main Page
 Landing page, entices users to sign up or search for positions.
+
 <img src="./ux-design/1a-main-after-login.png" width="25%">
 
 ## List of Freelancers
 For businesses, search a list of freelancers that you could contact.
+
 <img src="./ux-design/2a-list-of-freelancers.png" width="25%">
 
 ## Freelancer Info Page
@@ -41,36 +45,35 @@ Learn about the freelancer. Background on who they are and what may qualify them
 
 ## Search for Positions
 For freelancers, search for possible positions.
+
 <img src="./ux-design/3a-search-positions.png" width="25%">
 
 ## Position Info
 Learn more about a position. I.e. what company is posting it, what the work is, what would be required to be successful.
+
 <img src="./ux-design/3b-position-info.png" width="25%">
 
 ## Recruiter Pop-up
 A popup with information on the recruiter that helps potentially interested candidates learn more/ask questions.
+
 <img src="./ux-design/3c-recruiter-popup.png" width="25%">
 
 ## Profile Settings
 Change the settings of your profile.
+
 <img src="./ux-design/4a-profile-setting-freelancer.png" width="25%">
 
 ## Saved Positions
+Go to a list of positions you have saved. Like a "favorited" positions that a freelancer may come back to.
 
 <img src="./ux-design/4b-saved-positions.png" width="25%">
 
-## Freelancer Profile
-
-<img src="./ux-design/4c-freelancer-profile-edit.png" width="25%">
-
-## Profile Settings
-
-<img src="./ux-design/5a-profile-setting-recruiter.png" width="25%">
-
 ## Saved Freelancers
+For a business user. Go to a list of freelancers you have saved. Like a "favorited" section. These could be freelancers with good qualifications or someone the business has worked with in the past.
 
 <img src = "./ux-design/5b-saved-freelancers.png" width="25%">
 
 ## Recruiter Profile
+The profile for a business and the recruiter from that business.
 
 <img src="./ux-design/5c-recruiter-profile-company-info-edit.png" width="25%">
