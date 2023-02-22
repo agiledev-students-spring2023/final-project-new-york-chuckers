@@ -72,8 +72,8 @@ Replace the contents of this file with the completed assignments, as described i
 
 ## Saved Freelancers
 
-<img src = "./ux-design/5b-saved-freelancers.png">
+<img src = "./ux-design/5b-saved-freelancers.png" width="25%">
 
 ## Recruiter Profile
 
-<img src="./ux-design/5c-recruiter-profile-company-info-edit.png">
+<img src="./ux-design/5c-recruiter-profile-company-info-edit.png" width="25%">
