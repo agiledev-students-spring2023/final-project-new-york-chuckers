@@ -12,6 +12,9 @@ The history of the project came from the entrepreneurial backgrounds of its foun
 
 ## Contributors:
 Tiffany Lee: [Github](https://github.com/les5185)
+
 Pranav Kanchi: [Github](https://github.com/pkanchi23)
+
 Omri Sokol: [Github](https://github.com/omri-sokol)
+
 @jlalo: ?
