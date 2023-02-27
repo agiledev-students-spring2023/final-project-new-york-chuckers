@@ -1,19 +1,20 @@
-# Project Repository
+# Testor Connector (Name is a WIP)
 
-This repository will be used for team projects.
+Our project is a solution that connects talented student freelancers looking for work experience and small jobs with companies willing provide them. The solution allows students to create profiles and connect with different companies to potentially freelance for. Companies receive talented students that, despite lacking credentials, are talented and work for cheaper rates than professional freelancers. On the otherhand, students receive the ability to have side-jobs, gain experience in their preferred field, and generate a portfolio of work.
 
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
+## Product Vision:
+The MVP for our product will include the ability for sign-up, onboarding, and profile creation for both individuals and companies. Companies would also be able to create job/free-lancing postings to then hopefully attract the individual students. Students would then be able to search for different position listings and then be able to apply through the application.
 
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
+Other potential additions for later, include companies being able to invite certain students to apply to their positions, and individuals being able to add examples of their previous work, to show to companies they're qualified.
 
-1. Delete the contents of this file and replace with the contents of a proper README.md, as described in the [project setup instructions](./instructions-0c-project-setup.md)
+## History of the Product:
+The history of the project came from the entrepreneurial backgrounds of its founders. All of us had a background in entrepreneurship and noticed the disconnect between companies and students. Students needed work experience to help them break in to their fields of choice. Parrallely, companies, and specifically start-ups, are always searching for new talent and always have contractor/free-lancer jobs that they have to get done. We realized that we could bridge this gap and solve both problems at once.
 
-1. See the [Sprint Planning instructions](instructions-0d-sprint-planning.md) for the requirements of Sprint Planning for each Sprint.
+## Contributors:
+Tiffany Lee: [Github](https://github.com/les5185)
 
-1. See the [Front-End Development instructions](./instructions-1-front-end.md) for the requirements of the initial Front-End Development.
+Pranav Kanchi: [Github](https://github.com/pkanchi23)
 
-1. See the [Back-End Development instructions](./instructions-2-back-end.md) for the requirements of the initial Back-End Development.
+Omri Sokol: [Github](https://github.com/omri-sokol)
 
-1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
-
-1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+@jlalo: ?
