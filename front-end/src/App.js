@@ -10,7 +10,6 @@ function App() {
     <div className="App">
       <Router>
       <header className="App-header">
-        <Header />
         {/* <img src={logo} className="App-logo" alt="logo" /> */}
         <main className="App-main">
           <Routes>

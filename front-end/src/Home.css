@@ -19,7 +19,15 @@
     margin: 20px;
     display: flex; /* use css flexbox for elements inside of this element */
   }
-  
+
+  .router-link {
+    color: white;
+  }
+    
+  .router-link:visited {
+  color: blue;
+  }
+
   .main-content p,
   .main-content img {
     flex: auto;

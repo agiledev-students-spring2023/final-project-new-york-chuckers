@@ -14,7 +14,7 @@ function Header() {
         <button type="submit">Search</button>
       </div>
       <div className="login-container">
-        <Link to="/login">Login</Link>
+        <Link to="/login" className="router-link">Login</Link>
       </div>
     </div>
   );
