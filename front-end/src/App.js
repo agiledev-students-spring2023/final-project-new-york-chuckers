@@ -1,4 +1,3 @@
-import logo from './Logo.png';
 import './App.css';
 import Settings from './Settings'
 import Home from './Home'

@@ -1,18 +1,7 @@
-.App {
-  text-align: center;
-}
 
-.App-logo {
-  height: 50%; /* Set the height of the logo as desired */
-  pointer-events: none;
-}
 
 .App-header {
   background: #FFFFFF;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
 }
 
 .App-link {

@@ -12,6 +12,7 @@
 .logo-container {
   margin-right: auto;
   height: 40px;
+  margin-left:1%;
 }
 
 .search-container {
@@ -22,6 +23,7 @@
 
 .login-container {
   margin-left: auto;
+  margin-right: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
