@@ -1,0 +1,28 @@
+.search-bar__wrapper {
+  width: 220px;
+  height: 40px;
+  background-color: var(--gray-lighter);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 12px;
+}
+
+.search-bar__input {
+  width: 180px;
+  height: 32px;
+  background-color: transparent;
+  border: none;
+}
+
+.search-bar__submit-btn {
+  width: 32px;
+  height: 32px;
+  color: var(--gray-main);
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
