@@ -26,10 +26,9 @@ function Settings() {
   }
 
   const handleEdit = (event) => { 
-    console.log("hi");
     const infoBox = event.target.parentElement;
     const editField = infoBox.querySelector(".edit-field");
-    const saveButton = infoBox.querySelector(".save-button");
+    // const saveButton = infoBox.querySelector(".save-button");
 
     if (!isEditable) {
       infoBox.classList.add("editable");
@@ -49,6 +48,13 @@ function Settings() {
     infoValue.textContent = editField.value;
     infoBox.classList.remove("editable");
     setIsEditable(false);
+    // Would push this out to a server to save
+    console.log(name, email, phone, industry);
+  }
+
+  const handleProfileButtonClick = e => {
+    // placeholder... do something more interesting
+    alert(`You clicked the button to edit your profile. Upload Image!`)
   }
 
   return (
@@ -56,37 +62,37 @@ function Settings() {
       <div className="profile-container">
         <div className="profile-image">
           <img src={profileImage} alt="Profile" width="200" height="200" />
-          <div className="edit-profile-button">Edit</div>
+          <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
         </div>
       </div>
       <div className="info-container">
         <div className="info-box">
           <div className="info-label">Name:</div>
           <div className="info-value">{name}</div>
-          <div className="edit-button">Edit</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
           <input type="text" className="edit-field" value={name} onChange={handleNameChange} />
-          <div className="save-button">Save</div>
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
         <div className="info-box">
           <div className="info-label">Email:</div>
           <div className="info-value">{email}</div>
-          <div className="edit-button">Edit</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
           <input type="text" className="edit-field" value={email} onChange={handleEmailChange} />
-          <div className="save-button">Save</div>
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
         <div className="info-box">
           <div className="info-label">Phone Number:</div>
           <div className="info-value">{phone}</div>
-          <div className="edit-button">Edit</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
           <input type="text" className="edit-field" value={phone} onChange={handlePhoneChange} />
-          <div className="save-button">Save</div>
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
         <div className="info-box">
           <div className="info-label">Industry Preferences:</div>
           <div className="info-value">{industry}</div>
-          <div className="edit-button">Edit</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
           <input type="text" className="edit-field" value={industry} onChange={handleIndustryChange} />
-          <div className="save-button">Save</div>
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
       </div>
     </div>

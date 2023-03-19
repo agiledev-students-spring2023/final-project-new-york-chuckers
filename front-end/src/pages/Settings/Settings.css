@@ -2,34 +2,40 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #204A80;
+  background-color: #FFFF;
   padding: 20px;
 }
 
 .profile-container {
   margin-bottom: 20px;
-}
-
-.profile-image {
+  }
+  
+  .profile-image {
   position: relative;
-  display: inline-block;
-}
-
-.profile-image img {
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+  }
+  
+  .profile-image img {
   border-radius: 50%;
-}
-
-.edit-profile-button {
+  padding: 10%;
+  margin: 15%; 
+  border-radius: 10%; 
+  background-color: #204A80; 
+  }
+  
+  .edit-profile-button {
   position: absolute;
   bottom: 0;
-  right: 0;
+  right: 37%;
   background-color: #68BCD9;
   color: #FFFFFF;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
-}
+  }  
 
 .info-container {
   display: flex;
@@ -100,6 +106,10 @@
 
 .info-box.editable .edit-field {
   display: block; 
+}
+
+.info-box.editable .edit-button {
+  display: none; 
 }
 
 .info-box.editable .save-button {
