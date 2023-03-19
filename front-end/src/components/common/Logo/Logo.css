@@ -1,0 +1,10 @@
+.logo__wrapper {
+  width: 52px;
+  height: 52px;
+  padding: 4px;
+}
+
+.logo__wrapper > img {
+  width: 100%;
+  height: 100%;
+}
