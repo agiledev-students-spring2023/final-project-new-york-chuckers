@@ -1,0 +1,33 @@
+.footer-section {
+  background-color: #204a80;
+  color: white;
+  padding: 20px;
+  width: 100%;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.footer-left {
+  flex: 1;
+}
+
+.footer-right {
+  flex: 1;
+  text-align: right;
+}
+
+.terms {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.email {
+  font-weight: bold;
+  font-size: 16px;
+}

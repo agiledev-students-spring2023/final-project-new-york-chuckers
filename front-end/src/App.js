@@ -1,26 +1,22 @@
-import './App.css';
-import Settings from './Settings'
-import Home from './Home'
-import Header from './Header';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { Settings } from './pages/Settings';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { FreelancerListPage } from './pages/FreelancerListPage';
+import { Layout } from './components/layout/Layout';
 
 function App() {
   return (
-    <div className="App">
+    <Layout>
       <Router>
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <main className="App-main">
-          <Routes>
-            {/* a route for the home page */}
-            <Route path="/" element={<Home />} />
-            {/* a route to see a list of all messages */}
-            <Route path="/settings" element={<Settings />} />
-          </Routes>
-        </main>
-      </header>
+        <Routes>
+          {/* a route for the home page */}
+          <Route path="/" element={<Home />} />
+          {/* a route to see a list of all messages */}
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/freelancer" element={<FreelancerListPage />} />
+        </Routes>
       </Router>
-    </div>
+    </Layout>
   );
 }
 

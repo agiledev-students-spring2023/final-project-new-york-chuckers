@@ -1,3 +1,19 @@
+:root {
+  --primary-main: #9dc08b;
+  --primary-light: #edf1d6;
+  --primary-dark: #609966;
+  --gray-main: #a9a9a9;
+  --gray-light: #cdcdcd;
+  --gray-lighter: #f7f8fa;
+  --gray-dark: #808080;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +26,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+input {
+  outline: none;
 }
