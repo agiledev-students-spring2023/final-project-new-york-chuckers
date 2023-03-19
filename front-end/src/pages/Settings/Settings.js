@@ -1,6 +1,5 @@
-import { Link } from 'react-router-dom';
-import './App.css';
 import React, { useState } from 'react';
+import './Settings.css';
 
 function Settings() {
   const [name, setName] = useState('');

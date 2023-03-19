@@ -1,16 +1,14 @@
-import './App.css';
-import Settings from './Settings';
-import Home from './Home';
-import Header from './Header';
+import { Settings } from './pages/Settings';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Home } from './pages/Home';
 
 function App() {
   return (
-    <div className="App">
+    <div>
       <Router>
-        <header className="App-header">
+        <header>
           {/* <img src={logo} className="App-logo" alt="logo" /> */}
-          <main className="App-main">
+          <main>
             <Routes>
               {/* a route for the home page */}
               <Route path="/" element={<Home />} />

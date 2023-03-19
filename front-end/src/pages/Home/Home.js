@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Footer } from '../../components/common/Footer';
+import { Header } from '../../components/common/Header';
+import freelancers from '../../assets/Freelance_Hero.jpeg';
+import partnerLogo from '../../assets/logo.svg';
 import './Home.css';
-import freelancers from './Assets/Freelance_Hero.jpeg';
-import Header from './Header';
-import partner_logo from './Assets/logo.svg';
-import Footer from './Footer';
 
 const Home = props => {
   return (
@@ -46,28 +46,28 @@ const Home = props => {
         </div>
         <div class="companies-container">
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
           <div class="company-logo">
-            <img src={partner_logo} alt="Company Logo" />
+            <img src={partnerLogo} alt="Company Logo" />
           </div>
         </div>
         <div class="find-more-button">
