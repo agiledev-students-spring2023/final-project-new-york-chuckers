@@ -1,8 +1,8 @@
 import React from 'react';
 import { Footer } from '../../components/common/Footer';
 import { Header } from '../../components/common/Header';
-import freelancers from '../../assets/Freelance_Hero.jpeg';
-import partnerLogo from '../../assets/logo.svg';
+import freelancers from '../../Assets/Freelance_Hero.jpeg';
+import partnerLogo from '../../Assets/logo.svg';
 import './Home.css';
 
 const Home = props => {

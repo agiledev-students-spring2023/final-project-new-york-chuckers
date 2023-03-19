@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import profileImage from './Assets/logo.svg';
+import profileImage from '../../Assets/logo.svg';
 import './Settings.css';
 
 function Settings() {
@@ -26,6 +26,7 @@ function Settings() {
   }
 
   const handleEdit = (event) => { 
+    console.log("hi");
     const infoBox = event.target.parentElement;
     const editField = infoBox.querySelector(".edit-field");
     const saveButton = infoBox.querySelector(".save-button");
