@@ -3,16 +3,16 @@
   justify-content: space-between;
   align-items: center;
   padding: 0px;
-  width:100%;
+  width: 100%;
 }
-.logo{
-  height:40px;
+.logo {
+  height: 40px;
   padding-left: 10px;
 }
 .logo-container {
   margin-right: auto;
   height: 40px;
-  margin-left:1%;
+  margin-left: 1%;
 }
 
 .search-container {
@@ -32,15 +32,15 @@
   border-radius: 5px;
   text-decoration: none;
   text-decoration-color: antiquewhite;
-  background-color: #204A80;
-  color: #204A80;
+  background-color: #204a80;
+  color: #204a80;
   font-weight: bold;
 }
 
 .router-link {
   color: white;
 }
-  
+
 .router-link:visited {
-color: white;
+  color: white;
 }

@@ -1,218 +1,214 @@
 .App-logo-2 {
-    height: 10vh;
-    pointer-events: none;
-    display: flex;
-    align-content:last baseline;
-  }
-  
-  /* styles shared by all screens within the app */
-  
-  .container {
-    border: 1px solid black;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 0;
-  }
-  
-  /* each screen has a main content area with an image, and a paragraph */
-  .main-content {
-    margin: 20px;
-    display: flex; /* use css flexbox for elements inside of this element */
-  }
+  height: 10vh;
+  pointer-events: none;
+  display: flex;
+  align-content: last baseline;
+}
 
-  .router-link {
-    color: white;
-  }
-    
-  .router-link:visited {
+/* styles shared by all screens within the app */
+
+.container {
+  border: 1px solid black;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+/* each screen has a main content area with an image, and a paragraph */
+.main-content {
+  margin: 20px;
+  display: flex; /* use css flexbox for elements inside of this element */
+}
+
+.router-link {
+  color: white;
+}
+
+.router-link:visited {
   color: blue;
-  }
+}
 
-  .main-content p,
-  .main-content img {
-    flex: auto;
-    align-items: center;
-  }
-  
-  .main-content p {
-    margin-left: 20px;
-  }
-  
-  .main-content img {
-    object-fit: contain;
-  }
-  
-  .main-content form {
-    flex: auto;
-    margin-left: 20px;
-  }
-  
-  h1 {
-    text-align: center;
-    font-family: georgia;
-    margin-left: 20px;
-  }
-  
-  p {
-    font-family: helvetica;
-    color:#204A80;
+.main-content p,
+.main-content img {
+  flex: auto;
+  align-items: center;
+}
 
-  }
+.main-content p {
+  margin-left: 20px;
+}
 
-  .hero-container {
-    margin-top: 1%;
-    margin-bottom: 1%;
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start; /* align items to the right */
-    padding-right: 10px;
-    align-items: center;
-    width: 100%;
-  }
-  
-  mark {
-    background-color: #68BCD9;
-    color: #204A80;
-  }
+.main-content img {
+  object-fit: contain;
+}
 
-  .left-block {
-    width: 40%;
-    height: 25%;
-    padding-right: 10px;
-    text-align: center;
-    font-size: 40px;
-    border: 5px solid #204A80;
-    border-radius: 10px;
-    margin-right: 2%;
-    margin-left: 2%;
-  }
-  
-  .right-block {
-    /* width: 50%; */
-    height: 40%;
-    text-align: center;
-    overflow: hidden;
-    margin-right: 1%;
-  }
-  
-  .right-block img {
-    height:100%;
-    width: 100%;
-    border-radius: 10px;
-  }
+.main-content form {
+  flex: auto;
+  margin-left: 20px;
+}
 
-  .cta-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    background-color: #FFFF;
-    flex-direction: column;
-    margin: .5%;
-  }
-  
-  .cta-box {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    width: 95%;
-    height: 80%;
-    border-radius: 20px;
-    padding: 20px;
-    background-color: #204A80;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  }
-  
-  .cta-box p {
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    color: #FFFFFF;
-  }
-  
-  .cta-button {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #68BCD9;
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-  }
+h1 {
+  text-align: center;
+  font-family: georgia;
+  margin-left: 20px;
+}
 
-  .companies-section {
-    background-color: #204A80;
-    border-radius: 10px;
-    padding: 20px;
-    margin: 1.5%;
-    width: 95%;
-    
-  }
-  
-  .companies-container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 20px;
-  }
-  
-  .company-logo {
-    background-color: #68BCD9;
-    border-radius: 10px;
-    padding: 20px;
-    text-align: center;
-  }
-  
-  .company-logo img {
-    max-width: 100%;
-    height: auto;
-  }
-  
-  .find-more-button {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .find-more-button a {
-    display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
-    background-color: #68BCD9;
-    color: #FFFFFF;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .partners-header {
-    text-align: center;
-    margin-bottom: 20px;
-    color: white;
-  }
-  
-  /* styles for form text fields */
-  input[type="text"],
-  input[type="password"] {
-    padding: 10px;
-    margin: 10px 0;
-    width: 200px;
-  }
-  
-  /* styles for the form submit button */
-  input[type="submit"] {
-    margin-top: 20px;
-    background-color: black;
-    color: white;
-    border: 1px solid white;
-    padding: 20px;
-    font-size: 20px;
-  }
-  
-  /* changes to the submit button when it is being clicked */
-  input[type="submit"]:active {
-    color: black;
-    background-color: white;
-    border-color: black;
-  }
-  
-  
+p {
+  font-family: helvetica;
+  color: #204a80;
+}
+
+.hero-container {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start; /* align items to the right */
+  padding-right: 10px;
+  align-items: center;
+  width: 100%;
+}
+
+mark {
+  background-color: #68bcd9;
+  color: #204a80;
+}
+
+.left-block {
+  width: 40%;
+  height: 25%;
+  padding-right: 10px;
+  text-align: center;
+  font-size: 40px;
+  border: 5px solid #204a80;
+  border-radius: 10px;
+  margin-right: 2%;
+  margin-left: 2%;
+}
+
+.right-block {
+  /* width: 50%; */
+  height: 40%;
+  text-align: center;
+  overflow: hidden;
+  margin-right: 1%;
+}
+
+.right-block img {
+  height: 100%;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  background-color: #ffff;
+  flex-direction: column;
+  margin: 0.5%;
+}
+
+.cta-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 80%;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #204a80;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cta-box p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #ffffff;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #68bcd9;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.companies-section {
+  background-color: #204a80;
+  border-radius: 10px;
+  padding: 20px;
+  margin: 1.5%;
+  width: 95%;
+}
+
+.companies-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+}
+
+.company-logo {
+  background-color: #68bcd9;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+}
+
+.company-logo img {
+  max-width: 100%;
+  height: auto;
+}
+
+.find-more-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.find-more-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #68bcd9;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.partners-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* styles for form text fields */
+input[type='text'],
+input[type='password'] {
+  padding: 10px;
+  margin: 10px 0;
+  width: 200px;
+}
+
+/* styles for the form submit button */
+input[type='submit'] {
+  margin-top: 20px;
+  background-color: black;
+  color: white;
+  border: 1px solid white;
+  padding: 20px;
+  font-size: 20px;
+}
+
+/* changes to the submit button when it is being clicked */
+input[type='submit']:active {
+  color: black;
+  background-color: white;
+  border-color: black;
+}
