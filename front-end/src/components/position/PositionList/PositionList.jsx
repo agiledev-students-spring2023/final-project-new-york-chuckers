@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { List } from '../../common/list/List';
 import { PositionListItem } from '../PositionListItem';
+import { positionApi } from '../../../api/position';
 import './PositionList.css';
 
 function PositionList() {
