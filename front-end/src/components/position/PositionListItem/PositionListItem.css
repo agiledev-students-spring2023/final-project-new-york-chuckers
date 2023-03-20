@@ -8,6 +8,7 @@
 }
 
 .position-list-item__content {
+  max-width: 60%;
 }
 
 .position-list-item__content-name {

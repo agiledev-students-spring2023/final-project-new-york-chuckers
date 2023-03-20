@@ -8,6 +8,7 @@
 }
 
 .freelancer-list-item__content {
+  max-width: 60%;
 }
 
 .freelancer-list-item__content-name {
