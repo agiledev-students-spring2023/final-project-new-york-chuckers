@@ -1,4 +1,4 @@
-.freelancer-list-item__wrapper {
+.position-list-item__wrapper {
   width: 100%;
   height: 100%;
   display: flex;
@@ -7,15 +7,15 @@
   align-items: center;
 }
 
-.freelancer-list-item__content {
+.position-list-item__content {
   max-width: 60%;
 }
 
-.freelancer-list-item__content-name {
+.position-list-item__content-name {
   font-size: 14px;
   font-weight: 600;
 }
 
-.freelancer-list-item__content-info {
+.position-list-item__content-info {
   font-size: 12px;
 }
