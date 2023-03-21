@@ -17,7 +17,7 @@ const Home = props => {
             <mark>top companies</mark> in the world. You get a{' '}
             <mark>high paying gig</mark> and to{' '}
             <mark>build your portfolio</mark>while our partner companies build{' '}
-            <mark>the next generation of talent.</mark>.
+            <mark>the next generation of talent</mark>.
           </p>
         </div>
         <div class="right-block">
