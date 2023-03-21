@@ -11,3 +11,7 @@
   border: none;
   border-bottom: 1px solid #000;
 }
+
+.error > input {
+  border-bottom: 1px solid #ff4444;
+}

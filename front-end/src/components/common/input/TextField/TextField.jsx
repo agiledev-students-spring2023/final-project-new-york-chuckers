@@ -2,10 +2,10 @@ import React from 'react';
 import { FieldError } from '../FieldError';
 import './TextField.css';
 
-function TextField({ value, onChange, name, error }) {
+function TextField({ error, ...others }) {
   return (
-    <div className="text-field__wrapper">
-      <input type="text" value={value} onChange={onChange} name={name} />
+    <div className={`text-field__wrapper ${error && 'error'}`}>
+      <input type="text" {...others} />
       {error && <FieldError>{error}</FieldError>}
     </div>
   );
