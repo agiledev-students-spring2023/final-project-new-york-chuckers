@@ -1,0 +1,26 @@
+.position-detail__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.position-detail__info {
+  display: flex;
+  gap: 8px;
+}
+
+.position-detail__modal-contact-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.position-detail__modal-contact-email-text {
+  padding: 12px;
+  display: inline-block;
+  background-color: #fff;
+}
+
+.position-detail__contact-button {
+  text-align: center;
+}
