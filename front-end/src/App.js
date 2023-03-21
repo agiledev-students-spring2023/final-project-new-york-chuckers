@@ -5,6 +5,7 @@ import { FreelancerListPage } from './pages/FreelancerListPage';
 import { Layout } from './components/layout/Layout';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
+import { PositionListPage } from './pages/PositionListPage';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
           <Route path="/freelancer" element={<FreelancerListPage />} />
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
+          <Route path="/position" element={<PositionListPage />} />
         </Routes>
       </Router>
     </Layout>
