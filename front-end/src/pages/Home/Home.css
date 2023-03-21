@@ -5,19 +5,9 @@
   align-content: last baseline;
 }
 
-/* styles shared by all screens within the app */
-
-.container {
-  border: 1px solid black;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0;
-}
-
-/* each screen has a main content area with an image, and a paragraph */
 .main-content {
   margin: 20px;
-  display: flex; /* use css flexbox for elements inside of this element */
+  display: flex; 
 }
 
 .router-link {
@@ -28,29 +18,9 @@
   color: white;
 }
 
-.main-content p,
-.main-content img {
-  flex: auto;
-  align-items: center;
-}
-
-.main-content p {
-  margin-left: 20px;
-}
-
-.main-content img {
-  object-fit: contain;
-}
-
-.main-content form {
-  flex: auto;
-  margin-left: 20px;
-}
-
 h1 {
   text-align: center;
   font-family: georgia;
-  margin-left: 20px;
 }
 
 p {
@@ -61,12 +31,13 @@ p {
 .hero-container {
   margin-top: 1%;
   margin-bottom: 1%;
+  justify-content: space-between;
   display: flex;
   flex-direction: row;
-  justify-content: flex-start; /* align items to the right */
-  padding-right: 10px;
   align-items: center;
-  width: 100%;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%; 
 }
 
 mark {
@@ -75,39 +46,38 @@ mark {
 }
 
 .left-block {
-  width: 40%;
+  width: 47%; 
   height: 25%;
-  padding-right: 10px;
   text-align: center;
-  font-size: 40px;
-  border: 5px solid #204a80;
+  font-size: 2.76vw;
+  border: .4vw solid #204a80;
   border-radius: 10px;
-  margin-right: 2%;
-  margin-left: 2%;
 }
 
 .right-block {
-  /* width: 50%; */
+  width: 47%; 
   height: 40%;
   text-align: center;
   overflow: hidden;
-  margin-right: 1%;
 }
 
 .right-block img {
-  height: 100%;
-  width: 100%;
+  height: 23vw; 
+  width: 100%; 
   border-radius: 10px;
+  object-fit: cover;
 }
+
 
 .cta-container {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   background-color: #ffff;
   flex-direction: column;
-  margin: 0.5%;
+  margin-bottom: 0.5%;
+  margin-top: 0.5%;
 }
 
 .cta-box {
@@ -140,11 +110,14 @@ mark {
   font-weight: bold;
 }
 
+
 .companies-section {
   background-color: #204a80;
+  justify-content: flex-start;
+  align-items: center;
   border-radius: 10px;
-  padding: 20px;
-  margin: 1.5%;
+  padding: 3%; 
+  margin: 2.5%;
   width: 95%;
 }
 
@@ -152,6 +125,7 @@ mark {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
+  
 }
 
 .company-logo {
@@ -186,29 +160,4 @@ mark {
   text-align: center;
   margin-bottom: 20px;
   color: white;
-}
-
-/* styles for form text fields */
-input[type='text'],
-input[type='password'] {
-  padding: 10px;
-  margin: 10px 0;
-  width: 200px;
-}
-
-/* styles for the form submit button */
-input[type='submit'] {
-  margin-top: 20px;
-  background-color: black;
-  color: white;
-  border: 1px solid white;
-  padding: 20px;
-  font-size: 20px;
-}
-
-/* changes to the submit button when it is being clicked */
-input[type='submit']:active {
-  color: black;
-  background-color: white;
-  border-color: black;
 }

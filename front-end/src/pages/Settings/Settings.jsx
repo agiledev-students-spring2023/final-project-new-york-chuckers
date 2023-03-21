@@ -8,6 +8,7 @@ function Settings() {
   const [phone, setPhone] = useState("123-456-7890");
   const [industry, setIndustry] = useState("Technology");
   const [isEditable, setIsEditable] = useState(false);
+  const [selectedFile, setFileChange] = useState(null);
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -56,7 +57,8 @@ function Settings() {
     // placeholder... do something more interesting
     alert(`You clicked the button to edit your profile. Upload Image!`)
   }
-
+   
+  
   return (
     <div className="settings-container">
       <div className="profile-container">
@@ -65,6 +67,7 @@ function Settings() {
           <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
         </div>
       </div>
+      {/* Want to add a switch from freelancer to recruiter double it for free-lancer if recruiter, im affiliated with this and make an edit company button*/}
       <div className="info-container">
         <div className="info-box">
           <div className="info-label">Name:</div>
