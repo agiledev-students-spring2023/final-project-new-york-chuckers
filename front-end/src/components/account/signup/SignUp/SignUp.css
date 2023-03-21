@@ -1,0 +1,26 @@
+.sign-up__wrapper {
+  padding-top: 16px;
+}
+
+.sign-up__logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-up__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sign-up__signup-link {
+  margin-top: 8px;
+}
+
+.sign-up__submit-btn {
+  width: 200px;
+  height: 80px;
+  margin: 16px auto;
+}
