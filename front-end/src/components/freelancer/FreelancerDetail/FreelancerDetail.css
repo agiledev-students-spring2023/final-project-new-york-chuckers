@@ -1,0 +1,26 @@
+.freelancer-detail__wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.freelancer-detail__info {
+  display: flex;
+  gap: 8px;
+}
+
+.freelancer-detail__modal-contact-email {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.freelancer-detail__modal-contact-email-text {
+  padding: 12px;
+  display: inline-block;
+  background-color: #fff;
+}
+
+.freelancer-detail__contact-button {
+  text-align: center;
+}
