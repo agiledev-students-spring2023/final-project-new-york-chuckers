@@ -1,0 +1,22 @@
+.text-card__wrapper {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.text-card__title {
+  font-size: 18px;
+  font-weight: 600;
+  padding-bottom: 12px;
+}
+
+.text-card__content {
+  font-size: 14px;
+}
+
+.wrapped {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
