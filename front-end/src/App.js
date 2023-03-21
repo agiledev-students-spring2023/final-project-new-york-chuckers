@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Home } from './pages/Home';
 import { FreelancerListPage } from './pages/FreelancerListPage';
 import { Layout } from './components/layout/Layout';
+import { SignInPage } from './pages/SignInPage';
+import { SignUpPage } from './pages/SignUpPage';
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
           {/* a route to see a list of all messages */}
           <Route path="/settings" element={<Settings />} />
           <Route path="/freelancer" element={<FreelancerListPage />} />
+          <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
         </Routes>
       </Router>
     </Layout>
