@@ -26,6 +26,7 @@ function FreelancerList() {
         {freelancers.map(({ id, name, position, pay }) => (
           <FreelancerListItem
             key={id}
+            id={id}
             name={name}
             position={position}
             pay={pay}
