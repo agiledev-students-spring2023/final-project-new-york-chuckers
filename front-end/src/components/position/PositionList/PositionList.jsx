@@ -23,6 +23,7 @@ function PositionList() {
         {positions.map(({ id, name, position, pay }) => (
           <PositionListItem
             key={id}
+            id={id}
             name={name}
             position={position}
             pay={pay}
