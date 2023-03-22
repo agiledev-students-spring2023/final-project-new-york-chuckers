@@ -13,6 +13,7 @@ function Profile() {
   const [selectedFile, setFileChange] = useState(null);
   const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState(["Amazon"])
+  const [image, setImage] = useState(profileImage);
 
   //for the switch button, find the opposite
   const handleNameChange = (event) => {
@@ -100,11 +101,49 @@ function Profile() {
     console.log(position, notPosition);
   }
 
+  function FileInput(props) {
+    const [file, setFile] = useState(null);
+  
+    const handleFileChange = (event) => {
+      const selectedFile = event.target.files[0];
+  
+      if (selectedFile && (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png')) {
+        setFile(selectedFile);
+  
+        const reader = new FileReader();
+        reader.onload = () => {
+          const newImage = reader.result;
+          props.onChange(newImage);
+        };
+        reader.readAsDataURL(selectedFile);
+      }
+    };
+  
+    return (
+      <div>
+        <input type="file" accept=".jpg,.jpeg,.png" onChange={handleFileChange} />
+      </div>
+    );
+  }
+  
+  function ImageDisplay(props) {
+    return (
+      <div>
+        <img src={props.image} alt="Current image" />
+      </div>
+    );
+  }
+
+  const handleImageChange = (newImage) => {
+    setImage(newImage);
+  };
+
   return (
     <div className="settings-container">
       <div className="profile-container">
         <div className="profile-image">
-          <img src={profileImage} alt="Profile" width="200" height="200" />
+          <img src={image} alt="Profile" width="200" height="200"/>
+          {/* <FileInput onChange={handleImageChange} className="file-input"/> */}
           <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
         </div>
       </div>
