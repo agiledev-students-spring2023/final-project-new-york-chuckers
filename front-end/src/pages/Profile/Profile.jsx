@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 import profileImage from '../../Assets/logo.svg';
-import './Settings.css';
+import './Profile.css';
 
-function Settings() {
+function Profile() {
   const [name, setName] = useState("John Smith");
   const [email, setEmail] = useState("john.smith@example.com");
   const [phone, setPhone] = useState("123-456-7890");
   const [industry, setIndustry] = useState("Technology");
   const [position, setPosition] = useState("Freelancer");
-//   const [positionWord, setPositionWord] = useState("Positions");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
   const [selectedFile, setFileChange] = useState(null);
@@ -102,39 +101,100 @@ function Settings() {
     console.log(position, notPosition);
   }
 
+  function FileInput(props) {
+    const [file, setFile] = useState(null);
+  
+    const handleFileChange = (event) => {
+      const selectedFile = event.target.files[0];
+  
+      if (selectedFile && (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png')) {
+        setFile(selectedFile);
+  
+        const reader = new FileReader();
+        reader.onload = () => {
+          const newImage = reader.result;
+          props.onChange(newImage);
+        };
+        reader.readAsDataURL(selectedFile);
+      }
+    };
+  
+    return (
+      <div>
+        <input type="file" accept=".jpg,.jpeg,.png" onChange={handleFileChange} />
+      </div>
+    );
+  }
+  
+  function ImageDisplay(props) {
+    return (
+      <div>
+        <img src={props.image} alt="Current image" />
+      </div>
+    );
+  }
+
+  const handleImageChange = (newImage) => {
+    setImage(newImage);
+  };
+
   return (
     <div className="settings-container">
-        <h1>
-            Hello {name}!
-        </h1>
+      <div className="profile-container">
+        <div className="profile-image">
+          <img src={image} alt="Profile" width="200" height="200"/>
+          {/* <FileInput onChange={handleImageChange} className="file-input"/> */}
+          <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+        </div>
+      </div>
+      <h1>
+        Your {position} Profile
+      </h1>
       <div className="info-container">
         <div className="info-box">
-          <div className="info-label">Edit {position} Profile</div>
-          <a href="/profile" className= "link-out">Edit {position} Profile</a>
+          <div className="info-label">Name:</div>
+          <div className="info-value">{name}</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
+          <input type="text" className="edit-field" value={name} onChange={handleNameChange} />
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
-        </div>
-        <div className="info-container">
         <div className="info-box">
-          <div className="info-label">Saved Positions</div>
-          <a href="/freelancer" className= "link-out">Your Saved Positions</a>
+          <div className="info-label">Email:</div>
+          <div className="info-value">{email}</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
+          <input type="text" className="edit-field" value={email} onChange={handleEmailChange} />
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
-        </div>
-        <div className="info-container">
         <div className="info-box">
-          <div className="info-label">Switch to {notPosition}</div>
-          <div className="link-out" onClick={switchPosition}>Switch</div>
+          <div className="info-label">Phone Number:</div>
+          <div className="info-value">{phone}</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
+          <input type="text" className="edit-field" value={phone} onChange={handlePhoneChange} />
+          <div className="save-button" onClick={handleSave}>Save</div>
         </div>
-        </div>
-        <div className="industry-container">
-        <div className="info-container">
+      <div className="industry-container">
+          {position === 'Recruiter' ? (
             <div className="info-box">
-                <div className="info-label">Logout</div>
-                <a href="/home" className= "link-out">Click Here To Logout</a>
+              <div className="info-label">Your Company:</div>
+              <div className="info-value">{companies}</div>
+              <div className="edit-button" onClick={handleEditCompany}>Edit</div>
+              <a href="/companies-list" className= "save-button">Find Another Company</a>
             </div>
-        </div>
-        </div>
+          ) : (
+            <div className="info-box"> 
+              <div className="info-label">Industry Preferences:</div>
+              <div className="info-value">{industry}</div>
+              <div className="edit-button" onClick={handleEdit}>Edit</div>
+              <input type="text" className="edit-field" value={industry}/>
+              <div className="save-button" onClick={handleSave}>Save</div>
+            </div>
+          )}
+      </div>
+      </div>
+      {/* Maybe remove this from final, just to demo difference in the buttons */}
+      <div className="switch-button" onClick={switchPosition}>Switch To {notPosition}</div>
     </div>
   );
 }
 
-export default Settings;
+export default Profile;
