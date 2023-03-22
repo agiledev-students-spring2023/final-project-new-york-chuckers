@@ -116,7 +116,7 @@ function Settings() {
         <div className="info-container">
         <div className="info-box">
           <div className="info-label">Saved Positions</div>
-          <a href="/saved-positions" className= "link-out">Your Saved Positions</a>
+          <a href="/freelancer" className= "link-out">Your Saved Positions</a>
         </div>
         </div>
         <div className="info-container">
@@ -129,7 +129,7 @@ function Settings() {
         <div className="info-container">
             <div className="info-box">
                 <div className="info-label">Logout</div>
-                <a href="/logout" className= "link-out">Click Here To Logout</a>
+                <a href="/home" className= "link-out">Click Here To Logout</a>
             </div>
         </div>
         </div>
