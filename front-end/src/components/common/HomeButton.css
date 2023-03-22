@@ -1,9 +1,0 @@
-.home-button__wrapper {
-    padding: 6px 16px;
-    background-color: var(--primary-main);
-    color: #ffffff;
-    border-radius: 4px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
