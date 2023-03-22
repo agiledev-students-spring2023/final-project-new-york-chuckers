@@ -9,6 +9,12 @@ const listener = server.listen(port, function () {
 const close = () => {
   listener.close()
 }
+
+server.get("/", (req,res) => {
+    res.send("hello world");
+})
+
 module.exports = {
   close: close,
 }
+//run with npx nodemon server.js
