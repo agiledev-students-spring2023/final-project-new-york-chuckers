@@ -7,6 +7,8 @@ function Profile() {
   const [email, setEmail] = useState("john.smith@example.com");
   const [phone, setPhone] = useState("123-456-7890");
   const [industry, setIndustry] = useState("Technology");
+  const [skills, setSkills] = useState("Python, Javscript, Figma");
+  const [wantWork, setWantWork] = useState("Yes");
   const [position, setPosition] = useState("Freelancer");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
@@ -30,6 +32,10 @@ function Profile() {
 
   const handleIndustryChange = (event) => {
     setIndustry(event.target.value);
+  }
+
+  const handleSkillsChange = (event) => {
+    setSkills(event.target.value);
   }
 
   const handleEdit = (event) => { 
@@ -99,6 +105,13 @@ function Profile() {
       });
     }
     console.log(position, notPosition);
+  }
+
+  const switchWantWork = (event) =>{
+    setWantWork(prevVal => {
+      const newVal = prevVal.localeCompare("Yes") == 0 ? "No" : "Yes";
+      return newVal;
+    });
   }
 
   function FileInput(props) {
@@ -185,13 +198,31 @@ function Profile() {
               <div className="info-label">Industry Preferences:</div>
               <div className="info-value">{industry}</div>
               <div className="edit-button" onClick={handleEdit}>Edit</div>
-              <input type="text" className="edit-field" value={industry}/>
+              <input type="text" className="edit-field" value={industry} onChange={handleIndustryChange}/>
               <div className="save-button" onClick={handleSave}>Save</div>
             </div>
           )}
       </div>
+      <div className="industry-container">
+        {position === 'Freelancer' ? (            
+        <div className="info-box"> 
+          <div className="info-label">Skills:</div>
+          <div className="info-value">{skills}</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
+          <input type="text" className="edit-field" value={skills} onChange={handleSkillsChange}/>
+          <div className="save-button" onClick={handleSave}>Save</div>
+        </div>) : null}
       </div>
-      {/* Maybe remove this from final, just to demo difference in the buttons */}
+      <div className="industry-container">
+        {position === 'Freelancer' ? (            
+        <div className="info-box"> 
+          <div className="info-label">Looking for Work</div>
+          <div className="info-value">{wantWork}</div>
+          <div className="edit-button" onClick={switchWantWork}>Switch to {wantWork.localeCompare("Yes") == 0 ? "No" : "Yes"}</div>
+        </div>) : null}
+      </div>
+      
+      </div>
       <div className="switch-button" onClick={switchPosition}>Switch To {notPosition}</div>
     </div>
   );
