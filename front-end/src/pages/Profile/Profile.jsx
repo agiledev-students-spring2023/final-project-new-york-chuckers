@@ -12,8 +12,7 @@ function Profile() {
   const [position, setPosition] = useState("Freelancer");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
-  const [selectedFile, setFileChange] = useState(null);
-  const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
+  const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
 
@@ -80,14 +79,6 @@ function Profile() {
     setIsEditableCompany(!isEditableCompany);
   }
 
-  const handleSaveCompany = (event) => { 
-    const infoBox = event.target.parentElement;
-    const editButton = infoBox.querySelector(".edit-button");
-    editButton.textContent = 'Edit';
-    infoBox.classList.remove("cancel");
-    setIsEditableCompany(false);
-  }
-
   const handleProfileButtonClick = e => {
     alert(`You clicked the button to edit your profile. Upload Image!`)
   }
@@ -99,7 +90,7 @@ function Profile() {
       alert(`Please finish editing before switching profile type.`)
     }else {
       setPosition(prevPosition => {
-        const newPosition = prevPosition.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer";
+        const newPosition = prevPosition.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer";
         setNotPosition(prevPosition);
         return newPosition;
       });
@@ -109,7 +100,7 @@ function Profile() {
 
   const switchWantWork = (event) =>{
     setWantWork(prevVal => {
-      const newVal = prevVal.localeCompare("Yes") == 0 ? "No" : "Yes";
+      const newVal = prevVal.localeCompare("Yes") === 0 ? "No" : "Yes";
       return newVal;
     });
   }
@@ -130,11 +121,7 @@ function Profile() {
         };
         reader.readAsDataURL(selectedFile);
       }
-    };
-  
-    const buttonText = file ? "Change file" : "Upload file";
-    const fileName = file ? file.name : "No file selected";
-  
+    };  
     return (
       <div>
         <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
@@ -217,7 +204,7 @@ function Profile() {
         <div className="info-box"> 
           <div className="info-label">Looking for Work</div>
           <div className="info-value">{wantWork}</div>
-          <div className="edit-button" onClick={switchWantWork}>Switch to {wantWork.localeCompare("Yes") == 0 ? "No" : "Yes"}</div>
+          <div className="edit-button" onClick={switchWantWork}>Switch to {wantWork.localeCompare("Yes") === 0 ? "No" : "Yes"}</div>
         </div>) : null}
       </div>
       
