@@ -1,3 +1,7 @@
 .position-list__wrapper {
   margin-top: 16px;
 }
+.open-button__wrapper {
+  padding: 10px;
+  width: 150px;
+}

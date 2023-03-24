@@ -149,6 +149,22 @@
   border-radius: 5px;
 }
 
+.edit-freelance-profile-button{
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  border: none;
+  text-align: center;
+  font-size: 18px;
+  border-radius: 5px;
+  width: 200px;
+}
+
+.edit-freelance-profile-button:hover{
+  background-color:#26599b;
+}
+
 .file-input-wrapper {
   position: relative;
   display: inline-block;

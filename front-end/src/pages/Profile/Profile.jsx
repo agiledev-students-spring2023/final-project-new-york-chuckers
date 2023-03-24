@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Button from '../../components/common/Button/Button';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
 
@@ -14,6 +16,15 @@ function Profile() {
   const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
+
+  //Set the const navigate to link to the edit freelancer profile 
+  const navigate = useNavigate();
+
+  //Handle click on edit freelancer profile button
+  function handleEditFreelance(){
+    //This should redirect to "/edit-freelancer", but the page doesn't exist yet, so "/create-freelancer" for now
+    navigate("/create-freelancer");
+  }
 
   //for the switch button, find the opposite
   const handleNameChange = (event) => {
@@ -181,16 +192,21 @@ function Profile() {
               <a href="/companies-list" className= "save-button">Find Another Company</a>
             </div>
           ) : (
-            <div className="info-box"> 
-              <div className="info-label">Industry Preferences:</div>
-              <div className="info-value">{industry}</div>
-              <div className="edit-button" onClick={handleEdit}>Edit</div>
-              <input type="text" className="edit-field" value={industry}/>
-              <div className="save-button" onClick={handleSave}>Save</div>
-            </div>
+              <div className="info-box"> 
+                <div className="info-label">Industry Preferences:</div>
+                <div className="info-value">{industry}</div>
+                <div className="edit-button" onClick={handleEdit}>Edit</div>
+                <input type="text" className="edit-field" value={industry}/>
+                <div className="save-button" onClick={handleSave}>Save</div>
+              </div>
           )}
       </div>
       </div>
+      {
+        //Adding the edit freelancer profile button when on freelancer profile
+      }
+      <div>{position === 'Recruiter' ? (<div></div>) : (
+      <div className='edit-freelance-profile-button' onClick={handleEditFreelance}>Edit Freelancer Profile</div>)}</div>
       {/* Maybe remove this from final, just to demo difference in the buttons */}
       <div className="switch-button" onClick={switchPosition}>Switch To {notPosition}</div>
     </div>

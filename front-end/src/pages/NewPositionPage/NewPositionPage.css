@@ -1,0 +1,8 @@
+.setup-page__wrapper {
+    padding: 0px;
+}
+
+.setup-page-logo{
+    width: 100%;
+    display: flex;
+}

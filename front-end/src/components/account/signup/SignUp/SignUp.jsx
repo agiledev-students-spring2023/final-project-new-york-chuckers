@@ -1,6 +1,6 @@
 import React from 'react';
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../../common/Button/Button';
 import { InputTitle } from '../../../common/input/InputTitle';
 import { TextField } from '../../../common/input/TextField';
@@ -25,6 +25,13 @@ function SignUp() {
       [name]: value,
     });
   };
+
+  //Adding useNavigate const to link signup to profile setup (Joey)
+  const navigate = useNavigate();
+  //Adding a handleSignup function to link to profile setup, edit it as you please (Joey)
+  function handleSignup(){
+    navigate('/setup');
+  }
 
   const validatePassword = () => {
     if (password === confirmPassword) {
@@ -69,7 +76,10 @@ function SignUp() {
         Already have an account? <Link to="/signin">Log in</Link> here.
       </div>
       <div className="sign-up__submit-btn">
-        <Button>Sign Up</Button>
+        {
+        // added handleSignup to onClick for the button (Joey)
+        } 
+        <Button onClick={handleSignup}>Sign Up</Button>
       </div>
     </div>
   );
