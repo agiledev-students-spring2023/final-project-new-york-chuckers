@@ -132,17 +132,13 @@ function Profile() {
       }
     };
   
-    return (
-      <div>
-        <input type="file" accept=".jpg,.jpeg,.png" onChange={handleFileChange} />
-      </div>
-    );
-  }
+    const buttonText = file ? "Change file" : "Upload file";
+    const fileName = file ? file.name : "No file selected";
   
-  function ImageDisplay(props) {
     return (
       <div>
-        <img src={props.image} alt="Current image" />
+        <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+        <input type="file" accept=".jpg,.jpeg,.png" id="fileInput" onChange={handleFileChange} className="invisible"/>
       </div>
     );
   }
@@ -155,9 +151,12 @@ function Profile() {
     <div className="settings-container">
       <div className="profile-container">
         <div className="profile-image">
-          <img src={image} alt="Profile" width="200" height="200"/>
-          {/* <FileInput onChange={handleImageChange} className="file-input"/> */}
-          <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+          <img src={image} alt="Profile" />
+          {/* <FileInput onChange={handleImageChange} className="edit-profile-button"/> */}
+          {/* <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div> */}
+        </div>
+        <div className="edit-file-button">
+          <FileInput onChange={handleImageChange} className="edit-profile-button"/>
         </div>
       </div>
       <h1>
