@@ -23,9 +23,8 @@ function NewPosition() {
     console.log(info);
     alert('Position Submitted');
     setState(info);
-    navigate('/');
+    navigate('/position');
   };
-
   return (
     <div className="new-position__wrapper">
       <form onSubmit={handleSubmit}>
