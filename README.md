@@ -17,4 +17,4 @@ Pranav Kanchi: [Github](https://github.com/pkanchi23)
 
 Omri Sokol: [Github](https://github.com/omri-sokol)
 
-@jlalo: Joey
+Joey Lalo: [Github](https://github.com/jlalo01)
