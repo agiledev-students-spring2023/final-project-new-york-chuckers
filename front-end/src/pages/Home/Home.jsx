@@ -32,7 +32,7 @@ const Home = props => {
             Join the ranks of hundrds of students in working with the world's
             leading companies.
           </p>
-          <a href="/login" class="cta-button">
+          <a href="/signup" class="cta-button">
             Sign-Up Here
           </a>
         </div>

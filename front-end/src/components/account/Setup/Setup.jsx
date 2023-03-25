@@ -16,7 +16,6 @@ function Setup(){
         e.preventDefault();
 
         console.log("You submitted!");
-
         const info = {
             'name': e.target.name.value,
             'gender': gender,
@@ -24,25 +23,28 @@ function Setup(){
             'school': e.target.school.value,
             'role': role
         };
-        setStatus(info);
-        console.log(info);
-        alert("Profile Saved");
-        if (role === "FL") {navigate('/create-freelancer');}
-        else {navigate('/');}
+        if (info.gender === "N" || info.role === "N" || info.name === "" || info.school === ""){alert("Error, you're missing some items");}
+        else{
+            setStatus(info);
+            console.log(info);
+            alert("Profile Saved");
+            if (role === "FL") {navigate('/create-freelancer');}
+            else {navigate('/');}
+        }
     }
 
     function maleGenderClick(){
-        gender = "M"
+        gender = "M";
     }
     function femaleGenderClick(){
-        gender = "F"
+        gender = "F";
     }
 
     function recruiterClick(){
-        role = "R"
+        role = "R";
     }
     function freelancerClick(){
-        role = "FL"
+        role = "FL";
     }
 
 
@@ -52,13 +54,14 @@ function Setup(){
                 <div className='item__wrapper'>
                     <InputTitle>Name:</InputTitle>
                     <div className='text-field__wrapper'>
-                        <input type="text" name="name" placeholder="Luke Skywalker" />
+                        <input type="text" name="name" placeholder="Harry Potter" />
                     </div>
                 </div>
                 <div className='item__wrapper'>
                     <InputTitle>Gender:</InputTitle>
                     <div className='selection-buttons'>
-                        <button type="button" className='selection-btn-individual' onClick={maleGenderClick}>Male</button>
+                        <div className='button__padding'>
+                        <button type="button" className="selection-btn-individual" onClick={maleGenderClick}>Male</button></div>
                         <button type="button" className="selection-btn-individual" onClick={femaleGenderClick}>Female</button>
                     </div>
                 </div>
@@ -76,7 +79,8 @@ function Setup(){
                 </div>
                 <div className='item_wrapper'>
                     <div className='selection-buttons'>
-                        <button type="button" className='selection-btn-individual' onClick={recruiterClick}>I'm a Recruiter</button>
+                        <div className='button__padding'>
+                        <button type="button" className='selection-btn-individual' onClick={recruiterClick}>I'm a Recruiter</button></div>
                         <button type="button" className='selection-btn-individual' onClick={freelancerClick}>I'm a Freelancer</button>
                     </div>
                 </div>

@@ -30,7 +30,7 @@ function CreateFreelancer() {
         console.log(info);
         alert("Freelancer Profile Created!");
         setStatus(info);
-        navigate('/');
+        navigate('/freelancer');
     }
 
     function handlePhotoClick(){
