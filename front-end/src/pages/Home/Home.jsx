@@ -4,6 +4,7 @@ import { Header } from '../../components/common/Header';
 import freelancers from '../../Assets/Freelance_Hero.jpeg';
 import partnerLogo from '../../Assets/logo.svg';
 import './Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = props => {
   return (
@@ -32,9 +33,9 @@ const Home = props => {
             Join the ranks of hundrds of students in working with the world's
             leading companies.
           </p>
-          <a href="/signup" class="cta-button">
+          <Link to="/signup" class="cta-button">
             Sign-Up Here
-          </a>
+          </Link>
         </div>
       </div>
 
@@ -70,7 +71,7 @@ const Home = props => {
           </div>
         </div>
         <div class="find-more-button">
-          <a href="companies_list">Find More Companies</a>
+          <Link to="/position">Find More Companies</Link>
         </div>
       </section>
 
@@ -78,9 +79,9 @@ const Home = props => {
       <div class="cta-container">
         <div class="cta-box">
           <p>Check out some potential positions.</p>
-          <a href="/freelancer" class="cta-button">
+          <Link to="/freelancer" class="cta-button">
             See Freelance Projects
-          </a>
+          </Link>
         </div>
       </div>
 
