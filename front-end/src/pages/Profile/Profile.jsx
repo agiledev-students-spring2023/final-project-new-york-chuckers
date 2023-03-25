@@ -9,11 +9,12 @@ function Profile() {
   const [email, setEmail] = useState("john.smith@example.com");
   const [phone, setPhone] = useState("123-456-7890");
   const [industry, setIndustry] = useState("Technology");
+  const [skills, setSkills] = useState("Python, Javscript, Figma");
+  const [wantWork, setWantWork] = useState("Yes");
   const [position, setPosition] = useState("Freelancer");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
-  const [selectedFile, setFileChange] = useState(null);
-  const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
+  const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
 
@@ -41,6 +42,10 @@ function Profile() {
 
   const handleIndustryChange = (event) => {
     setIndustry(event.target.value);
+  }
+
+  const handleSkillsChange = (event) => {
+    setSkills(event.target.value);
   }
 
   const handleEdit = (event) => { 
@@ -85,14 +90,6 @@ function Profile() {
     setIsEditableCompany(!isEditableCompany);
   }
 
-  const handleSaveCompany = (event) => { 
-    const infoBox = event.target.parentElement;
-    const editButton = infoBox.querySelector(".edit-button");
-    editButton.textContent = 'Edit';
-    infoBox.classList.remove("cancel");
-    setIsEditableCompany(false);
-  }
-
   const handleProfileButtonClick = e => {
     alert(`You clicked the button to edit your profile. Upload Image!`)
   }
@@ -104,12 +101,19 @@ function Profile() {
       alert(`Please finish editing before switching profile type.`)
     }else {
       setPosition(prevPosition => {
-        const newPosition = prevPosition.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer";
+        const newPosition = prevPosition.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer";
         setNotPosition(prevPosition);
         return newPosition;
       });
     }
     console.log(position, notPosition);
+  }
+
+  const switchWantWork = (event) =>{
+    setWantWork(prevVal => {
+      const newVal = prevVal.localeCompare("Yes") === 0 ? "No" : "Yes";
+      return newVal;
+    });
   }
 
   function FileInput(props) {
@@ -128,19 +132,11 @@ function Profile() {
         };
         reader.readAsDataURL(selectedFile);
       }
-    };
-  
+    };  
     return (
       <div>
-        <input type="file" accept=".jpg,.jpeg,.png" onChange={handleFileChange} />
-      </div>
-    );
-  }
-  
-  function ImageDisplay(props) {
-    return (
-      <div>
-        <img src={props.image} alt="Current image" />
+        <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+        <input type="file" accept=".jpg,.jpeg,.png" id="fileInput" onChange={handleFileChange} className="invisible"/>
       </div>
     );
   }
@@ -153,9 +149,12 @@ function Profile() {
     <div className="settings-container">
       <div className="profile-container">
         <div className="profile-image">
-          <img src={image} alt="Profile" width="200" height="200"/>
-          {/* <FileInput onChange={handleImageChange} className="file-input"/> */}
-          <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+          <img src={image} alt="Profile" />
+          {/* <FileInput onChange={handleImageChange} className="edit-profile-button"/> */}
+          {/* <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div> */}
+        </div>
+        <div className="edit-file-button">
+          <FileInput onChange={handleImageChange} className="edit-profile-button"/>
         </div>
       </div>
       <h1>
@@ -201,7 +200,27 @@ function Profile() {
               </div>
           )}
       </div>
+      <div className="industry-container">
+        {position === 'Freelancer' ? (            
+        <div className="info-box"> 
+          <div className="info-label">Skills:</div>
+          <div className="info-value">{skills}</div>
+          <div className="edit-button" onClick={handleEdit}>Edit</div>
+          <input type="text" className="edit-field" value={skills} onChange={handleSkillsChange}/>
+          <div className="save-button" onClick={handleSave}>Save</div>
+        </div>) : null}
       </div>
+      <div className="industry-container">
+        {position === 'Freelancer' ? (            
+        <div className="info-box"> 
+          <div className="info-label">Looking for Work</div>
+          <div className="info-value">{wantWork}</div>
+          <div className="edit-button" onClick={switchWantWork}>Switch to {wantWork.localeCompare("Yes") === 0 ? "No" : "Yes"}</div>
+        </div>) : null}
+      </div>
+      
+      </div>
+
       {
         //Adding the edit freelancer profile button when on freelancer profile
       }

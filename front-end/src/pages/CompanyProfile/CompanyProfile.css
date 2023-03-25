@@ -15,14 +15,14 @@
 .profile-image {
   position: relative;
   width:25vw;
-  height:25vw;
+  max-height:25vw;
   display: flex; 
   align-items: center; 
   justify-content: center; 
 }
 
 .profile-image img {
-  width:20vw;
+  max-width:20vw;
   height:20vw;
   border-radius: 5%;
   padding: 10%;
@@ -164,22 +164,6 @@
   color: #FFFFFF;
   border: none;
   border-radius: 5px;
-}
-
-.edit-freelance-profile-button{
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
-  border: none;
-  text-align: center;
-  font-size: 18px;
-  border-radius: 5px;
-  width: 200px;
-}
-
-.edit-freelance-profile-button:hover{
-  background-color:#26599b;
 }
 
 .file-input-wrapper {

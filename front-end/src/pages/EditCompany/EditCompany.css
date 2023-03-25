@@ -1,0 +1,99 @@
+.hero-section {
+  background-image: url('https://assets.aboutamazon.com/dims4/default/32861da/2147483647/strip/true/crop/1600x901+0+83/resize/1320x743!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2Fc3%2F15%2F202c3f54402da5128d962a969b02%2Famazon-nashville-3.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  height:auto;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  max-width: 500px;
+  max-height: 300px;
+  height: 100vw;
+  background-color: #204a806e;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow:hidden;
+}
+
+.company-logo {
+  height: 10vh;
+  margin: 5%;
+}
+
+.edit-button {
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.description-section {
+  margin:3%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.description-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description-text {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+p{
+  max-width: 100%;
+  font-size: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:white;
+}
+
+.info-box {
+  width: 100%;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1F3A64;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.info-box .info-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info-box .link-out {
+  display: block;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}

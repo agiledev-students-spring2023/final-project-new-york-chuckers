@@ -7,6 +7,8 @@ import { Layout } from './components/layout/Layout';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { PositionListPage } from './pages/PositionListPage';
+import {EditCompany} from './pages/EditCompany';
+import {CompanyProfile} from './pages/CompanyProfile';
 import { FreelancerDetailPage } from './pages/FreelancerDetailPage';
 import { PositionDetailPage } from './pages/PositionDetailPage';
 import { SetupPage } from './pages/SetupPage';
@@ -28,6 +30,8 @@ function App() {
           <Route path="/signin" element={<SignInPage />} />
           <Route path="/signup" element={<SignUpPage />} />
           <Route path="/position" element={<PositionListPage />} />
+          <Route path="/edit-company" element={<EditCompany />} />
+          <Route path="/company-profile" element={<CompanyProfile />} />
           <Route path="/position/:id" element={<PositionDetailPage />} />
           <Route path="/setup" element={ <SetupPage />} />
           <Route path='/new-position' element={ <NewPositionPage />} />

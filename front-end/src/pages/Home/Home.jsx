@@ -78,7 +78,7 @@ const Home = props => {
       <div class="cta-container">
         <div class="cta-box">
           <p>Check out some potential positions.</p>
-          <a href="/login" class="cta-button">
+          <a href="/freelancer" class="cta-button">
             See Freelance Projects
           </a>
         </div>
