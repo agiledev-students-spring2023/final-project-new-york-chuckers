@@ -1,0 +1,26 @@
+.sign-in__wrapper {
+  padding-top: 16px;
+}
+
+.sign-in__logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sign-in__input-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sign-in__signup-link {
+  margin-top: 8px;
+}
+
+.sign-in__submit-btn {
+  width: 200px;
+  height: 80px;
+  margin: 16px auto;
+}

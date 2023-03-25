@@ -1,9 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Button } from '../../common/Button';
 import { ListItem } from '../../common/list/ListItem';
 import './FreelancerListItem.css';
 
-function FreelancerListItem({ name, position, pay }) {
+function FreelancerListItem({ id, name, position, pay }) {
   return (
     <ListItem style={{ backgroundColor: '#F3F6F8' }}>
       <div className="freelancer-list-item__wrapper">
@@ -14,7 +15,9 @@ function FreelancerListItem({ name, position, pay }) {
           </div>
           <div className="freelancer-list-item__content-info">Pay: {pay}</div>
         </div>
-        <Button>View Profile</Button>
+        <Link to={`/freelancer/${id}`}>
+          <Button>View Profile</Button>
+        </Link>
       </div>
     </ListItem>
   );
