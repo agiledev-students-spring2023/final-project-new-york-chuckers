@@ -1,4 +1,4 @@
-# Tester Connector (Name is a WIP)
+# Tester Connector
 
 Our project is a solution that connects talented student freelancers looking for work experience and small jobs with companies willing provide them. The solution allows students to create profiles and connect with different companies to potentially freelance for. Companies receive talented students that, despite lacking credentials, are talented and work for cheaper rates than professional freelancers. On the otherhand, students receive the ability to have side-jobs, gain experience in their preferred field, and generate a portfolio of work.
 
@@ -17,4 +17,4 @@ Pranav Kanchi: [Github](https://github.com/pkanchi23)
 
 Omri Sokol: [Github](https://github.com/omri-sokol)
 
-@jlalo: Joey
+Joey: [Github](https://github.com/Jlalo01)
