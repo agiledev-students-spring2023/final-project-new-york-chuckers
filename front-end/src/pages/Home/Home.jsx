@@ -13,7 +13,7 @@ const Home = props => {
       {/* <h1>Welcome to Tester Connector!</h1> */}
       <div class="hero-container">
         <div class="left-block">
-          <p class="Hero-Text">
+          <p class="hero-text">
             Tester Connector connects students like you with the{' '}
             <mark>top companies</mark> in the world. You get a{' '}
             <mark>high paying gig</mark> and to{' '}
@@ -30,7 +30,7 @@ const Home = props => {
       <div class="cta-container">
         <div class="cta-box">
           <p>
-            Join the ranks of hundrds of students in working with the world's
+            Join the ranks of hundreds of students in working with the world's
             leading companies.
           </p>
           <Link to="/signup" class="cta-button">
