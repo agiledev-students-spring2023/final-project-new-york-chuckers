@@ -3,6 +3,7 @@ import express from "express";
 import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
+import freelancerRouter from "./routes/freelancer/index.js";
 
 const app = express(); // instantiate an Express object
 
@@ -12,6 +13,9 @@ app.use(cors()); // allow cross-origin resource sharing
 // use express's builtin body-parser middleware to parse any data included in a request
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
+
+// custom router
+app.use("/api/", freelancerRouter);
 
 // connect to database – for later when setting up DB next sprint
 // mongoose
