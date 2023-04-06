@@ -17,14 +17,16 @@ function Settings() {
   const [image, setImage] = useState(profileImage);
 
   const fetchMessages = () => {
+    console.log(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
     axios
       // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       //need to fix this
-      .get('http://localhost:5076/settings')
+      .get(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       .then(response => {
         // axios bundles up all response data in response.data property
         const name = response.data[0].name
         setName(name)
+        console.log(name)
         const email = response.data[0].email
         setEmail(email)
         const phone = response.data[0].phone
@@ -40,6 +42,7 @@ function Settings() {
       })
       .catch(err => {
         // setError(err)
+        console.log(err);
       })
       .finally(() => {
         // the response has been received, so remove the loading icon

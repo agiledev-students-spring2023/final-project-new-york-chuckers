@@ -24,7 +24,7 @@ function Profile() {
     axios
       // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       //need to fix this
-      .get('http://localhost:5076/settings')
+      .get(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       .then(response => {
         // axios bundles up all response data in response.data property
         const name = response.data[0].name
@@ -80,25 +80,44 @@ function Profile() {
     navigate("/create-freelancer");
   }
 
+    const settingsUpdate = () => {
+    axios.post(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
+      name: name,
+      email: email,
+      phone: phone,
+      industry: industry,
+      position: position,
+      companies:companies,
+      skills: skills,
+      wantWork:wantWork,
+      image:image,
+    })
+  }
+
   //for the switch button, find the opposite
   const handleNameChange = (event) => {
     setName(event.target.value);
+    settingsUpdate();
   }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
+    settingsUpdate();
   }
 
   const handlePhoneChange = (event) => {
     setPhone(event.target.value);
+    settingsUpdate();
   }
 
   const handleIndustryChange = (event) => {
     setIndustry(event.target.value);
+    settingsUpdate();
   }
 
   const handleSkillsChange = (event) => {
     setSkills(event.target.value);
+    settingsUpdate();
   }
 
   const handleEdit = (event) => { 
@@ -157,9 +176,11 @@ function Profile() {
         const newPosition = prevPosition.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer";
         setNotPosition(prevPosition);
         return newPosition;
+        settingsUpdate();
       });
     }
-    console.log(position, notPosition);
+    settingsUpdate();
+    // console.log(position, notPosition);
   }
 
   const switchWantWork = (event) =>{
@@ -167,6 +188,7 @@ function Profile() {
       const newVal = prevVal.localeCompare("Yes") === 0 ? "No" : "Yes";
       return newVal;
     });
+    settingsUpdate();
   }
 
   function FileInput(props) {
@@ -196,6 +218,7 @@ function Profile() {
 
   const handleImageChange = (newImage) => {
     setImage(newImage);
+    settingsUpdate();
   };
 
   return (
