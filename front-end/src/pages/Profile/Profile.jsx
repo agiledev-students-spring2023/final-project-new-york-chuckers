@@ -1,22 +1,75 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import Button from '../../components/common/Button/Button';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
 
+
 function Profile() {
-  const [name, setName] = useState("John Smith");
-  const [email, setEmail] = useState("john.smith@example.com");
-  const [phone, setPhone] = useState("123-456-7890");
-  const [industry, setIndustry] = useState("Technology");
-  const [skills, setSkills] = useState("Python, Javscript, Figma");
-  const [wantWork, setWantWork] = useState("Yes");
-  const [position, setPosition] = useState("Freelancer");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [skills, setSkills] = useState("");
+  const [wantWork, setWantWork] = useState("");
+  const [position, setPosition] = useState("");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
   const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer");
-  const [companies, setCompanies] = useState(["Amazon"])
+  const [companies, setCompanies] = useState([""])
   const [image, setImage] = useState(profileImage);
+
+  const fetchMessages = () => {
+    axios
+      // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
+      //need to fix this
+      .get('http://localhost:5076/settings')
+      .then(response => {
+        // axios bundles up all response data in response.data property
+        const name = response.data[0].name
+        setName(name)
+        const email = response.data[0].email
+        setEmail(email)
+        const phone = response.data[0].phone
+        setPhone(phone)
+        const industry = response.data[0].industry
+        setIndustry(industry)
+        const position = response.data[0].position
+        setPosition(position)
+        const companies = response.data[0].companies
+        setCompanies(companies)
+        const skills = response.data[0].skills
+        setSkills(skills)
+        const work = response.data[0].wantWork
+        setWantWork(work)
+        const image = response.data[0].image
+        // setImage(image)
+      })
+      .catch(err => {
+        // setError(err)
+      })
+      .finally(() => {
+        // the response has been received, so remove the loading icon
+        // setLoaded(true)
+      })
+  }
+
+  useEffect(() => {
+    // fetch messages this once
+    fetchMessages()
+
+    // set a timer to load data from server every n seconds
+    // const intervalHandle = setInterval(() => {
+    //   fetchMessages()
+    // }, 5000)
+
+    // // return a function that will be called when this component unloads
+    // return e => {
+    //   // clear the timer, so we don't still load messages when this component is not loaded anymore
+    //   clearInterval(intervalHandle)
+    // }
+  }, []) 
 
   //Set the const navigate to link to the edit freelancer profile 
   const navigate = useNavigate();
@@ -98,7 +151,7 @@ function Profile() {
   //need to change the text, need to change the edit button to where its now an "Find your company" button
   const switchPosition = (event) =>{
     if(isEditable || isEditableCompany){
-      alert(`Please finish editing before switching profile type.`)
+      alert(`Please finish editin before switching profile type.`)
     }else {
       setPosition(prevPosition => {
         const newPosition = prevPosition.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer";

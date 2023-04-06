@@ -37,6 +37,15 @@ app.get("/users", function (req, res) {
   ];
   res.json(users);
 });
+
+app.get('/settings', function(req, res) {
+  profileImage = "hi"
+  const users = [
+    { id: 1, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: profileImage},
+  ];
+  res.json(users);
+});
+
 // a route to handle fetching all messages
 app.get("/messages", async (req, res) => {
   // load all messages from database
