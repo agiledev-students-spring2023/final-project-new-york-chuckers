@@ -41,9 +41,35 @@ app.get("/users", function (req, res) {
 app.get('/settings', function(req, res) {
   profileImage = "hi"
   const users = [
-    { id: 1, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: profileImage},
+    { id: 189, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: profileImage},
   ];
   res.json(users);
+});
+
+app.post("/settings/save", async (req, res) => {
+  // try to save the settings to the database
+  try {
+    const profile = await Profile.create({
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      industry: req.body.industry,
+      skills: req.body.skills,
+      wantWork: req.body.wantWork,
+      position: req.body.position,
+      companies: req.body.companies,
+      image: req.body.image,
+    });
+    return res.json({
+      status: "all good",
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: "failed to save the settings to the database",
+    });
+  }
 });
 
 // a route to handle fetching all messages
