@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios'
 import profileImage from '../../Assets/logo.svg';
 import './Settings.css';
 
@@ -8,13 +9,43 @@ function Settings() {
   const [phone, setPhone] = useState("123-456-7890");
   const [industry, setIndustry] = useState("Technology");
   const [position, setPosition] = useState("Freelancer");
-//   const [positionWord, setPositionWord] = useState("Positions");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
   const [selectedFile, setFileChange] = useState(null);
   const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
+
+  const fetchMessages = () => {
+    axios
+      // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
+      //need to fix this
+      .get('http://localhost:5076/settings')
+      .then(response => {
+        // axios bundles up all response data in response.data property
+        const name = response.data[0].name
+        setName(name)
+        const email = response.data[0].email
+        setEmail(email)
+        const phone = response.data[0].phone
+        setPhone(phone)
+        const industry = response.data[0].industry
+        setIndustry(industry)
+        const position = response.data[0].position
+        setPosition(position)
+        const companies = response.data[0].companies
+        setCompanies(companies)
+        const image = response.data[0].image
+        // setImage(image)
+      })
+      .catch(err => {
+        // setError(err)
+      })
+      .finally(() => {
+        // the response has been received, so remove the loading icon
+        // setLoaded(true)
+      })
+  }
 
   //for the switch button, find the opposite
   const handleNameChange = (event) => {
@@ -101,6 +132,23 @@ function Settings() {
     }
     console.log(position, notPosition);
   }
+
+
+  useEffect(() => {
+    // fetch messages this once
+    fetchMessages()
+
+    // set a timer to load data from server every n seconds
+    const intervalHandle = setInterval(() => {
+      fetchMessages()
+    }, 5000)
+
+    // return a function that will be called when this component unloads
+    return e => {
+      // clear the timer, so we don't still load messages when this component is not loaded anymore
+      clearInterval(intervalHandle)
+    }
+  }, []) 
 
   return (
     <div className="settings-container">
