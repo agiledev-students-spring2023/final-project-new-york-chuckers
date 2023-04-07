@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import profileImage from '../../Assets/logo.svg';
 import './CompanyProfile.css';
 
 function CompanyProfile() {
