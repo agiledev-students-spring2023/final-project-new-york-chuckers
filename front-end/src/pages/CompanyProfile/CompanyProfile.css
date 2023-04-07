@@ -1,83 +1,81 @@
-.settings-container {
+.hero-section {
+  background-image: url('https://assets.aboutamazon.com/dims4/default/32861da/2147483647/strip/true/crop/1600x901+0+83/resize/1320x743!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2Fc3%2F15%2F202c3f54402da5128d962a969b02%2Famazon-nashville-3.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
+  height:auto;
+}
+
+.hero-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50vw;
+  max-width: 500px;
+  max-height: 300px;
+  height: 100vw;
+  background-color: #204a806e;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
-  background-color: #FFFF;
-  padding: 20px;
-  color: #204A80;
-  font-size: 100%;
+  overflow:hidden;
 }
 
-.profile-container {
-  margin-bottom: 20px;
+.company-logo {
+  height: 10vh;
+  margin: 5%;
 }
 
-.profile-image {
-  position: relative;
-  width:25vw;
-  max-height:25vw;
-  display: flex; 
-  align-items: center; 
-  justify-content: center; 
-}
-
-.profile-image img {
-  max-width:20vw;
-  height:20vw;
-  border-radius: 5%;
-  padding: 10%;
-  margin: 15%; 
-  border-radius: 10%; 
-  background-color: #204A80; 
-}
-
-.edit-profile-button {
-  position: absolute;
-  bottom: 0;
-  right: 50%;
-  transform: translateX(50%);
+.edit-button {
   background-color: #68BCD9;
   color: #FFFFFF;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
+  margin-top: 20px;
 }
 
-
-.edit-file-button{
-  position: relative;
-  display: flex; 
-  align-items: center; 
-  justify-content: center;
-}
-
-.info-container {
+.description-section {
+  margin:3%;
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
 }
 
-.invisible{
-  opacity: 0;
+.description-content {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.description-text {
+  font-size: 18px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+p{
+  max-width: 100%;
+  font-size: 100%;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color:white;
 }
 
 .info-box {
   width: 100%;
-  max-width: 500px;
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
   background-color: #1F3A64;
-  color: #FFFFFF;
-  position: relative;
-}
-
-.industry-container{
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   color: #FFFFFF;
   position: relative;
 }
@@ -88,98 +86,14 @@
   margin-bottom: 10px;
 }
 
-.info-box .info-value {
-  font-size: 16px;
-  margin-bottom: 10px;
-}
-
-.info-box .edit-button{
-  position: absolute;
-  top: 20px;
-  right: 20px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
-  padding: 5px 10px;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.info-box .edit-field {
-  display: none; 
-  width: 100%;
-  margin-top: 10px;
-  padding: 5px;
-  font-size: 16px;
-  background-color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-}
-
-.info-box .save-button {
-  display: none;
-  margin-top: 10px;
-  padding: 5px 10px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.info-box.editable .info-value {
-  display: none;
-}
-
-.info-box.editable .edit-field {
-  display: block; 
-}
-
-.info-box.editable .edit-button {
-  display: none; 
-}
-
-.info-box.editable .save-button {
-  display: block; /* show the save button when editable */
-}
-.info-box.cancel .cancel-button {
-  display: block; 
-}
-.info-box.cancel .cancel-button {
-  display: none; 
-}
-.info-box.cancel .save-button{
+.info-box .link-out {
   display: block;
-}
-
-.info-box.cancel .info-value{
-  display: none;
-}
-
-.switch-button{
   margin-top: 10px;
   padding: 5px 10px;
   background-color: #68BCD9;
   color: #FFFFFF;
   border: none;
   border-radius: 5px;
-}
-
-.file-input-wrapper {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
-}
-
-.file-input-wrapper input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
+  font-size: 14px;
   cursor: pointer;
 }
