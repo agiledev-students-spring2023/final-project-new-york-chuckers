@@ -3,6 +3,6 @@ import { listFreelancer } from "../../controllers/freelancer/index.js";
 
 const router = Router();
 
-router.get("/freelancer", listFreelancer);
+router.get("/", listFreelancer);
 
 export default router;
