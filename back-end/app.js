@@ -4,9 +4,10 @@ import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import freelancerRouter from "./routes/freelancer/index.js";
+import positionRouter from "./routes/position/index.js";
 import fs from "fs";
 import path from "path";
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 
 const app = express(); // instantiate an Express object
 
@@ -18,7 +19,8 @@ app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
 // custom router
-app.use("/api/", freelancerRouter);
+app.use("/freelancer/", freelancerRouter);
+app.use("/position/", positionRouter);
 
 // connect to database – for later when setting up DB next sprint
 // mongoose
@@ -41,9 +43,20 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get('/settings', function(req, res) {
+app.get("/settings", function (req, res) {
   const users = [
-    { id: 189, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: "hi"},
+    {
+      id: 189,
+      name: "James Doe",
+      email: "james.smith@example.com",
+      phone: "123-555-7890",
+      industry: "Technology",
+      skills: "Python, Javscript, Figma",
+      wantWork: "Yes",
+      position: "Freelancer",
+      companies: "Amazon",
+      image: "hi",
+    },
   ];
   res.json(users);
 });
@@ -73,7 +86,7 @@ app.post("/settings/save", async (req, res) => {
 
     // Write the file to disk
     const filepath = path.join(__dirname, "uploads", filename);
-    fs.writeFile(filepath, binaryData, "binary", err => {
+    fs.writeFile(filepath, binaryData, "binary", (err) => {
       if (err) {
         console.error(err);
         res.status(500).send("Error saving image");
