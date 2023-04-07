@@ -4,6 +4,9 @@ import morgan from "morgan";
 import cors from "cors";
 import mongoose from "mongoose";
 import freelancerRouter from "./routes/freelancer/index.js";
+import fs from "fs";
+import path from "path";
+import { v4 as uuidv4 } from 'uuid';
 
 const app = express(); // instantiate an Express object
 
@@ -39,9 +42,8 @@ app.get("/users", function (req, res) {
 });
 
 app.get('/settings', function(req, res) {
-  profileImage = "hi"
   const users = [
-    { id: 189, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: profileImage},
+    { id: 189, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: "hi"},
   ];
   res.json(users);
 });
@@ -59,6 +61,26 @@ app.post("/settings/save", async (req, res) => {
       position: req.body.position,
       companies: req.body.companies,
       image: req.body.image,
+    });
+
+    const matches = image.match(/^data:image\/([A-Za-z-+/]+);base64,(.+)$/);
+    const extension = matches[1];
+    const base64Data = matches[2];
+    const binaryData = Buffer.from(base64Data, "base64");
+
+    // Generate a unique filename
+    const filename = `${uuidv4()}.${extension}`;
+
+    // Write the file to disk
+    const filepath = path.join(__dirname, "uploads", filename);
+    fs.writeFile(filepath, binaryData, "binary", err => {
+      if (err) {
+        console.error(err);
+        res.status(500).send("Error saving image");
+      } else {
+        console.log(`Image saved to ${filepath}`);
+        res.send("Image saved");
+      }
     });
     return res.json({
       status: "all good",

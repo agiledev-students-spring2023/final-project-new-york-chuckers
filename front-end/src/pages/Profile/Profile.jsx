@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
-import Button from '../../components/common/Button/Button';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
 
@@ -20,11 +19,11 @@ function Profile() {
   const [companies, setCompanies] = useState([""])
   const [image, setImage] = useState(profileImage);
 
-  const fetchMessages = () => {
+  const fetchData = () => {
     axios
       // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       //need to fix this
-      .get(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       .then(response => {
         // axios bundles up all response data in response.data property
         const name = response.data[0].name
@@ -47,30 +46,22 @@ function Profile() {
         // setImage(image)
       })
       .catch(err => {
-        // setError(err)
       })
       .finally(() => {
-        // the response has been received, so remove the loading icon
-        // setLoaded(true)
       })
   }
 
   useEffect(() => {
     // fetch messages this once
-    fetchMessages()
-
-    // set a timer to load data from server every n seconds
-    // const intervalHandle = setInterval(() => {
-    //   fetchMessages()
-    // }, 5000)
-
-    // // return a function that will be called when this component unloads
-    // return e => {
-    //   // clear the timer, so we don't still load messages when this component is not loaded anymore
-    //   clearInterval(intervalHandle)
-    // }
+    fetchData()
+    console.log("hi")
   }, []) 
 
+
+  const reader = new FileReader();
+  const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
+  reader.readAsDataURL(file);
+  
   //Set the const navigate to link to the edit freelancer profile 
   const navigate = useNavigate();
 
@@ -80,8 +71,14 @@ function Profile() {
     navigate("/create-freelancer");
   }
 
-    const settingsUpdate = () => {
-    axios.post(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
+  const settingsUpdate = () => {
+    const reader = new FileReader();
+    console.log("hi1", image, "hi")
+    console.log("hi")
+    const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
+    reader.readAsDataURL(file);
+    const base64 = reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+    axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
       name: name,
       email: email,
       phone: phone,
@@ -90,7 +87,7 @@ function Profile() {
       companies:companies,
       skills: skills,
       wantWork:wantWork,
-      image:image,
+      image:`data:image/png;base64,${base64}`,
     })
   }
 

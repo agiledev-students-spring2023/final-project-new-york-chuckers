@@ -16,12 +16,14 @@ function Settings() {
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
 
+  console.log(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
+
   const fetchMessages = () => {
-    console.log(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
+    console.log(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
     axios
       // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       //need to fix this
-      .get(`http://${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       .then(response => {
         // axios bundles up all response data in response.data property
         const name = response.data[0].name
