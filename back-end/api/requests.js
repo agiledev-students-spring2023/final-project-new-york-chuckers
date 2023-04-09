@@ -1,4 +1,4 @@
-import axios from "axios";
+const axios = require("axios");
 
 const X_API_KEY = "84ee2f50";
 const DEV_API_HOST = "https://my.api.mockaroo.com";
@@ -36,7 +36,7 @@ async function requestApi(path, options) {
     });
 }
 
-export async function requestApiWithAuth(path, options) {
+async function requestApiWithAuth(path, options) {
   const authHeader = getAuthHeader();
   options = {
     ...options,
@@ -45,3 +45,7 @@ export async function requestApiWithAuth(path, options) {
 
   return requestApi(path, options);
 }
+
+module.exports = {
+  requestApiWithAuth,
+};

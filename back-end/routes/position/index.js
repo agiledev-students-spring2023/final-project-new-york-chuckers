@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { listPosition } from "../../controllers/position/index.js";
+const { Router } = require("express");
+const { listPosition } = require("../../controllers/position/index.js");
 
 const router = Router();
 
 router.get("/", listPosition);
 
-export default router;
+module.exports = router;

@@ -1,13 +1,13 @@
-import * as dotenv from "dotenv";
-import express from "express";
-import morgan from "morgan";
-import cors from "cors";
-import mongoose from "mongoose";
-import freelancerRouter from "./routes/freelancer/index.js";
-import positionRouter from "./routes/position/index.js";
-import fs from "fs";
-import path from "path";
-import { v4 as uuidv4 } from "uuid";
+const dotenv = require("dotenv");
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const freelancerRouter = require("./routes/freelancer/index.js");
+const positionRouter = require("./routes/position/index.js");
+const fs = require("fs");
+const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express(); // instantiate an Express object
 
@@ -29,7 +29,7 @@ app.use("/position/", positionRouter);
 //   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-import { Message } from "./Models/message.js";
+const { Message } = "./Models/message.js";
 
 app.get("/bios", function (req, res) {
   res.json({ bio: "hi" });
@@ -165,4 +165,4 @@ app.post("/messages/save", async (req, res) => {
 });
 
 // export the express app we created to make it available to other modules
-export default app;
+module.exports = app;

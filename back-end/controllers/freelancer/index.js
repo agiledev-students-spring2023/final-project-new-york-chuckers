@@ -1,6 +1,12 @@
-import { getFreelancerListFromMockaroo } from "../../services/freelancer/index.js";
+const {
+  getFreelancerListFromMockaroo,
+} = require("../../services/freelancer/index.js");
 
-export const listFreelancer = async (req, res) => {
+const listFreelancer = async (req, res) => {
   const data = await getFreelancerListFromMockaroo();
   res.json(data);
+};
+
+module.exports = {
+  listFreelancer,
 };
