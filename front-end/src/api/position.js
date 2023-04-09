@@ -2,7 +2,7 @@ import { requestApiWithAuth } from './requests';
 
 class PositionAPI {
   async listPositions() {
-    const response = await requestApiWithAuth('positions.json', {
+    const response = await requestApiWithAuth('position', {
       method: 'get',
     });
 

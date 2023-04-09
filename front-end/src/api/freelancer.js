@@ -2,7 +2,7 @@ import { requestApiWithAuth } from './requests';
 
 class FreelancerAPI {
   async listFreelancers() {
-    const response = await requestApiWithAuth('freelancers.json', {
+    const response = await requestApiWithAuth('freelancer', {
       method: 'get',
     });
 

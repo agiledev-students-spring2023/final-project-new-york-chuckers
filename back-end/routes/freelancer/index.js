@@ -1,8 +1,8 @@
-import { Router } from "express";
-import { listFreelancer } from "../../controllers/freelancer/index.js";
+const { Router } = require("express");
+const { listFreelancer } = require("../../controllers/freelancer/index.js");
 
 const router = Router();
 
-router.get("/freelancer", listFreelancer);
+router.get("/", listFreelancer);
 
-export default router;
+module.exports = router;
