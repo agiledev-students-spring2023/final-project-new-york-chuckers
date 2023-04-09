@@ -1,19 +1,1 @@
-.hamburger-bar__wrapper {
-    align-items: end;
-}
 
-.hamburger-bar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem;
-    background-color: #333;
-    color: #fff;
-  }
-  
-  .hamburger-icon {
-    display: none;
-    flex-direction: column;
-    justify-content: space-around;
-   
-  }
