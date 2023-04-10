@@ -34,20 +34,34 @@ const positions = [
 ];
 
 app.get('/search', (req, res) => {
-  const query = req.query.q;
+  try {
+    const query = req.query.q;
 
-  const results = positions.flatMap(position => 
-    position.profiles.filter(profile => 
-      profile.name.toLowerCase().includes(query.toLowerCase())
-    ).map(profile => ({
-      id: position.id,
-      title: position.title,
-      location: position.location,
-      profile: profile
-    }))
-  );
+    const results = positions.flatMap(position => 
+      position.profiles.filter(profile => 
+        profile.name.toLowerCase().includes(query.toLowerCase())
+      ).map(profile => ({
+        id: position.id,
+        title: position.title,
+        location: position.location,
+        profile: profile
+      }))
+    );
 
-  res.json(results);
+    res.json(results);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+app.use((req, res, next) => {
+  res.status(404).json({ error: 'Not found' });
+});
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ error: 'Internal server error' });
 });
 
 app.listen(3000, () => {
