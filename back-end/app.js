@@ -164,5 +164,53 @@ app.post("/messages/save", async (req, res) => {
   }
 });
 
+
+//route to validate and create new profile
+app.post("/setup", (req, res) =>{
+  try{
+    //If some of the data is incomplete when creating the new profile, rerturn a status fail and alert "incomplete"
+    
+    //If no error or missing data add new profile into database and return status approve
+    //creating new profile into database (mongoose)
+    res.json({status:"approve", profile:req.body, alert:null});
+    
+  }
+  //If catch an error, status is fail ad return the err as the alert
+  catch (err){
+    res.status(400);
+    res.json({status:"fail", alert:err})
+  }
+});
+
+//route to validate and setup freelancer 
+app.post("/freelancer-setup", (req, res) => {
+  try{
+    //If some of the data is uncomplete return a status fail and alert "incomplete"
+
+    //If no error or missing data return status approve and create new freelancer
+    //creating new freelancer into database(mongoose)
+    res.json({status:"approve", freelancer:req.body, alert:null});
+  }
+  //If catch error, status is fail and return the err as the alert
+  catch (err){
+    res.json({status:"fail", alert:err});
+  }
+});
+
+//route to validate and create new position
+app.post("/new-post", (req, res) =>{
+  try{
+    //If some of the data is incomplete return a status fail and alert "incomplete"
+
+    //If no error or missing data return status approve and create new post 
+    //Creating new post into database(mongoose)
+    res.json({status:"approve", position:req.body, alert:null});
+  }
+  catch (err){
+    res.json({status:"fail", alert:err});
+  }
+});
+
+
 // export the express app we created to make it available to other modules
 module.exports = app;

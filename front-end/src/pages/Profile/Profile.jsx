@@ -68,7 +68,7 @@ function Profile() {
   //Handle click on edit freelancer profile button
   function handleEditFreelance(){
     //This should redirect to "/edit-freelancer", but the page doesn't exist yet, so "/create-freelancer" for now
-    navigate("/create-freelancer");
+    navigate("/freelancer-setup");
   }
 
   const settingsUpdate = () => {
