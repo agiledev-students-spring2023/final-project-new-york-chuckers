@@ -30,7 +30,7 @@ function FreelancerSetup() {
         const response = await axios.post(window.backend + "/freelancer-setup", info);
         if (response.data.status === "approve"){
             setStatus(response.data.freelancer);
-            navigate('/freelancer');
+            navigate('/profile');
         }
         else{
             alert(response.data.alert);
