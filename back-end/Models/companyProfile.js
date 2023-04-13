@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const profileSchema = new Schema(
+const companyProfileSchema = new Schema(
   {
     id: {
       type: String,
@@ -23,22 +23,6 @@ const profileSchema = new Schema(
       type: String,
       required: true,
     },
-    skills: {
-      type: String,
-      required: true,
-    },
-    wantWork: {
-      type: String,
-      required: true,
-    },
-    position: {
-      type: String,
-      required: true,
-    },
-    companies: {
-      type: String,
-      required: true,
-    },
   },
   {
     timestamps: true,
@@ -46,8 +30,8 @@ const profileSchema = new Schema(
 );
 
 // create mongoose Model
-const Profile = mongoose.model("Profile", profileSchema);
+const companyProfile = mongoose.model("companyProfile", companyProfileSchema);
 
 module.exports = {
-  Profile,
+  companyProfile,
 };

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './CompanyProfile.css';
+import { Link } from 'react-router-dom';
 
 function CompanyProfile() {
   const [position, setPosition] = useState("Recruiter");
@@ -13,11 +14,11 @@ function CompanyProfile() {
       </div>
     </div>
     <div className="description-section">
-      {/* Check if recruiter – need to add authentication this is a recruiter for this company */}
+      {/* Check if recruiter – need to add authentication this is a recruiter for this company – sprint 3*/}
       {position === 'Recruiter' ? (            
        <div className="info-box">
         <div className="info-label">Edit this company page</div>
-        <a href="/edit-company" className= "link-out">Edit Company</a>
+        <Link to="/edit-company" className= "link-out">Edit Company</Link>
       </div>
      ) : null}
     </div>

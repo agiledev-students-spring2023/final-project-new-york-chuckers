@@ -7,7 +7,12 @@ const freelancerRouter = require("./routes/freelancer/index.js");
 const positionRouter = require("./routes/position/index.js");
 const fs = require("fs");
 const path = require("path");
+const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
+const { Message } = require("./Models/message.js");
+const { Profile } = require("./Models/profile.js");
+const { companyProfile } = require("./Models/companyProfile.js");
+
 
 const app = express(); // instantiate an Express object
 
@@ -27,10 +32,6 @@ app.use("/position/", positionRouter);
 //   .connect(`${process.env.DB_CONNECTION_STRING}`)
 //   .then(data => console.log(`Connected to MongoDB`))
 //   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
-
-// load the dataabase models we want to deal with
-import { Message } from "./Models/message.js";
-import { Profile } from "./Models/profile.js";
 
 app.get("/bios", function (req, res) {
   res.json({ bio: "hi" });
@@ -64,53 +65,75 @@ app.get("/settings", function (req, res) {
 
 app.post("/settings/save", async (req, res) => {
   try {
-
-    const matches = req.body.image.match(/^data:image\/([A-Za-z-+/]+);base64,(.+)$/);
-    const extension = matches[1];
-    const base64Data = matches[2];
-    const binaryData = Buffer.from(base64Data, "base64");
-    // Generate a unique filename
-    const filename = `${uuidv4()}.${extension}`;
-    // Write the file to disk
-    const filepath = path.join(__dirname, "uploads", filename);
-    fs.writeFile(filepath, binaryData, "binary", (err) => {
-      if (err) {
-        console.error(err);
-        res.status(500).send("Error saving image");
-      } else {
-        console.log(`Image saved to ${filepath}`);
-        // try to save the settings to the database
-        Profile.create({
-          id: req.body.id,
-          name: req.body.name,
-          email: req.body.email,
-          phone: req.body.phone,
-          industry: req.body.industry,
-          skills: req.body.skills,
-          wantWork: req.body.wantWork,
-          position: req.body.position,
-          companies: req.body.companies,
-          image: filename,
-        }).then(profile => {
-          console.log("Profile saved to database");
-          res.json({
-            profile: profile,
-            status: "all good",
-          });
-        }).catch(err => {
-          console.error(err);
-          res.status(400).json({
-            error: err,
-            status: "failed to save the settings to the database",
-          });
-        });
-      }
+    Profile.create({
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      industry: req.body.industry,
+      skills: req.body.skills,
+      wantWork: req.body.wantWork,
+      position: req.body.position,
+      companies: req.body.companies,
+    }).then(profile => {
+      res.json({
+        profile: profile,
+        status: "all good",
+      });
+    }).catch(err => {
+      console.error(err);
+      res.status(400).json({
+        error: err,
+        status: `failed to save the settings to the database`,
+      });
     });
   } catch (err) {
     console.error(err);
     return res.status(400).json({
       error: err,
-      status: `failed to save ${req.body.name} plus one`,
+      status: `failed to save`,
+    });
+  }
+});
+
+app.get("/edit-company", function (req, res) {
+  const users = [
+    {
+      id: 189,
+      name: "Amazon",
+      email: "jack.smith@example.com",
+      phone: "123-555-7890",
+      industry: "Technology",
+    },
+  ];
+  res.json(users);
+});
+
+app.post("/edit-company/save", async (req, res) => {
+  try {
+    companyProfile.create({
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      industry: req.body.industry,
+    }).then(companyProfile => {
+      res.json({
+        companyProfile: companyProfile,
+        status: "all good",
+      });
+    }).catch(err => {
+      console.error(err);
+      res.status(400).json({
+        error: err,
+        status: `failed to save the company to the database`,
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed to save`,
     });
   }
 });

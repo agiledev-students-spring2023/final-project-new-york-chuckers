@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios'
 import profileImage from '../../Assets/logo.svg';
 import './Settings.css';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function Settings() {
   const [name, setName] = useState("John Smith");
@@ -138,7 +139,6 @@ function Settings() {
     console.log(position, notPosition);
   }
 
-
   useEffect(() => {
     // fetch messages this once
     fetchMessages()
@@ -157,36 +157,34 @@ function Settings() {
 
   return (
     <div className="settings-container">
-        <h1>
-            Hello {name}!
-        </h1>
+    <h1>
+      Hello {name}!
+    </h1>
+    <div className="info-container">
+      <div className="info-box">
+        <div className="info-label">Edit {position} Profile</div>
+        <Link to="/profile" className="link-out">Edit {position} Profile</Link>
+      </div>
+    </div>
+    <div className="info-container">
+      <div className="info-box">
+        <div className="info-label">Saved Positions</div>
+        <Link to="/freelancer" className="link-out">Your Saved Positions</Link>
+      </div>
+    </div>
+    <div className="info-container">
+      <div className="info-box">
+        <div className="info-label">Switch to {notPosition}</div>
+        <div className="link-out" onClick={switchPosition}>Switch</div>
+      </div>
+    </div>
       <div className="info-container">
         <div className="info-box">
-          <div className="info-label">Edit {position} Profile</div>
-          <a href="/profile" className= "link-out">Edit {position} Profile</a>
-        </div>
-        </div>
-        <div className="info-container">
-        <div className="info-box">
-          <div className="info-label">Saved Positions</div>
-          <a href="/freelancer" className= "link-out">Your Saved Positions</a>
-        </div>
-        </div>
-        <div className="info-container">
-        <div className="info-box">
-          <div className="info-label">Switch to {notPosition}</div>
-          <div className="link-out" onClick={switchPosition}>Switch</div>
-        </div>
-        </div>
-        <div className="industry-container">
-        <div className="info-container">
-            <div className="info-box">
-                <div className="info-label">Logout</div>
-                <a href="/home" className= "link-out">Click Here To Logout</a>
-            </div>
-        </div>
+          <div className="info-label">Logout</div>
+          <Link to="/" className="link-out">Click Here To Logout</Link>
         </div>
     </div>
+  </div>
   );
 }
 

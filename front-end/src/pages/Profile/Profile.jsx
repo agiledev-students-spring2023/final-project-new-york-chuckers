@@ -19,6 +19,9 @@ function Profile() {
   const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer");
   const [companies, setCompanies] = useState([""])
   const [image, setImage] = useState(profileImage);
+  const reader = new FileReader();
+  const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
+  reader.readAsDataURL(file);
 
   const fetchData = () => {
     axios
@@ -57,32 +60,17 @@ function Profile() {
   useEffect(() => {
     // fetch messages this once
     fetchData()
-    console.log("hi")
   }, []) 
 
-
-  const reader = new FileReader();
-  const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
-  reader.readAsDataURL(file);
-  
   //Set the const navigate to link to the edit freelancer profile 
   const navigate = useNavigate();
 
   //Handle click on edit freelancer profile button
   function handleEditFreelance(){
-    //This should redirect to "/edit-freelancer", but the page doesn't exist yet, so "/create-freelancer" for now
     navigate("/freelancer-setup");
   }
 
   const settingsUpdate = () => {
-    const reader = new FileReader();
-    console.log("hi1", image, "hi")
-    console.log("hi")
-    const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
-    console.log(file)
-    reader.onload = () => {
-      const base64 = reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-      console.log(`data:image/png;base64,${base64}`);
       axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
         id: id,
         name: name,
@@ -92,14 +80,11 @@ function Profile() {
         position: position,
         companies:companies,
         skills: skills,
-        wantWork:wantWork,
-        image:`data:image/png;base64,${base64}`,
+        wantWork:wantWork
       })
-    };
-  
-    reader.readAsDataURL(file);
   }
 
+  //for sprint 3
   const handleImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", file);
@@ -285,7 +270,7 @@ function Profile() {
             </div>
           ) : (
               <div className="info-box"> 
-                <div className="info-label">Industry Preferences:</div>
+                <div className="info-label">Industries:</div>
                 <div className="info-value">{industry}</div>
                 <div className="edit-button" onClick={handleEdit}>Edit</div>
                 <input type="text" className="edit-field" value={industry}/>
