@@ -177,8 +177,7 @@ app.post("/setup", (req, res) =>{
   }
   //If catch an error, status is fail ad return the err as the alert
   catch (err){
-    res.status(400);
-    res.json({status:"fail", alert:err})
+    res.json({status:"fail", alert:err.toString()});
   }
 });
 
