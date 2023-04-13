@@ -3,6 +3,10 @@ const Schema = mongoose.Schema;
 
 const profileSchema = new Schema(
   {
+    id: {
+      type: String,
+      required:false,
+    },
     name: {
       type: String,
       required: true,
@@ -36,7 +40,7 @@ const profileSchema = new Schema(
       required: true,
     },
     image: {
-      type: Image,
+      type: String,
       required: true,
     },
   },

@@ -6,6 +6,7 @@ import './Profile.css';
 
 
 function Profile() {
+  const [id, setID] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -26,6 +27,8 @@ function Profile() {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
       .then(response => {
         // axios bundles up all response data in response.data property
+        const id = response.data[0].id
+        setID(id)
         const name = response.data[0].name
         setName(name)
         const email = response.data[0].email
@@ -76,20 +79,37 @@ function Profile() {
     console.log("hi1", image, "hi")
     console.log("hi")
     const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
+    console.log(file)
+    reader.onload = () => {
+      const base64 = reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
+      console.log(`data:image/png;base64,${base64}`);
+      axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
+        id: id,
+        name: name,
+        email: email,
+        phone: phone,
+        industry: industry,
+        position: position,
+        companies:companies,
+        skills: skills,
+        wantWork:wantWork,
+        image:`data:image/png;base64,${base64}`,
+      })
+    };
+  
     reader.readAsDataURL(file);
-    const base64 = reader.result.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-    axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
-      name: name,
-      email: email,
-      phone: phone,
-      industry: industry,
-      position: position,
-      companies:companies,
-      skills: skills,
-      wantWork:wantWork,
-      image:`data:image/png;base64,${base64}`,
-    })
   }
+
+  const handleImageUpload = async () => {
+    const formData = new FormData();
+    formData.append("image", file);
+    try {
+      const response = await axios.post("/api/upload-image", formData);
+      console.log("Image uploaded successfully", response.data);
+    } catch (error) {
+      console.error("Error uploading image", error);
+    }
+  };
 
   //for the switch button, find the opposite
   const handleNameChange = (event) => {
