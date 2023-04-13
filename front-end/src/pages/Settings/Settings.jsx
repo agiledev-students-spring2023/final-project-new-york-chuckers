@@ -139,7 +139,6 @@ function Settings() {
     console.log(position, notPosition);
   }
 
-
   useEffect(() => {
     // fetch messages this once
     fetchMessages()
@@ -179,13 +178,11 @@ function Settings() {
         <div className="link-out" onClick={switchPosition}>Switch</div>
       </div>
     </div>
-    <div className="industry-container">
       <div className="info-container">
         <div className="info-box">
           <div className="info-label">Logout</div>
-          <Link to="/home" className="link-out">Click Here To Logout</Link>
+          <Link to="/" className="link-out">Click Here To Logout</Link>
         </div>
-      </div>
     </div>
   </div>
   );
