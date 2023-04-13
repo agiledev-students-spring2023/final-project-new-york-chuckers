@@ -1,15 +1,16 @@
 import React from 'react';
+import { useLoginCheck } from '../../../hooks/useLoginCheck';
 import Logo from '../Logo/Logo';
-import SearchBar from '../SearchBar/SearchBar';
 import { UserLoginButton } from '../UserLoginButton';
 import './Header.css';
 
 function Header() {
+  const [isLogined] = useLoginCheck();
+
   return (
     <div className="header-bar">
       <Logo />
-      <SearchBar />
-      <UserLoginButton />
+      {!isLogined && <UserLoginButton />}
     </div>
   );
 }

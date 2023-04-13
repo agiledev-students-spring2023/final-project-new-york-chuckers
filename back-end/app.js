@@ -1,12 +1,13 @@
-import * as dotenv from "dotenv";
-import express from "express";
-import morgan from "morgan";
-import cors from "cors";
-import mongoose from "mongoose";
-import freelancerRouter from "./routes/freelancer/index.js";
-import fs from "fs";
-import path from "path";
-import { v4 as uuidv4 } from 'uuid';
+const dotenv = require("dotenv");
+const express = require("express");
+const morgan = require("morgan");
+const cors = require("cors");
+const mongoose = require("mongoose");
+const freelancerRouter = require("./routes/freelancer/index.js");
+const positionRouter = require("./routes/position/index.js");
+const fs = require("fs");
+const path = require("path");
+const { v4: uuidv4 } = require("uuid");
 
 const app = express(); // instantiate an Express object
 
@@ -18,7 +19,8 @@ app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
 // custom router
-app.use("/api/", freelancerRouter);
+app.use("/freelancer/", freelancerRouter);
+app.use("/position/", positionRouter);
 
 // connect to database – for later when setting up DB next sprint
 // mongoose
@@ -42,9 +44,20 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get('/settings', function(req, res) {
+app.get("/settings", function (req, res) {
   const users = [
-    { id: 189, name: 'James Doe', email:"james.smith@example.com", phone: "123-555-7890", industry:"Technology", skills:"Python, Javscript, Figma", wantWork: "Yes", position:"Freelancer", companies:"Amazon", image: "hi"},
+    {
+      id: 189,
+      name: "James Doe",
+      email: "james.smith@example.com",
+      phone: "123-555-7890",
+      industry: "Technology",
+      skills: "Python, Javscript, Figma",
+      wantWork: "Yes",
+      position: "Freelancer",
+      companies: "Amazon",
+      image: "hi",
+    },
   ];
   res.json(users);
 });
@@ -60,7 +73,7 @@ app.post("/settings/save", async (req, res) => {
     const filename = `${uuidv4()}.${extension}`;
     // Write the file to disk
     const filepath = path.join(__dirname, "uploads", filename);
-    fs.writeFile(filepath, binaryData, "binary", err => {
+    fs.writeFile(filepath, binaryData, "binary", (err) => {
       if (err) {
         console.error(err);
         res.status(500).send("Error saving image");
@@ -185,5 +198,52 @@ app.post("/messages/save", async (req, res) => {
   }
 });
 
+
+//route to validate and create new profile
+app.post("/setup", (req, res) =>{
+  try{
+    //If some of the data is incomplete when creating the new profile, rerturn a status fail and alert "incomplete"
+    
+    //If no error or missing data add new profile into database and return status approve
+    //creating new profile into database (mongoose)
+    res.json({status:"approve", profile:req.body, alert:null});
+    
+  }
+  //If catch an error, status is fail ad return the err as the alert
+  catch (err){
+    res.json({status:"fail", alert:err.toString()});
+  }
+});
+
+//route to validate and setup freelancer 
+app.post("/freelancer-setup", (req, res) => {
+  try{
+    //If some of the data is uncomplete return a status fail and alert "incomplete"
+
+    //If no error or missing data return status approve and create new freelancer
+    //creating new freelancer into database(mongoose)
+    res.json({status:"approve", freelancer:req.body, alert:null});
+  }
+  //If catch error, status is fail and return the err as the alert
+  catch (err){
+    res.json({status:"fail", alert:err});
+  }
+});
+
+//route to validate and create new position
+app.post("/new-post", (req, res) =>{
+  try{
+    //If some of the data is incomplete return a status fail and alert "incomplete"
+
+    //If no error or missing data return status approve and create new post 
+    //Creating new post into database(mongoose)
+    res.json({status:"approve", position:req.body, alert:null});
+  }
+  catch (err){
+    res.json({status:"fail", alert:err});
+  }
+});
+
+
 // export the express app we created to make it available to other modules
-export default app;
+module.exports = app;

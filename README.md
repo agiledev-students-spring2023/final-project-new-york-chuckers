@@ -10,6 +10,10 @@ Other potential additions for later, include companies being able to invite cert
 ## History of the Product:
 The history of the project came from the entrepreneurial backgrounds of its founders. All of us had a background in entrepreneurship and noticed the disconnect between companies and students. Students needed work experience to help them break in to their fields of choice. Parrallely, companies, and specifically start-ups, are always searching for new talent and always have contractor/free-lancer jobs that they have to get done. We realized that we could bridge this gap and solve both problems at once.
 
+## How to Run:
+To run the program you'll need to start both the back-end server and the front-end react app. Enter (cd) into each of the folders (front-end for the react app) and (back-end for the server). Once on each folder you'll need to run the following commands "npm install" (to install the node_modules dependencies) and "npm start" (to start both the server and the react app).The code should be running. If you search for the localhost:port where the react app is running you'll be able to access around the app. 
+The react app defaults to the localhost port 3000, and the server is set to port 5076. On this dev version we still have the calls for the server (on the react app) hard coded into the files as (http://localhost:5076/...). 
+
 ## Contributors:
 Tiffany Lee: [Github](https://github.com/les5185)
 

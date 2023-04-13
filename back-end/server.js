@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-import server from "./app.js"; // load up the web server
+const server = require("./app.js"); // load up the web server
 const port = 5076; // the port to listen to for incoming requests
 
 // call express's listen function to start listening to the port

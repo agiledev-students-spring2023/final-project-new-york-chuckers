@@ -2,8 +2,7 @@ import * as _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
-const X_API_KEY = '84ee2f50';
-const DEV_API_HOST = 'https://my.api.mockaroo.com';
+const DEV_API_HOST = 'http://localhost:5076';
 const PROD_API_HOST = ''; // TODO
 
 function getRequestURL(path) {
@@ -13,7 +12,7 @@ function getRequestURL(path) {
 function getAuthHeader() {
   return {
     headers: {
-      'X-API-Key': X_API_KEY,
+      // TODO: Backend Auth
     },
   };
 }

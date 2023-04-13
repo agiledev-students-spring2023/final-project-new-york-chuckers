@@ -5,8 +5,11 @@ import freelancers from '../../Assets/Freelance_Hero.jpeg';
 import partnerLogo from '../../Assets/logo.svg';
 import './Home.css';
 import { Link } from 'react-router-dom';
+import { useLoginCheck } from '../../hooks/useLoginCheck';
 
 const Home = props => {
+  const [isLogined] = useLoginCheck();
+
   return (
     <div className="Home">
       <Header />
@@ -27,17 +30,19 @@ const Home = props => {
       </div>
 
       {/* CTA */}
-      <div class="cta-container">
-        <div class="cta-box">
-          <p>
-            Join the ranks of hundreds of students in working with the world's
-            leading companies.
-          </p>
-          <Link to="/signup" class="cta-button">
-            Sign-Up Here
-          </Link>
+      {!isLogined && (
+        <div class="cta-container">
+          <div class="cta-box">
+            <p>
+              Join the ranks of hundreds of students in working with the world's
+              leading companies.
+            </p>
+            <Link to="/signup" class="cta-button">
+              Sign-Up Here
+            </Link>
+          </div>
         </div>
-      </div>
+      )}
 
       {/* Company Logos */}
       <section class="companies-section">

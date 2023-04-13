@@ -16,7 +16,10 @@ function FreelancerListItem({ id, name, position, pay }) {
           <div className="freelancer-list-item__content-info">Pay: {pay}</div>
         </div>
         <Link to={`/freelancer/${id}`}>
-          <Button>View Profile</Button>
+          <Button style={{ textAlign: 'center' }}>
+            View
+            <br /> Profile
+          </Button>
         </Link>
       </div>
     </ListItem>

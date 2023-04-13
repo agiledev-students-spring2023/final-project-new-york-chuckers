@@ -7,13 +7,14 @@ import { Layout } from './components/layout/Layout';
 import { SignInPage } from './pages/SignInPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { PositionListPage } from './pages/PositionListPage';
-import {CompanyProfile} from './pages/CompanyProfile';
-import {EditCompany} from './pages/EditCompany';
+import { CompanyProfile } from './pages/CompanyProfile';
+import { EditCompany } from './pages/EditCompany';
 import { FreelancerDetailPage } from './pages/FreelancerDetailPage';
 import { PositionDetailPage } from './pages/PositionDetailPage';
 import { SetupPage } from './pages/SetupPage';
 import { NewPositionPage } from './pages/NewPositionPage';
-import { CreateFreelancerPage } from './pages/CreateFreelancerPage';
+import { FreelancerSetupPage } from './pages/FreelancerSetupPage';
+import { BottomNavigation } from './components/layout/BottomNavigation';
 
 function App() {
   return (
@@ -33,10 +34,11 @@ function App() {
           <Route path="/edit-company" element={<EditCompany />} />
           <Route path="/company-profile" element={<CompanyProfile />} />
           <Route path="/position/:id" element={<PositionDetailPage />} />
-          <Route path="/setup" element={ <SetupPage />} />
-          <Route path='/new-position' element={ <NewPositionPage />} />
-          <Route path='/create-freelancer' element={ <CreateFreelancerPage />} />
+          <Route path="/setup" element={<SetupPage />} />
+          <Route path="/new-position" element={<NewPositionPage />} />
+          <Route path="/freelancer-setup" element={<FreelancerSetupPage />} />
         </Routes>
+        <BottomNavigation />
       </Router>
     </Layout>
   );
