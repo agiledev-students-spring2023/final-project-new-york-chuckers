@@ -67,12 +67,10 @@ function Profile() {
 
   //Handle click on edit freelancer profile button
   function handleEditFreelance(){
-    //This should redirect to "/edit-freelancer", but the page doesn't exist yet, so "/create-freelancer" for now
     navigate("/freelancer-setup");
   }
 
   const settingsUpdate = () => {
-    reader.onload = () => {
       axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
         id: id,
         name: name,
@@ -84,9 +82,6 @@ function Profile() {
         skills: skills,
         wantWork:wantWork
       })
-    };
-  
-    reader.readAsDataURL(file);
   }
 
   //for sprint 3

@@ -11,6 +11,7 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Message } = require("./Models/message.js");
 const { Profile } = require("./Models/profile.js");
+const { companyProfile } = require("./Models/companyProfile.js");
 
 
 const app = express(); // instantiate an Express object
@@ -75,7 +76,6 @@ app.post("/settings/save", async (req, res) => {
       position: req.body.position,
       companies: req.body.companies,
     }).then(profile => {
-      console.log("Profile saved to database");
       res.json({
         profile: profile,
         status: "all good",
@@ -84,14 +84,56 @@ app.post("/settings/save", async (req, res) => {
       console.error(err);
       res.status(400).json({
         error: err,
-        status: `failed to save the settings to the database ${req.body}`,
+        status: `failed to save the settings to the database`,
       });
     });
   } catch (err) {
     console.error(err);
     return res.status(400).json({
       error: err,
-      status: `failed to save ${req.body.name} plus one`,
+      status: `failed to save`,
+    });
+  }
+});
+
+app.get("/edit-company", function (req, res) {
+  const users = [
+    {
+      id: 189,
+      name: "Amazon",
+      email: "jack.smith@example.com",
+      phone: "123-555-7890",
+      industry: "Technology",
+    },
+  ];
+  res.json(users);
+});
+
+app.post("/edit-company/save", async (req, res) => {
+  try {
+    companyProfile.create({
+      id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: req.body.phone,
+      industry: req.body.industry,
+    }).then(companyProfile => {
+      res.json({
+        companyProfile: companyProfile,
+        status: "all good",
+      });
+    }).catch(err => {
+      console.error(err);
+      res.status(400).json({
+        error: err,
+        status: `failed to save the company to the database`,
+      });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed to save`,
     });
   }
 });
