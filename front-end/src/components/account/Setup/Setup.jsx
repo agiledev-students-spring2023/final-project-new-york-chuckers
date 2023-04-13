@@ -28,7 +28,7 @@ function Setup(){
         const response = await axios.post(window.backend+"/setup", info);
         if (response.data.status === "approve"){
             setStatus(response.data);
-            if (info.role==="FR"){navigate("/create-freelancer")}
+            if (info.role==="FR"){navigate("/freelancer-setup")}
             else{navigate("/")}
         }
         else{
