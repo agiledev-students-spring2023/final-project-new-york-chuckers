@@ -6,17 +6,14 @@ import { TextField } from '../../../common/input/TextField';
 import Logo from '../../../common/Logo/Logo';
 import './SignIn.css';
 
-
-
-
 function SignIn() {
-
   //Set up navigate const
   const navigate = useNavigate();
 
   //Handle sign in button click, navigate to home page
-  function handleSignIn(){
-    navigate("/");
+  function handleSignIn() {
+    localStorage.setItem('id', 'userid'); // TODO: Modify to real user id
+    navigate('/');
   }
 
   return (
