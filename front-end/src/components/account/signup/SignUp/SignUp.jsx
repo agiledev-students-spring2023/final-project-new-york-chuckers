@@ -29,7 +29,8 @@ function SignUp() {
   //Adding useNavigate const to link signup to profile setup (Joey)
   const navigate = useNavigate();
   //Adding a handleSignup function to link to profile setup, edit it as you please (Joey)
-  function handleSignup(){
+  function handleSignup() {
+    localStorage.setItem('id', 'userid'); // TODO: Modify to real user id
     navigate('/setup');
   }
 
@@ -77,8 +78,8 @@ function SignUp() {
       </div>
       <div className="sign-up__submit-btn">
         {
-        // added handleSignup to onClick for the button (Joey)
-        } 
+          // added handleSignup to onClick for the button (Joey)
+        }
         <Button onClick={handleSignup}>Sign Up</Button>
       </div>
     </div>
