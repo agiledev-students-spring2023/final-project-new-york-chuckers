@@ -29,7 +29,8 @@ app.use("/position/", positionRouter);
 //   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
 
 // load the dataabase models we want to deal with
-const { Message } = "./Models/message.js";
+import { Message } from "./Models/message.js";
+import { Profile } from "./Models/profile.js";
 
 app.get("/bios", function (req, res) {
   res.json({ bio: "hi" });
@@ -62,28 +63,14 @@ app.get("/settings", function (req, res) {
 });
 
 app.post("/settings/save", async (req, res) => {
-  // try to save the settings to the database
   try {
-    const profile = await Profile.create({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      industry: req.body.industry,
-      skills: req.body.skills,
-      wantWork: req.body.wantWork,
-      position: req.body.position,
-      companies: req.body.companies,
-      image: req.body.image,
-    });
 
-    const matches = image.match(/^data:image\/([A-Za-z-+/]+);base64,(.+)$/);
+    const matches = req.body.image.match(/^data:image\/([A-Za-z-+/]+);base64,(.+)$/);
     const extension = matches[1];
     const base64Data = matches[2];
     const binaryData = Buffer.from(base64Data, "base64");
-
     // Generate a unique filename
     const filename = `${uuidv4()}.${extension}`;
-
     // Write the file to disk
     const filepath = path.join(__dirname, "uploads", filename);
     fs.writeFile(filepath, binaryData, "binary", (err) => {
@@ -92,19 +79,66 @@ app.post("/settings/save", async (req, res) => {
         res.status(500).send("Error saving image");
       } else {
         console.log(`Image saved to ${filepath}`);
-        res.send("Image saved");
+        // try to save the settings to the database
+        Profile.create({
+          id: req.body.id,
+          name: req.body.name,
+          email: req.body.email,
+          phone: req.body.phone,
+          industry: req.body.industry,
+          skills: req.body.skills,
+          wantWork: req.body.wantWork,
+          position: req.body.position,
+          companies: req.body.companies,
+          image: filename,
+        }).then(profile => {
+          console.log("Profile saved to database");
+          res.json({
+            profile: profile,
+            status: "all good",
+          });
+        }).catch(err => {
+          console.error(err);
+          res.status(400).json({
+            error: err,
+            status: "failed to save the settings to the database",
+          });
+        });
       }
-    });
-    return res.json({
-      status: "all good",
     });
   } catch (err) {
     console.error(err);
     return res.status(400).json({
       error: err,
-      status: "failed to save the settings to the database",
+      status: `failed to save ${req.body.name} plus one`,
     });
   }
+});
+
+//using multer for storage
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, './uploads/');
+  },
+  filename: (req, file, cb) => {
+    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
+    const fileExt = path.extname(file.originalname);
+    cb(null, file.fieldname + '-' + uniqueSuffix + fileExt);
+  }
+});
+const upload = multer({ storage });
+
+// Route for handling image uploads
+app.post('/api/upload-image', upload.single('image'), (req, res, next) => {
+  // Access the uploaded file details through the req.file object
+  const { filename, path: filePath, mimetype } = req.file;
+  // Send a response back to the client
+  res.json({
+    filename,
+    filePath,
+    mimetype,
+    message: 'File uploaded successfully'
+  });
 });
 
 // a route to handle fetching all messages
