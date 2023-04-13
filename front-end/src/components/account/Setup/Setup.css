@@ -3,6 +3,7 @@
   }
 
 .submit-btn {
+    cursor: pointer;
     padding: 6px 16px;
     background-color: var(--primary-main);
     color: #ffffff;
@@ -21,7 +22,8 @@
     background-color: var(--primary-dark);
   }
 
-.selection-btn-individual{
+.selection-btn-ind{
+  cursor: pointer;
     padding: 6px 16px;
     background-color: var(--primary-main);
     color: #ffffff;
@@ -36,8 +38,24 @@
     align-content: space-around;
     display: inline;
 }
+.selection-btn-indS{
+  cursor: pointer;
+  padding: 6px 16px;
+  background-color: var(--primary-dark);
+  color: #ffffff;
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  width: 20%;
+  height: 50px;
+  margin: 16px auto;
+  text-align: center;
+  font-size: 12px;
+  align-content: space-around;
+  display: inline;
+}
 
-.selection-btn-individual:hover {
+.selection-btn-ind:hover {
     background-color: var(--primary-dark);
 }
 

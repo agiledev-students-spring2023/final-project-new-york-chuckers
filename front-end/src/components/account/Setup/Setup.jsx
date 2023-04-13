@@ -1,50 +1,54 @@
-import React, { useState, useEffect } from 'react';
-import { Link, redirect, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 //import { Navigate } from 'react-router-dom';
 import { InputTitle } from '../../common/input/InputTitle';
+//I set up a 
 import './Setup.css';
 
 function Setup(){
 
     const [status, setStatus] = useState({});
+    const [gender, setGender] = useState({male:"",female:"",sel:""});
+    const [role, setRole] = useState({recruiter:"",freelancer:"",sel:""});
 
-    let gender = "N";
-    let role = "N";
     const navigate = useNavigate();
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
 
-        console.log("You submitted!");
         const info = {
-            'name': e.target.name.value,
-            'gender': gender,
-            'birthday': e.target.birthday.value,
-            'school': e.target.school.value,
-            'role': role
-        };
-        if (info.gender === "N" || info.role === "N" || info.name === "" || info.school === ""){alert("Error, you're missing some items");}
-        else{
-            setStatus(info);
-            console.log(info);
-            alert("Profile Saved");
-            if (role === "FL") {navigate('/create-freelancer');}
-            else {navigate('/');}
+            "name":e.target.name.value,
+            "gender":gender.sel,
+            "birthday":e.target.birthday.value,
+            "school":e.target.school.value,
+            "role":role.sel
         }
+
+        const response = await axios.post(window.backend+"/setup", info);
+        if (response.data.status === "approve"){
+            setStatus(response.data);
+            if (info.role==="FR"){navigate("/create-freelancer")}
+            else{navigate("/")}
+        }
+        else{
+            alert(response.alert);
+        }
+
     }
 
     function maleGenderClick(){
-        gender = "M";
+        setGender({male:"S", female:"", sel:"M"});
     }
     function femaleGenderClick(){
-        gender = "F";
+        setGender({male:"", female:"S", sel:"F"});
     }
 
     function recruiterClick(){
-        role = "R";
+        setRole({recruiter:"S", freelancer:"", sel:"RE"});
     }
     function freelancerClick(){
-        role = "FL";
+        setRole({recruiter:"", freelancer:"S", sel:"FR"});
     }
 
 
@@ -61,8 +65,8 @@ function Setup(){
                     <InputTitle>Gender:</InputTitle>
                     <div className='selection-buttons'>
                         <div className='button__padding'>
-                        <button type="button" className="selection-btn-individual" onClick={maleGenderClick}>Male</button></div>
-                        <button type="button" className="selection-btn-individual" onClick={femaleGenderClick}>Female</button>
+                        <button type="button" className={"selection-btn-ind" + gender.male} onClick={maleGenderClick}>Male</button></div>
+                        <button type="button" className={"selection-btn-ind" + gender.female} onClick={femaleGenderClick}>Female</button>
                     </div>
                 </div>
                 <div className='item__wrapper'>
@@ -80,8 +84,8 @@ function Setup(){
                 <div className='item_wrapper'>
                     <div className='selection-buttons'>
                         <div className='button__padding'>
-                        <button type="button" className='selection-btn-individual' onClick={recruiterClick}>I'm a Recruiter</button></div>
-                        <button type="button" className='selection-btn-individual' onClick={freelancerClick}>I'm a Freelancer</button>
+                        <button type="button" className={"selection-btn-ind" + role.recruiter} onClick={recruiterClick}>I'm a Recruiter</button></div>
+                        <button type="button" className={"selection-btn-ind" + role.freelancer} onClick={freelancerClick}>I'm a Freelancer</button>
                     </div>
                 </div>
                 <input className="submit-btn" type="submit" value="Save" />

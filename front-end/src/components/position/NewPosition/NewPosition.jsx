@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { useState, useEffect, React } from 'react';
 import { useNavigate, Link, redirect } from 'react-router-dom';
 import { useGoPrevPage } from '../../../hooks/useGoPrevPage';
@@ -6,10 +7,10 @@ import './NewPosition.css';
 
 function NewPosition() {
   const navigate = useNavigate();
-  const [state, setState] = useState({});
+  const [status, setStatus] = useState({});
   const [goPrevPage] = useGoPrevPage();
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
 
     const info = {
@@ -19,11 +20,14 @@ function NewPosition() {
       contact: e.target.contact.value,
     };
 
-    console.log('Position Submitted!');
-    console.log(info);
-    alert('Position Submitted');
-    setState(info);
-    navigate('/position');
+    const response = await axios.post(window.backend + "/new-post", info);
+    if (response.data.status === "approve"){
+      setStatus(response.data.position);
+      navigate("/position");
+    }
+    else{
+      alert(response.data.alert);
+    }
   };
   return (
     <div className="new-position__wrapper">
@@ -31,7 +35,7 @@ function NewPosition() {
         <div className="item__wrapper">
           <InputTitle>Position Name:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="name" placeholder="My New Cool Position" />
+            <input type="text" name="name" placeholder="Defense Against the Dark Arts Professor" />
           </div>
         </div>
         <div className="item__wrapper">
@@ -40,7 +44,7 @@ function NewPosition() {
             <input
               type="text"
               name="description"
-              placeholder="My New Cool Position Description"
+              placeholder="Teach students about the dark arts and hwo to defend from them"
             />
           </div>
         </div>
@@ -51,7 +55,7 @@ function NewPosition() {
               type="number"
               step="0.1"
               name="pay"
-              placeholder="My New Cool Pay For Position"
+              placeholder="2 Galleons"
             />
           </div>
         </div>
@@ -61,7 +65,7 @@ function NewPosition() {
             <input
               type="text"
               name="contact"
-              placeholder="My New Cool Position Recruiter Contact"
+              placeholder="Albus.Dumbledor@hogwarts.com"
             />
           </div>
         </div>

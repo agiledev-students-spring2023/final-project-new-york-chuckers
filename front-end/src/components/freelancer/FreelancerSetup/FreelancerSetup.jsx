@@ -1,16 +1,17 @@
+import axios from 'axios';
 import { React, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { InputTitle } from '../../common/input/InputTitle';
-import './CreateFreelancer.css';
+import './FreelancerSetup.css';
 
-function CreateFreelancer() {
+function FreelancerSetup() {
 
     const [status, setStatus] = useState({});
     const navigate = useNavigate();
 
     let isPhoto = false;
 
-    const handleSubmit = e =>{
+    const handleSubmit = async e =>{
         e.preventDefault();
 
         const info = {
@@ -26,11 +27,16 @@ function CreateFreelancer() {
             'photo': isPhoto
         };
 
-        console.log("You Submitted!");
-        console.log(info);
-        alert("Freelancer Profile Created!");
-        setStatus(info);
-        navigate('/freelancer');
+        const response = await axios.post(window.backend + "/freelancer-setup", info);
+        if (response.data.status === "approve"){
+            setStatus(response.data.freelancer);
+            navigate('/freelancer');
+        }
+        else{
+            alert(response.data.alert);
+        }
+
+        
     }
 
     function handlePhotoClick(){
@@ -107,4 +113,4 @@ function CreateFreelancer() {
     );
 }
 
-export default CreateFreelancer;
+export default FreelancerSetup;
