@@ -1,11 +1,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const companyProfileSchema = new Schema(
+const companySchema = new Schema(
   {
     id: {
       type: String,
-      required:false,
+      required:true,
     },
     name: {
       type: String,
@@ -30,8 +30,8 @@ const companyProfileSchema = new Schema(
 );
 
 // create mongoose Model
-const companyProfile = mongoose.model("companyProfile", companyProfileSchema);
+const Company = mongoose.model("Company", companySchema);
 
 module.exports = {
-  companyProfile,
+  Company,
 };
