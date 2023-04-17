@@ -1,4 +1,4 @@
-const dotenv = require("dotenv");
+const dotenv = require('dotenv').config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
@@ -11,7 +11,7 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Message } = require("./Models/message.js");
 const { Profile } = require("./Models/profile.js");
-const { companyProfile } = require("./Models/companyProfile.js");
+const { Company } = require("./Models/company.js");
 
 
 const app = express(); // instantiate an Express object
@@ -27,11 +27,11 @@ app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming 
 app.use("/freelancer/", freelancerRouter);
 app.use("/position/", positionRouter);
 
-// connect to database – for later when setting up DB next sprint
-// mongoose
-//   .connect(`${process.env.DB_CONNECTION_STRING}`)
-//   .then(data => console.log(`Connected to MongoDB`))
-//   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
+mongoose
+  .connect(`${process.env.DB_CONNECTION_STRING}`)
+  .then(data => console.log(`Connected to MongoDB`))
+  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
+  
 
 app.get("/bios", function (req, res) {
   res.json({ bio: "hi" });
@@ -45,7 +45,43 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get("/settings", function (req, res) {
+app.get("/settings/:profileId", async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.profileId);
+    if (!profile) {
+      return res.status(404).json({
+        error: "Profile not found",
+        status: "failed to retrieve profile from the database",
+      });
+    }
+    res.json({
+      profile: profile,
+      status: 'all good',
+    });
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve the profile from the database',
+    })
+  }
+})
+
+app.get("/settings/", async (req, res) => {
+    // try {
+    //   const users = await Profile.find({})
+    //   res.json({
+    //     users: users,
+    //     status: 'all good',
+    //   })
+    // } catch (err) {
+    //   console.error(err)
+    //   res.status(400).json({
+    //     error: err,
+    //     status: 'failed to retrieve messages from the database',
+    //   })
+    // }
+
   const users = [
     {
       id: 189,
@@ -109,34 +145,28 @@ app.get("/edit-company", function (req, res) {
   res.json(users);
 });
 
-app.post("/edit-company/save", async (req, res) => {
+app.post('/edit-company/save', async (req, res) => {
+  // try to save the message to the database
   try {
-    companyProfile.create({
+    const company = await Company.create({
       id: req.body.id,
       name: req.body.name,
-      email: req.body.email,
       phone: req.body.phone,
+      email: req.body.email,
       industry: req.body.industry,
-    }).then(companyProfile => {
-      res.json({
-        companyProfile: companyProfile,
-        status: "all good",
-      });
-    }).catch(err => {
-      console.error(err);
-      res.status(400).json({
-        error: err,
-        status: `failed to save the company to the database`,
-      });
-    });
+    })
+    return res.json({
+      company: company, // return the message we just saved
+      status: 'all good',
+    })
   } catch (err) {
-    console.error(err);
+    console.error(err)
     return res.status(400).json({
       error: err,
-      status: `failed to save`,
-    });
+      status: 'failed to save the company to the database',
+    })
   }
-});
+})
 
 //using multer for storage
 const storage = multer.diskStorage({

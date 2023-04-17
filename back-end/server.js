@@ -1,6 +1,8 @@
 #!/usr/bin/env node
 const server = require("./app.js"); // load up the web server
-const port = 5076; // the port to listen to for incoming requests
+
+require('dotenv').config();
+const port = process.env.PORT || 5076; // the port to listen to for incoming requests
 
 // call express's listen function to start listening to the port
 const listener = server.listen(port, function () {
