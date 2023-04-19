@@ -68,25 +68,11 @@ app.get("/settings/:profileId", async (req, res) => {
 })
 
 app.get("/settings/", async (req, res) => {
-    // try {
-    //   const users = await Profile.find({})
-    //   res.json({
-    //     users: users,
-    //     status: 'all good',
-    //   })
-    // } catch (err) {
-    //   console.error(err)
-    //   res.status(400).json({
-    //     error: err,
-    //     status: 'failed to retrieve messages from the database',
-    //   })
-    // }
-
   const users = [
     {
-      id: 189,
-      name: "James Doe",
-      email: "james.smith@example.com",
+      id: 0,
+      name: "Default Profile",
+      email: "dee.fault@profile.com",
       phone: "123-555-7890",
       industry: "Technology",
       skills: "Python, Javscript, Figma",
@@ -122,6 +108,32 @@ app.post("/settings/save", async (req, res) => {
         error: err,
         status: `failed to save the settings to the database`,
       });
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed to save`,
+    });
+  }
+});
+
+app.post("/settings/save/:profileId", async (req, res) => {
+  try {
+    const profile = await Profile.findById(req.params.profileId);
+    profile.id = req.body.id
+    profile.name = req.body.name
+    profile.email= req.body.email
+    profile.phone=  req.body.phone
+    profile.industry = req.body.industry
+    profile.skills = req.body.skills
+    profile.wantWork = req.body.wantWork
+    profile.position = req.body.position
+    profile.companies = req.body.companies
+    await profile.save();
+    return res.json({
+      status: `Profile successfully updated`,
+      profile: profile,
     });
   } catch (err) {
     console.error(err);
@@ -169,22 +181,44 @@ app.post('/edit-company/save', async (req, res) => {
 })
 
 //using multer for storage
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, './uploads/');
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // store files into a directory named 'uploads'
+    cb(null, "uploads/")
   },
-  filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9);
-    const fileExt = path.extname(file.originalname);
-    cb(null, file.fieldname + '-' + uniqueSuffix + fileExt);
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now())
+  },
+})
+var upload = multer({ storage: storage })
+
+app.post('/upload-route-example', upload.array('image'), (req, res) => {
+  console.log( JSON.stringify(req.files, null, 2) )
+  if (req.files.length) res.json( { success: true, message: 'thanks!' })
+  else res.status(500).send({ success: false, message: 'Oops... something went wrong!' })
+})
+
+
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+
+app.post('/upload-route-example-2', upload.single('image'), (req, res) => {
+  console.log("Image uploaded successfully");
+  if (req.file) {
+    const encodedImage = req.file.buffer.toString('base64');
+    console.log(encodedImage);
+    res.json( { success: true, message: `thanks! ${encodedImage}` });
+  } else {
+    res.status(500).send({ success: false, message: 'Oops... something went wrong!' });
   }
 });
-const upload = multer({ storage });
 
 // Route for handling image uploads
-app.post('/api/upload-image', upload.single('image'), (req, res, next) => {
+app.post('/api/upload-image', upload.array('image', 1), (req, res, next) => {
   // Access the uploaded file details through the req.file object
-  const { filename, path: filePath, mimetype } = req.file;
+  try{
+    const { filename, path: filePath, mimetype } = req.files[0];
   // Send a response back to the client
   res.json({
     filename,
@@ -192,6 +226,14 @@ app.post('/api/upload-image', upload.single('image'), (req, res, next) => {
     mimetype,
     message: 'File uploaded successfully'
   });
+  } catch(err){
+    console.error(err);
+    res.status(400).json({
+      error: err,
+      status: "failed to post the image to the database",
+    });
+  }
+  
 });
 
 // a route to handle fetching all messages
