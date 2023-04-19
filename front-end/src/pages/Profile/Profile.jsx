@@ -69,7 +69,7 @@ function Profile() {
   }
 
   const settingsUpdate = () => {
-      axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save`, {
+      axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`, {
         id: id,
         name: name,
         email: email,
@@ -86,8 +86,9 @@ function Profile() {
   const handleImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", file);
+    console.log(formData);
     try {
-      const response = await axios.post("/api/upload-image", formData);
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/upload-route-example-2`, formData);
       console.log("Image uploaded successfully", response.data);
     } catch (error) {
       console.error("Error uploading image", error);
@@ -143,8 +144,7 @@ function Profile() {
     infoValue.textContent = editField.value;
     infoBox.classList.remove("editable");
     setIsEditable(false);
-    // Would push this out to a server to save
-    console.log(name, email, phone, industry);
+    settingsUpdate();
   }
 
   const handleEditCompany = (event) => { 
@@ -163,7 +163,7 @@ function Profile() {
   }
 
   const handleProfileButtonClick = e => {
-    alert(`You clicked the button to edit your profile. Upload Image!`)
+    handleImageUpload();
   }
   
   //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
@@ -180,7 +180,6 @@ function Profile() {
       });
     }
     settingsUpdate();
-    // console.log(position, notPosition);
   }
 
   const switchWantWork = (event) =>{
@@ -218,7 +217,7 @@ function Profile() {
 
   const handleImageChange = (newImage) => {
     setImage(newImage);
-    settingsUpdate();
+    handleImageUpload();
   };
 
   return (
