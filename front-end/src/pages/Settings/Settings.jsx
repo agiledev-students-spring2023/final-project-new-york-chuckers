@@ -5,6 +5,7 @@ import './Settings.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function Settings() {
+  const [dbID, setdbID] = useState("643d8f6c7a4f59072949dfbc")
   const [name, setName] = useState("John Smith");
   const [email, setEmail] = useState("john.smith@example.com");
   const [phone, setPhone] = useState("123-456-7890");
@@ -17,39 +18,27 @@ function Settings() {
   const [companies, setCompanies] = useState(["Amazon"])
   const [image, setImage] = useState(profileImage);
 
-  console.log(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
-
-  const fetchMessages = () => {
-    console.log(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`);
+  const fetchData = () => {
     axios
-      // .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
-      //need to fix this
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings`)
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/${dbID}`)
       .then(response => {
-        // axios bundles up all response data in response.data property
-        const name = response.data[0].name
+        const name = response.data.profile.name
         setName(name)
-        console.log(name)
-        const email = response.data[0].email
+        const email = response.data.profile.email
         setEmail(email)
-        const phone = response.data[0].phone
+        const phone = response.data.profile.phone
         setPhone(phone)
-        const industry = response.data[0].industry
+        const industry = response.data.profile.industry
         setIndustry(industry)
-        const position = response.data[0].position
+        const position = response.data.profile.position
         setPosition(position)
-        const companies = response.data[0].companies
+        const companies = response.data.profile.companies
         setCompanies(companies)
-        const image = response.data[0].image
         // setImage(image)
       })
       .catch(err => {
-        // setError(err)
-        console.log(err);
       })
       .finally(() => {
-        // the response has been received, so remove the loading icon
-        // setLoaded(true)
       })
   }
 
