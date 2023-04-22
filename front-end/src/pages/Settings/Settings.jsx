@@ -6,16 +6,18 @@ import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 function Settings() {
   const [dbID, setdbID] = useState("643d8f6c7a4f59072949dfbc")
-  const [name, setName] = useState("John Smith");
-  const [email, setEmail] = useState("john.smith@example.com");
-  const [phone, setPhone] = useState("123-456-7890");
-  const [industry, setIndustry] = useState("Technology");
-  const [position, setPosition] = useState("Freelancer");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
+  const [industry, setIndustry] = useState("");
+  const [skills, setSkills] = useState("");
+  const [wantWork, setWantWork] = useState("");
+  const [position, setPosition] = useState("A");
   const [isEditable, setIsEditable] = useState(false);
   const [isEditableCompany, setIsEditableCompany] = useState(false);
   const [selectedFile, setFileChange] = useState(null);
-  const [notPosition,setNotPosition] = useState(position.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer");
-  const [companies, setCompanies] = useState(["Amazon"])
+  const [notPosition,setNotPosition] = useState("");
+  const [companies, setCompanies] = useState("")
   const [image, setImage] = useState(profileImage);
 
   const fetchData = () => {
@@ -32,9 +34,17 @@ function Settings() {
         setIndustry(industry)
         const position = response.data.profile.position
         setPosition(position)
+        const notPosition = position === "Freelancer" ? "Recruiter" : "Freelancer"
+        setNotPosition(notPosition)
         const companies = response.data.profile.companies
         setCompanies(companies)
+        const wantWork = response.data.profile.wantWork
+        setWantWork(wantWork)
+        const skills = response.data.profile.skills
+        setSkills(skills)
         // setImage(image)
+        console.log(position)
+        console.log(notPosition)
       })
       .catch(err => {
       })
@@ -115,33 +125,33 @@ function Settings() {
   
   //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
   //need to change the text, need to change the edit button to where its now an "Find your company" button
-  const switchPosition = (event) =>{
-    if(isEditable || isEditableCompany){
-      alert(`Please finish editing before switching profile type.`)
-    }else {
-      setPosition(prevPosition => {
-        const newPosition = prevPosition.localeCompare("Freelancer") == 0 ? "Recruiter" : "Freelancer";
-        setNotPosition(prevPosition);
-        return newPosition;
-      });
+  const switchPosition = () => {
+    if (isEditable || isEditableCompany) {
+      alert(`Please finish editing before switching profile type.`);
+    } else {
+      const newPosition = position === "Freelancer" ? "Recruiter" : "Freelancer";
+      setNotPosition(position);
+      settingsUpdate(newPosition);
+      setPosition(newPosition);
     }
-    console.log(position, notPosition);
-  }
+  };
+  
+  const settingsUpdate = async (newPosition) => {
+    await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`, {
+      name: name,
+      email: email,
+      phone: phone,
+      industry: industry,
+      position: newPosition,
+      companies: companies,
+      skills: skills,
+      wantWork: wantWork,
+    });
+  };
+  
 
   useEffect(() => {
-    // fetch messages this once
-    fetchMessages()
-
-    // set a timer to load data from server every n seconds
-    const intervalHandle = setInterval(() => {
-      fetchMessages()
-    }, 5000)
-
-    // return a function that will be called when this component unloads
-    return e => {
-      // clear the timer, so we don't still load messages when this component is not loaded anymore
-      clearInterval(intervalHandle)
-    }
+    fetchData();
   }, []) 
 
   return (
@@ -153,12 +163,6 @@ function Settings() {
       <div className="info-box">
         <div className="info-label">Edit {position} Profile</div>
         <Link to="/profile" className="link-out">Edit {position} Profile</Link>
-      </div>
-    </div>
-    <div className="info-container">
-      <div className="info-box">
-        <div className="info-label">Saved Positions</div>
-        <Link to="/freelancer" className="link-out">Your Saved Positions</Link>
       </div>
     </div>
     <div className="info-container">

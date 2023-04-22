@@ -3,10 +3,6 @@ const Schema = mongoose.Schema;
 
 const profileSchema = new Schema(
   {
-    id: {
-      type: String,
-      required:false,
-    },
     name: {
       type: String,
       required: true,
@@ -38,6 +34,10 @@ const profileSchema = new Schema(
     companies: {
       type: String,
       required: true,
+    },
+    image: {
+      type: String,
+      required: false,
     },
   },
   {
