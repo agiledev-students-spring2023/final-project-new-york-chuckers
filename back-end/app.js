@@ -12,6 +12,7 @@ const { v4: uuidv4 } = require("uuid");
 const { Message } = require("./Models/message.js");
 const { Profile } = require("./Models/profile.js");
 const { Company } = require("./Models/company.js");
+const Account = require("./Models/account.js");
 
 
 const app = express(); // instantiate an Express object
@@ -28,7 +29,7 @@ app.use("/freelancer/", freelancerRouter);
 app.use("/position/", positionRouter);
 
 mongoose
-  .connect(`${process.env.DB_CONNECTION_STRING}`)
+  .connect("mongodb+srv://mrkeke01:Maxsatlas123.@cluster0.qiu7mdw.mongodb.net/?retryWrites=true&w=majority")
   .then(data => console.log(`Connected to MongoDB`))
   .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
   
@@ -295,13 +296,16 @@ app.post("/messages/save", async (req, res) => {
 
 
 //route to validate and create new profile
-app.post("/setup", (req, res) =>{
+app.post("/setup", async (req, res) =>{
   try{
     //If some of the data is incomplete when creating the new profile, rerturn a status fail and alert "incomplete"
     
     //If no error or missing data add new profile into database and return status approve
     //creating new profile into database (mongoose)
-    res.json({status:"approve", profile:req.body, alert:null});
+
+    const acc = await Account.find();
+    console.log(acc);
+    res.status(200).json({status:"approve", profile:req.body, alert:null, test: acc});
     
   }
   //If catch an error, status is fail ad return the err as the alert
@@ -326,7 +330,7 @@ app.post("/freelancer-setup", (req, res) => {
 });
 
 //route to validate and create new position
-app.post("/new-post", (req, res) =>{
+app.post("/new-post", async (req, res) =>{
   try{
     //If some of the data is incomplete return a status fail and alert "incomplete"
 

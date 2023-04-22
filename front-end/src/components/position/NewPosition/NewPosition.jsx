@@ -23,7 +23,8 @@ function NewPosition() {
     const response = await axios.post(window.backend + "/new-post", info);
     if (response.data.status === "approve"){
       setStatus(response.data.position);
-      navigate("/position");
+      console.log(response.data.test);
+      //navigate("/position");
     }
     else{
       alert(response.data.alert);
