@@ -3,11 +3,11 @@ import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
+import { BrowserRouter as Router, Link } from 'react-router-dom';
 
 
 function Profile() {
   const [dbID, setdbID] = useState("643d8f6c7a4f59072949dfbc")
-  const [id, setID] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -28,8 +28,6 @@ function Profile() {
     axios
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/${dbID}`)
       .then(response => {
-        const id = response.data.profile.id
-        setID(id)
         const name = response.data.profile.name
         setName(name)
         const email = response.data.profile.email
@@ -63,14 +61,8 @@ function Profile() {
   //Set the const navigate to link to the edit freelancer profile 
   const navigate = useNavigate();
 
-  //Handle click on edit freelancer profile button
-  function handleEditFreelance(){
-    navigate("/freelancer-setup");
-  }
-
-  const settingsUpdate = () => {
-      axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`, {
-        id: id,
+  const settingsUpdate = async () => {
+      await axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`, {
         name: name,
         email: email,
         phone: phone,
@@ -82,7 +74,7 @@ function Profile() {
       })
   }
 
-  //for sprint 3
+  //image handling
   const handleImageUpload = async () => {
     const formData = new FormData();
     formData.append("image", file);
@@ -95,44 +87,37 @@ function Profile() {
     }
   };
 
-  //for the switch button, find the opposite
   const handleNameChange = (event) => {
     setName(event.target.value);
-    settingsUpdate();
   }
 
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
-    settingsUpdate();
   }
 
   const handlePhoneChange = (event) => {
     setPhone(event.target.value);
-    settingsUpdate();
   }
 
   const handleIndustryChange = (event) => {
     setIndustry(event.target.value);
-    settingsUpdate();
   }
 
   const handleSkillsChange = (event) => {
     setSkills(event.target.value);
-    settingsUpdate();
   }
 
   const handleEdit = (event) => { 
     const infoBox = event.target.parentElement;
     const editField = infoBox.querySelector(".edit-field");
     // const saveButton = infoBox.querySelector(".save-button");
-
+    settingsUpdate();
     if (!isEditable) {
       infoBox.classList.add("editable");
       editField.focus();
     } else {
       infoBox.classList.remove("editable");
     }
-
     setIsEditable(!isEditable);
   }
 
@@ -162,29 +147,10 @@ function Profile() {
     setIsEditableCompany(!isEditableCompany);
   }
 
-  const handleProfileButtonClick = e => {
-    handleImageUpload();
-  }
-  
-  //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
-  //need to change the text, need to change the edit button to where its now an "Find your company" button
-  const switchPosition = (event) =>{
-    if(isEditable || isEditableCompany){
-      alert(`Please finish editin before switching profile type.`)
-    }else {
-      setPosition(prevPosition => {
-        const newPosition = prevPosition.localeCompare("Freelancer") === 0 ? "Recruiter" : "Freelancer";
-        setNotPosition(prevPosition);
-        return newPosition;
-        settingsUpdate();
-      });
-    }
-    settingsUpdate();
-  }
-
   const switchWantWork = (event) =>{
     setWantWork(prevVal => {
       const newVal = prevVal.localeCompare("Yes") === 0 ? "No" : "Yes";
+      settingsUpdate();
       return newVal;
     });
     settingsUpdate();
@@ -209,7 +175,7 @@ function Profile() {
     };  
     return (
       <div>
-        <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div>
+        <div className="edit-profile-button"onClick={handleImageUpload}>Edit</div>
         <input type="file" accept=".jpg,.jpeg,.png" id="fileInput" onChange={handleFileChange} className="invisible"/>
       </div>
     );
@@ -225,8 +191,6 @@ function Profile() {
       <div className="profile-container">
         <div className="profile-image">
           <img src={image} alt="Profile" />
-          {/* <FileInput onChange={handleImageChange} className="edit-profile-button"/> */}
-          {/* <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit</div> */}
         </div>
         <div className="edit-file-button">
           <FileInput onChange={handleImageChange} className="edit-profile-button"/>
@@ -270,7 +234,7 @@ function Profile() {
                 <div className="info-label">Industries:</div>
                 <div className="info-value">{industry}</div>
                 <div className="edit-button" onClick={handleEdit}>Edit</div>
-                <input type="text" className="edit-field" value={industry}/>
+                <input type="text" className="edit-field" onChange ={handleIndustryChange} value={industry}/>
                 <div className="save-button" onClick={handleSave}>Save</div>
               </div>
           )}
@@ -293,16 +257,9 @@ function Profile() {
           <div className="edit-button" onClick={switchWantWork}>Switch to {wantWork.localeCompare("Yes") === 0 ? "No" : "Yes"}</div>
         </div>) : null}
       </div>
-      
       </div>
-
-      {
-        //Adding the edit freelancer profile button when on freelancer profile
-      }
       <div>{position === 'Recruiter' ? (<div></div>) : (
-      <div className='edit-freelance-profile-button' onClick={handleEditFreelance}>Edit Freelancer Profile</div>)}</div>
-      {/* Maybe remove this from final, just to demo difference in the buttons */}
-      <div className="switch-button" onClick={switchPosition}>Switch To {notPosition}</div>
+        <Link to="/freelancer-setup" className="edit-freelance-profile-button">Edit Freelancer Posting</Link>)}</div>
     </div>
   );
 }
