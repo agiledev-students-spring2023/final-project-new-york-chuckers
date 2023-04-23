@@ -66,6 +66,28 @@ app.get("/settings/:profileId", async (req, res) => {
   }
 })
 
+app.get("/settings/:companyId", async (req, res) => {
+  try {
+    const company = await Company.findById(req.params.companyId);
+    if (!company) {
+      return res.status(404).json({
+        error: "Company not found",
+        status: "failed to retrieve company from the database",
+      });
+    }
+    res.json({
+      company: company,
+      status: 'all good',
+    });
+  } catch (err) {
+    console.error(err)
+    res.status(400).json({
+      error: err,
+      status: 'failed to retrieve the company from the database',
+    })
+  }
+})
+
 app.get("/settings/", async (req, res) => {
   const users = [
     {
