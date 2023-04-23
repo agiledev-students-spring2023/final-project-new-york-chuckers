@@ -96,6 +96,8 @@ app.post("/settings/save", async (req, res) => {
       wantWork: req.body.wantWork,
       position: req.body.position,
       companies: req.body.companies,
+      buffer: req.body.buffer,
+      mimetype: req.body.mimetype,
     }).then(profile => {
       res.json({
         profile: profile,
@@ -128,6 +130,8 @@ app.post("/settings/save/:profileId", async (req, res) => {
     profile.wantWork = req.body.wantWork
     profile.position = req.body.position
     profile.companies = req.body.companies
+    profile.buffer = req.body.buffer
+    profile.mimetype = req.body.mimetype
     await profile.save();
     return res.json({
       status: `Profile successfully updated`,
@@ -139,6 +143,34 @@ app.post("/settings/save/:profileId", async (req, res) => {
       error: err,
       status: `failed to save`,
     });
+  }
+});
+
+//using multer for storage
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // store files into a directory named 'uploads'
+    cb(null, "uploads/")
+  },
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now())
+  },
+})
+var upload = multer({ storage: storage })
+
+var storage = multer.memoryStorage();
+var upload = multer({ storage: storage });
+
+app.post('/settings/save_image/:profileId', upload.single('image'), async (req, res) => {
+  if (req.file) {
+    const profile = await Profile.findById(req.params.profileId);
+    const encodedImage = req.file.buffer.toString('base64');
+    profile.image = encodedImage;
+    profile.mimetype = req.file.mimetype;
+    res.json( { success: true, message: `Worked`, mimetype: req.file.mimetype, buffer: encodedImage });
+  } else {
+    res.status(500).send({ success: false, message: 'Something went wrong with image storage.!' });
   }
 });
 
@@ -177,62 +209,6 @@ app.post('/edit-company/save', async (req, res) => {
     })
   }
 })
-
-//using multer for storage
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    // store files into a directory named 'uploads'
-    cb(null, "uploads/")
-  },
-  filename: function (req, file, cb) {
-    // rename the files to include the current time and date
-    cb(null, file.fieldname + "-" + Date.now())
-  },
-})
-var upload = multer({ storage: storage })
-
-app.post('/upload-route-example', upload.array('image'), (req, res) => {
-  console.log( JSON.stringify(req.files, null, 2) )
-  if (req.files.length) res.json( { success: true, message: 'thanks!' })
-  else res.status(500).send({ success: false, message: 'Oops... something went wrong!' })
-})
-
-
-var storage = multer.memoryStorage();
-var upload = multer({ storage: storage });
-
-app.post('/upload-route-example-2', upload.single('image'), (req, res) => {
-  console.log("Image uploaded successfully");
-  if (req.file) {
-    const encodedImage = req.file.buffer.toString('base64');
-    console.log(encodedImage);
-    res.json( { success: true, message: `thanks! ${encodedImage}` });
-  } else {
-    res.status(500).send({ success: false, message: 'Oops... something went wrong!' });
-  }
-});
-
-// Route for handling image uploads
-app.post('/api/upload-image', upload.array('image', 1), (req, res, next) => {
-  // Access the uploaded file details through the req.file object
-  try{
-    const { filename, path: filePath, mimetype } = req.files[0];
-  // Send a response back to the client
-  res.json({
-    filename,
-    filePath,
-    mimetype,
-    message: 'File uploaded successfully'
-  });
-  } catch(err){
-    console.error(err);
-    res.status(400).json({
-      error: err,
-      status: "failed to post the image to the database",
-    });
-  }
-  
-});
 
 //route to validate and create new profile
 app.post("/setup", (req, res) =>{

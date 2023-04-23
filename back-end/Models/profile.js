@@ -35,7 +35,11 @@ const profileSchema = new Schema(
       type: String,
       required: true,
     },
-    image: {
+    buffer: {
+      type: String,
+      required: false,
+    },
+    mimetype: {
       type: String,
       required: false,
     },
