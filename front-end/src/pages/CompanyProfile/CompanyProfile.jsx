@@ -4,6 +4,93 @@ import { Link } from 'react-router-dom';
 
 function CompanyProfile() {
   const [position, setPosition] = useState("Recruiter");
+
+  const fetchData = () => {
+    axios
+      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/company-profile`)
+      .then(response => {
+        const id = response.data.company.id
+        setID(id)
+        const name = response.data.company.name
+        setName(name)
+        const email = response.data.company.email
+        setEmail(email)
+        const phone = response.data.company.phone
+        setPhone(phone)
+        const industry = response.data.company.industry
+        setIndustry(industry)
+        // setImage(image)
+      })
+      .catch(err => {
+      })
+      .finally(() => {
+      })
+  }
+
+  useEffect(() => {
+    // fetch messages
+    fetchData()
+  }, []) 
+
+  const settingsUpdate = () => {
+    axios.post(`${process.env.REACT_APP_SERVER_HOSTNAME}/company-profile/save`, {
+      id: id,
+      name: name,
+      email: email,
+      phone: phone,
+      industry: industry,
+    })
+}
+
+function FileInput(props) {
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile && (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png')) {
+      setFile(selectedFile);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const newImage = reader.result;
+        props.onChange(newImage);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };  
+  return (
+    <div>
+      <div className="edit-profile-button">Edit Logo</div>
+      <input type="file" accept=".jpg,.jpeg,.png" id="fileInput" onChange={handleFileChange} className="invisible"/>
+    </div>
+  );
+}
+
+function FileInputBackground(props) {
+  const [file, setFile] = useState(null);
+
+  const handleFileChange = (event) => {
+    const selectedFile = event.target.files[0];
+
+    if (selectedFile && (selectedFile.type === 'image/jpeg' || selectedFile.type === 'image/png')) {
+      setFile(selectedFile);
+
+      const reader = new FileReader();
+      reader.onload = () => {
+        const newImage = reader.result;
+        props.onChange(newImage);
+      };
+      reader.readAsDataURL(selectedFile);
+    }
+  };  
+  return (
+    <div>
+      <div className="edit-profile-button"onClick={handleProfileButtonClick}>Edit Background Image</div>
+      <input type="file" accept=".jpg,.jpeg,.png" id="fileInput" onChange={handleFileChange} className="invisible"/>
+    </div>
+  );
+}
   
   return (
     <div>
