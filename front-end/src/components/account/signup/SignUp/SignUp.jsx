@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { userApi } from '../../../../api/user';
 import Button from '../../../common/Button/Button';
 import { InputTitle } from '../../../common/input/InputTitle';
 import { TextField } from '../../../common/input/TextField';
@@ -29,8 +30,9 @@ function SignUp() {
   //Adding useNavigate const to link signup to profile setup (Joey)
   const navigate = useNavigate();
   //Adding a handleSignup function to link to profile setup, edit it as you please (Joey)
+
   function handleSignup() {
-    localStorage.setItem('id', 'userid'); // TODO: Modify to real user id
+    localStorage.setItem('signup_info', JSON.stringify(inputs));
     navigate('/setup');
   }
 

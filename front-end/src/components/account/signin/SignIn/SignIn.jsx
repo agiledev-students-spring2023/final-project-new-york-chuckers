@@ -1,19 +1,43 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useFormAction, useNavigate } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
+import { userApi } from '../../../../api/user';
 import Button from '../../../common/Button/Button';
 import { InputTitle } from '../../../common/input/InputTitle';
 import { TextField } from '../../../common/input/TextField';
 import Logo from '../../../common/Logo/Logo';
 import './SignIn.css';
+import { useState } from 'react';
 
 function SignIn() {
   //Set up navigate const
   const navigate = useNavigate();
+  const [inputs, setInputs] = useState({ email: '', password: '' });
+  const { email, password } = inputs;
+
+  const onInputChange = e => {
+    const { name, value } = e.target;
+    setInputs({
+      ...inputs,
+      [name]: value,
+    });
+  };
 
   //Handle sign in button click, navigate to home page
-  function handleSignIn() {
-    localStorage.setItem('id', 'userid'); // TODO: Modify to real user id
-    navigate('/');
+  async function signIn(data) {
+    const responseData = await userApi.signIn(data);
+
+    return responseData.token;
+  }
+
+  async function handleSignIn() {
+    try {
+      const token = await signIn(inputs);
+      localStorage.setItem('id', token);
+      navigate('/');
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -24,11 +48,16 @@ function SignIn() {
       <div className="sign-in__input-wrapper">
         <div>
           <InputTitle>Email</InputTitle>
-          <TextField />
+          <TextField onChange={onInputChange} name="email" value={email} />
         </div>
         <div>
           <InputTitle>Password</InputTitle>
-          <TextField type="password" />
+          <TextField
+            type="password"
+            onChange={onInputChange}
+            name="password"
+            value={password}
+          />
         </div>
       </div>
       <div className="sign-in__signup-link">

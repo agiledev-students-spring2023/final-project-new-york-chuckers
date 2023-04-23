@@ -1,17 +1,19 @@
-const dotenv = require('dotenv').config();
+const dotenv = require("dotenv").config();
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const passport = require("passport");
 const mongoose = require("mongoose");
 const freelancerRouter = require("./routes/freelancer/index.js");
 const positionRouter = require("./routes/position/index.js");
+const userRouter = require("./routes/user/index.js");
 const fs = require("fs");
 const path = require("path");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Profile } = require("./Models/profile.js");
 const { Company } = require("./Models/company.js");
-
+const authenticateJwt = require("./middleware/passportAuth.js");
 
 const app = express(); // instantiate an Express object
 
@@ -22,15 +24,20 @@ app.use(cors()); // allow cross-origin resource sharing
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 
+// passport
+app.use(passport.initialize());
+
+require("./config/passport")(passport);
+
 // custom router
 app.use("/freelancer/", freelancerRouter);
 app.use("/position/", positionRouter);
+app.use("/user/", userRouter);
 
 mongoose
   .connect(`${process.env.DB_CONNECTION_STRING}`)
-  .then(data => console.log(`Connected to MongoDB`))
-  .catch(err => console.error(`Failed to connect to MongoDB: ${err}`))
-  
+  .then((data) => console.log(`Connected to MongoDB`))
+  .catch((err) => console.error(`Failed to connect to MongoDB: ${err}`));
 
 app.get("/bios", function (req, res) {
   res.json({ bio: "hi" });
@@ -44,7 +51,7 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get("/settings/:profileId", async (req, res) => {
+app.get("/settings/:profileId", authenticateJwt, async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId);
     if (!profile) {
@@ -55,18 +62,18 @@ app.get("/settings/:profileId", async (req, res) => {
     }
     res.json({
       profile: profile,
-      status: 'all good',
+      status: "all good",
     });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     res.status(400).json({
       error: err,
-      status: 'failed to retrieve the profile from the database',
-    })
+      status: "failed to retrieve the profile from the database",
+    });
   }
-})
+});
 
-app.get("/settings/:companyId", async (req, res) => {
+app.get("/settings/:companyId", authenticateJwt, async (req, res) => {
   try {
     const company = await Company.findById(req.params.companyId);
     if (!company) {
@@ -77,18 +84,18 @@ app.get("/settings/:companyId", async (req, res) => {
     }
     res.json({
       company: company,
-      status: 'all good',
+      status: "all good",
     });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     res.status(400).json({
       error: err,
-      status: 'failed to retrieve the company from the database',
-    })
+      status: "failed to retrieve the company from the database",
+    });
   }
-})
+});
 
-app.get("/settings/", async (req, res) => {
+app.get("/settings/", authenticateJwt, async (req, res) => {
   const users = [
     {
       id: 0,
@@ -106,7 +113,7 @@ app.get("/settings/", async (req, res) => {
   res.json(users);
 });
 
-app.post("/settings/save", async (req, res) => {
+app.post("/settings/save", authenticateJwt, async (req, res) => {
   try {
     Profile.create({
       id: req.body.id,
@@ -120,18 +127,20 @@ app.post("/settings/save", async (req, res) => {
       companies: req.body.companies,
       buffer: req.body.buffer,
       mimetype: req.body.mimetype,
-    }).then(profile => {
-      res.json({
-        profile: profile,
-        status: "all good",
+    })
+      .then((profile) => {
+        res.json({
+          profile: profile,
+          status: "all good",
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(400).json({
+          error: err,
+          status: `failed to save the settings to the database`,
+        });
       });
-    }).catch(err => {
-      console.error(err);
-      res.status(400).json({
-        error: err,
-        status: `failed to save the settings to the database`,
-      });
-    });
   } catch (err) {
     console.error(err);
     return res.status(400).json({
@@ -141,19 +150,19 @@ app.post("/settings/save", async (req, res) => {
   }
 });
 
-app.post("/settings/save/:profileId", async (req, res) => {
+app.post("/settings/save/:profileId", authenticateJwt, async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId);
-    profile.name = req.body.name
-    profile.email= req.body.email
-    profile.phone=  req.body.phone
-    profile.industry = req.body.industry
-    profile.skills = req.body.skills
-    profile.wantWork = req.body.wantWork
-    profile.position = req.body.position
-    profile.companies = req.body.companies
-    profile.buffer = req.body.buffer
-    profile.mimetype = req.body.mimetype
+    profile.name = req.body.name;
+    profile.email = req.body.email;
+    profile.phone = req.body.phone;
+    profile.industry = req.body.industry;
+    profile.skills = req.body.skills;
+    profile.wantWork = req.body.wantWork;
+    profile.position = req.body.position;
+    profile.companies = req.body.companies;
+    profile.buffer = req.body.buffer;
+    profile.mimetype = req.body.mimetype;
     await profile.save();
     return res.json({
       status: `Profile successfully updated`,
@@ -172,29 +181,42 @@ app.post("/settings/save/:profileId", async (req, res) => {
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     // store files into a directory named 'uploads'
-    cb(null, "uploads/")
+    cb(null, "uploads/");
   },
   filename: function (req, file, cb) {
     // rename the files to include the current time and date
-    cb(null, file.fieldname + "-" + Date.now())
+    cb(null, file.fieldname + "-" + Date.now());
   },
-})
-var upload = multer({ storage: storage })
+});
+var upload = multer({ storage: storage });
 
 var storage = multer.memoryStorage();
 var upload = multer({ storage: storage });
 
-app.post('/settings/save_image/:profileId', upload.single('image'), async (req, res) => {
-  if (req.file) {
-    const profile = await Profile.findById(req.params.profileId);
-    const encodedImage = req.file.buffer.toString('base64');
-    profile.image = encodedImage;
-    profile.mimetype = req.file.mimetype;
-    res.json( { success: true, message: `Worked`, mimetype: req.file.mimetype, buffer: encodedImage });
-  } else {
-    res.status(500).send({ success: false, message: 'Something went wrong with image storage.!' });
+app.post(
+  "/settings/save_image/:profileId",
+  authenticateJwt,
+  upload.single("image"),
+  async (req, res) => {
+    if (req.file) {
+      const profile = await Profile.findById(req.params.profileId);
+      const encodedImage = req.file.buffer.toString("base64");
+      profile.image = encodedImage;
+      profile.mimetype = req.file.mimetype;
+      res.json({
+        success: true,
+        message: `Worked`,
+        mimetype: req.file.mimetype,
+        buffer: encodedImage,
+      });
+    } else {
+      res.status(500).send({
+        success: false,
+        message: "Something went wrong with image storage.!",
+      });
+    }
   }
-});
+);
 
 app.get("/edit-company", function (req, res) {
   const users = [
@@ -209,7 +231,7 @@ app.get("/edit-company", function (req, res) {
   res.json(users);
 });
 
-app.post('/edit-company/save', async (req, res) => {
+app.post("/edit-company/save", async (req, res) => {
   // try to save the message to the database
   try {
     const company = await Company.create({
@@ -218,65 +240,60 @@ app.post('/edit-company/save', async (req, res) => {
       phone: req.body.phone,
       email: req.body.email,
       industry: req.body.industry,
-    })
+    });
     return res.json({
       company: company, // return the message we just saved
-      status: 'all good',
-    })
+      status: "all good",
+    });
   } catch (err) {
-    console.error(err)
+    console.error(err);
     return res.status(400).json({
       error: err,
-      status: 'failed to save the company to the database',
-    })
-  }
-})
-
-//route to validate and create new profile
-app.post("/setup", (req, res) =>{
-  try{
-    //If some of the data is incomplete when creating the new profile, rerturn a status fail and alert "incomplete"
-    
-    //If no error or missing data add new profile into database and return status approve
-    //creating new profile into database (mongoose)
-    res.json({status:"approve", profile:req.body, alert:null});
-    
-  }
-  //If catch an error, status is fail ad return the err as the alert
-  catch (err){
-    res.json({status:"fail", alert:err.toString()});
+      status: "failed to save the company to the database",
+    });
   }
 });
 
-//route to validate and setup freelancer 
+//route to validate and create new profile
+app.post("/setup", (req, res) => {
+  try {
+    //If some of the data is incomplete when creating the new profile, rerturn a status fail and alert "incomplete"
+
+    //If no error or missing data add new profile into database and return status approve
+    //creating new profile into database (mongoose)
+    res.json({ status: "approve", profile: req.body, alert: null });
+  } catch (err) {
+    //If catch an error, status is fail ad return the err as the alert
+    res.json({ status: "fail", alert: err.toString() });
+  }
+});
+
+//route to validate and setup freelancer
 app.post("/freelancer-setup", (req, res) => {
-  try{
+  try {
     //If some of the data is uncomplete return a status fail and alert "incomplete"
 
     //If no error or missing data return status approve and create new freelancer
     //creating new freelancer into database(mongoose)
-    res.json({status:"approve", freelancer:req.body, alert:null});
-  }
-  //If catch error, status is fail and return the err as the alert
-  catch (err){
-    res.json({status:"fail", alert:err});
+    res.json({ status: "approve", freelancer: req.body, alert: null });
+  } catch (err) {
+    //If catch error, status is fail and return the err as the alert
+    res.json({ status: "fail", alert: err });
   }
 });
 
 //route to validate and create new position
-app.post("/new-post", (req, res) =>{
-  try{
+app.post("/new-post", (req, res) => {
+  try {
     //If some of the data is incomplete return a status fail and alert "incomplete"
 
-    //If no error or missing data return status approve and create new post 
+    //If no error or missing data return status approve and create new post
     //Creating new post into database(mongoose)
-    res.json({status:"approve", position:req.body, alert:null});
-  }
-  catch (err){
-    res.json({status:"fail", alert:err});
+    res.json({ status: "approve", position: req.body, alert: null });
+  } catch (err) {
+    res.json({ status: "fail", alert: err });
   }
 });
-
 
 // export the express app we created to make it available to other modules
 module.exports = app;

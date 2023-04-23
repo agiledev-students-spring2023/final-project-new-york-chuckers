@@ -17,7 +17,7 @@ function getAuthHeader() {
   };
 }
 
-async function requestApi(path, options) {
+export async function requestApi(path, options) {
   return axios({
     url: getRequestURL(path),
     withCredentials: false,
