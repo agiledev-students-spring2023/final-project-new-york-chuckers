@@ -24,15 +24,15 @@ function EditCompany() {
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/edit-company`)
       .then(response => {
         // axios bundles up all response data in response.data property
-        const id = response.data[0].id
+        const id = response.data.company.id
         setID(id)
-        const name = response.data[0].name
+        const name = response.data.company.name
         setName(name)
-        const email = response.data[0].email
+        const email = response.data.company.email
         setEmail(email)
-        const phone = response.data[0].phone
+        const phone = response.data.company.phone
         setPhone(phone)
-        const industry = response.data[0].industry
+        const industry = response.data.company.industry
         setIndustry(industry)
         // setImage(image)
       })
