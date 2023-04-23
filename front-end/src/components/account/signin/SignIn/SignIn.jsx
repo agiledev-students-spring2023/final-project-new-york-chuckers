@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link, useFormAction, useNavigate } from 'react-router-dom';
-import { useForm } from 'react-hook-form';
 import { userApi } from '../../../../api/user';
 import Button from '../../../common/Button/Button';
 import { InputTitle } from '../../../common/input/InputTitle';
