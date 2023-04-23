@@ -1,99 +1,128 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { userApi } from '../../../api/user';
 //import { Navigate } from 'react-router-dom';
 import { InputTitle } from '../../common/input/InputTitle';
-//I set up a 
+//I set up a
 import './Setup.css';
 
-function Setup(){
+function Setup() {
+  const [gender, setGender] = useState({ male: '', female: '', sel: '' });
+  const [role, setRole] = useState({ recruiter: '', freelancer: '', sel: '' });
 
-    const [status, setStatus] = useState({});
-    const [gender, setGender] = useState({male:"",female:"",sel:""});
-    const [role, setRole] = useState({recruiter:"",freelancer:"",sel:""});
+  const navigate = useNavigate();
 
-    const navigate = useNavigate();
+  const signUp = async data => {
+    const responseData = await userApi.signUp(data);
+  };
 
-    const handleSubmit = async e => {
-        e.preventDefault();
+  const handleSubmit = async e => {
+    e.preventDefault();
 
-        const info = {
-            "name":e.target.name.value,
-            "gender":gender.sel,
-            "birthday":e.target.birthday.value,
-            "school":e.target.school.value,
-            "role":role.sel
-        }
+    const signupInfo = JSON.parse(localStorage.getItem('signup_info'));
 
-        const response = await axios.post(window.backend+"/setup", info);
-        if (response.data.status === "approve"){
-            setStatus(response.data);
-            if (info.role==="FR"){navigate("/freelancer-setup")}
-            else{navigate("/")}
-        }
-        else{
-            alert(response.alert);
-        }
+    const info = {
+      name: e.target.name.value,
+      gender: gender.sel,
+      dateOfBirth: e.target.birthday.value,
+      school: e.target.school.value,
+      role: role.sel,
+      ...signupInfo,
+    };
 
+    try {
+      await signUp(info);
+      if (info.role === 'freelancer') {
+        navigate('/freelancer-setup');
+      } else {
+        navigate('/');
+      }
+    } catch (e) {
+      console.log(e);
     }
+  };
 
-    function maleGenderClick(){
-        setGender({male:"S", female:"", sel:"M"});
-    }
-    function femaleGenderClick(){
-        setGender({male:"", female:"S", sel:"F"});
-    }
+  function maleGenderClick() {
+    setGender({ male: 'S', female: '', sel: 'male' });
+  }
+  function femaleGenderClick() {
+    setGender({ male: '', female: 'S', sel: 'female' });
+  }
 
-    function recruiterClick(){
-        setRole({recruiter:"S", freelancer:"", sel:"RE"});
-    }
-    function freelancerClick(){
-        setRole({recruiter:"", freelancer:"S", sel:"FR"});
-    }
+  function recruiterClick() {
+    setRole({ recruiter: 'S', freelancer: '', sel: 'recruiter' });
+  }
+  function freelancerClick() {
+    setRole({ recruiter: '', freelancer: 'S', sel: 'freelancer' });
+  }
 
-
-    return (
-        <div className='setup__wrapper'>
-            <form onSubmit={handleSubmit}>
-                <div className='item__wrapper'>
-                    <InputTitle>Name:</InputTitle>
-                    <div className='text-field__wrapper'>
-                        <input type="text" name="name" placeholder="Harry Potter" />
-                    </div>
-                </div>
-                <div className='item__wrapper'>
-                    <InputTitle>Gender:</InputTitle>
-                    <div className='selection-buttons'>
-                        <div className='button__padding'>
-                        <button type="button" className={"selection-btn-ind" + gender.male} onClick={maleGenderClick}>Male</button></div>
-                        <button type="button" className={"selection-btn-ind" + gender.female} onClick={femaleGenderClick}>Female</button>
-                    </div>
-                </div>
-                <div className='item__wrapper'>
-                    <InputTitle>Date of Birth:</InputTitle>
-                    <div className='text-field__wrapper'>
-                        <input type="date" name="birthday" />
-                    </div>
-                </div>
-                <div className='item__wrapper'>
-                    <InputTitle>School:</InputTitle>
-                    <div className='text-field__wrapper'>
-                        <input type="text" name="school" placeholder='Hogwarts' />
-                    </div>
-                </div>
-                <div className='item_wrapper'>
-                    <div className='selection-buttons'>
-                        <div className='button__padding'>
-                        <button type="button" className={"selection-btn-ind" + role.recruiter} onClick={recruiterClick}>I'm a Recruiter</button></div>
-                        <button type="button" className={"selection-btn-ind" + role.freelancer} onClick={freelancerClick}>I'm a Freelancer</button>
-                    </div>
-                </div>
-                <input className="submit-btn" type="submit" value="Save" />
-            </form>
+  return (
+    <div className="setup__wrapper">
+      <form onSubmit={handleSubmit}>
+        <div className="item__wrapper">
+          <InputTitle>Name:</InputTitle>
+          <div className="text-field__wrapper">
+            <input type="text" name="name" placeholder="Harry Potter" />
+          </div>
         </div>
-        );
-
-
+        <div className="item__wrapper">
+          <InputTitle>Gender:</InputTitle>
+          <div className="selection-buttons">
+            <div className="button__padding">
+              <button
+                type="button"
+                className={'selection-btn-ind' + gender.male}
+                onClick={maleGenderClick}
+              >
+                Male
+              </button>
+            </div>
+            <button
+              type="button"
+              className={'selection-btn-ind' + gender.female}
+              onClick={femaleGenderClick}
+            >
+              Female
+            </button>
+          </div>
+        </div>
+        <div className="item__wrapper">
+          <InputTitle>Date of Birth:</InputTitle>
+          <div className="text-field__wrapper">
+            <input type="date" name="birthday" />
+          </div>
+        </div>
+        <div className="item__wrapper">
+          <InputTitle>School:</InputTitle>
+          <div className="text-field__wrapper">
+            <input type="text" name="school" placeholder="Hogwarts" />
+          </div>
+        </div>
+        <div className="item_wrapper">
+          <div className="selection-buttons">
+            <div className="button__padding">
+              <button
+                type="button"
+                className={'selection-btn-ind' + role.recruiter}
+                onClick={recruiterClick}
+              >
+                I'm a Recruiter
+              </button>
+            </div>
+            <button
+              type="button"
+              className={'selection-btn-ind' + role.freelancer}
+              onClick={freelancerClick}
+            >
+              I'm a Freelancer
+            </button>
+          </div>
+        </div>
+        <input className="submit-btn" type="submit" value="Save" />
+      </form>
+    </div>
+  );
 }
 
 export default Setup;
