@@ -4,6 +4,16 @@ import { Link } from 'react-router-dom';
 
 function CompanyProfile() {
   const [position, setPosition] = useState("Recruiter");
+  const [id, setID] = useState(12);
+  const [name, setName] = useState("John Smith");
+  const [company, setCompany] = useState("Amazon")
+  const [email, setEmail] = useState("john.smith@example.com");
+  const [phone, setPhone] = useState("123-456-7890");
+  const [industry, setIndustry] = useState("Technology");
+  const [isEditable, setIsEditable] = useState(false);
+  const [isEditableCompany, setIsEditableCompany] = useState(false);
+  const [image, setImage] = useState(profileImage);
+  const [imageBackground, setImageBackground] = useState('https://assets.aboutamazon.com/dims4/default/32861da/2147483647/strip/true/crop/1600x901+0+83/resize/1320x743!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2Fc3%2F15%2F202c3f54402da5128d962a969b02%2Famazon-nashville-3.jpg');
 
   const fetchData = () => {
     axios
