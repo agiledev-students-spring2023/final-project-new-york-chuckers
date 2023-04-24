@@ -31,7 +31,6 @@ router.post("/register", (req, res) => {
         gender: req.body.gender,
         dateOfBirth: req.body.dateOfBirth,
         school: req.body.school,
-        role: req.body.role,
       });
       // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
