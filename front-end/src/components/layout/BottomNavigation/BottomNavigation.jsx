@@ -21,7 +21,7 @@ function BottomNavigation() {
         <IconText
           icon={<CgProfile />}
           text="My Profile"
-          to={isLogined ? '/profile' : '/signin'}
+          to={isLogined ? '/settings' : '/signin'}
         />
       </div>
     </div>

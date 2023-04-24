@@ -2,14 +2,21 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #FFFF;
+  background-color: #ffff;
   padding: 20px;
-  color: #204A80;
+  color: #204a80;
   font-size: 100%;
 }
 
 .profile-container {
   margin-bottom: 20px;
+  position: relative;
+}
+
+.profile__prev-btn {
+  position: absolute;
+  top: 24px;
+  left: 0;
 }
 
 .profile-image {
@@ -20,16 +27,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  }
+}
 
 .profile-image img {
-  width:20vw;
-  height:20vw;
+  width: 20vw;
+  height: 20vw;
   border-radius: 5%;
   padding: 10%;
-  margin: 15%; 
-  border-radius: 10%; 
-  background-color: #204A80; 
+  margin: 15%;
+  border-radius: 10%;
+  background-color: #204a80;
 }
 
 .edit-profile-button {
@@ -37,19 +44,18 @@
   bottom: 0;
   right: 50%;
   transform: translateX(50%);
-  background-color: #68BCD9;
-  color: #FFFFFF;
+  background-color: #68bcd9;
+  color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
   cursor: pointer;
 }
 
-
-.edit-file-button{
+.edit-file-button {
   position: relative;
-  display: flex; 
-  align-items: center; 
+  display: flex;
+  align-items: center;
   justify-content: center;
 }
 
@@ -60,7 +66,7 @@
   width: 75vw;
 }
 
-.invisible{
+.invisible {
   opacity: 0;
 }
 
@@ -69,18 +75,18 @@
   margin: 10px;
   padding: 20px;
   border-radius: 10px;
-  background-color: #1F3A64;
-  color: #FFFFFF;
+  background-color: #1f3a64;
+  color: #ffffff;
   position: relative;
   overflow: auto;
 }
 
-.industry-container{
+.industry-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  color: #FFFFFF;
+  color: #ffffff;
   position: relative;
 }
 
@@ -95,12 +101,12 @@
   margin-bottom: 10px;
 }
 
-.info-box .edit-button{
+.info-box .edit-button {
   position: absolute;
   top: 20px;
   right: 20px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
+  background-color: #68bcd9;
+  color: #ffffff;
   padding: 5px 10px;
   border-radius: 5px;
   font-size: 14px;
@@ -108,12 +114,12 @@
 }
 
 .info-box .edit-field {
-  display: none; 
+  display: none;
   width: 100%;
   margin-top: 10px;
   padding: 5px;
   font-size: 16px;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border: none;
   border-radius: 5px;
 }
@@ -122,8 +128,8 @@
   display: none;
   margin-top: 10px;
   padding: 5px 10px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
+  background-color: #68bcd9;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
   font-size: 14px;
@@ -135,44 +141,44 @@
 }
 
 .info-box.editable .edit-field {
-  display: block; 
+  display: block;
 }
 
 .info-box.editable .edit-button {
-  display: none; 
+  display: none;
 }
 
 .info-box.editable .save-button {
   display: block; /* show the save button when editable */
 }
 .info-box.cancel .cancel-button {
-  display: block; 
+  display: block;
 }
 .info-box.cancel .cancel-button {
-  display: none; 
+  display: none;
 }
-.info-box.cancel .save-button{
+.info-box.cancel .save-button {
   display: block;
 }
 
-.info-box.cancel .info-value{
+.info-box.cancel .info-value {
   display: none;
 }
 
-.switch-button{
+.switch-button {
   margin-top: 10px;
   padding: 5px 10px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
+  background-color: #68bcd9;
+  color: #ffffff;
   border: none;
   border-radius: 5px;
 }
 
-.edit-freelance-profile-button{
+.edit-freelance-profile-button {
   margin-top: 10px;
   padding: 5px 10px;
-  background-color: #68BCD9;
-  color: #FFFFFF;
+  background-color: #68bcd9;
+  color: #ffffff;
   border: none;
   text-align: center;
   font-size: 18px;
@@ -180,8 +186,8 @@
   width: 200px;
 }
 
-.edit-freelance-profile-button:hover{
-  background-color:#26599b;
+.edit-freelance-profile-button:hover {
+  background-color: #26599b;
 }
 
 .file-input-wrapper {
@@ -190,7 +196,7 @@
   overflow: hidden;
 }
 
-.file-input-wrapper input[type=file] {
+.file-input-wrapper input[type='file'] {
   position: absolute;
   top: 0;
   right: 0;
