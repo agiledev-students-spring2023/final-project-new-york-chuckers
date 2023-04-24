@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SearchBar.css';
 import { AiOutlineSearch } from 'react-icons/ai';
+import { useEffect } from 'react';
 
 function SearchBar({ onSearch }) {
   const [query, setQuery] = useState('');
@@ -9,14 +10,13 @@ function SearchBar({ onSearch }) {
     setQuery(event.target.value);
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  useEffect(() => {
     onSearch(query);
-  };
+  }, [query]);
 
   return (
     <div className="search-bar__wrapper">
-      <form onSubmit={handleSubmit} className="search-bar_form">
+      <form className="search-bar_form">
         <input
           type="text"
           value={query}
@@ -24,9 +24,6 @@ function SearchBar({ onSearch }) {
           placeholder="Search by Name or Position"
           className="search-bar__input"
         />
-        <button type="submit" className="search-bar__submit-btn">
-          Search
-        </button>
       </form>
     </div>
   );
