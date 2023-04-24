@@ -2,11 +2,14 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const mongoose = require("mongoose");
+const multer = require("multer");
 
 const validateRegisterInput = require("../../validators/user/register");
 const validateLoginInput = require("../../validators/user/login");
 
 const User = require("../../Models/user");
+const FreelancerProfile = require("../../Models/freelancerProfile");
 
 router.post("/register", (req, res) => {
   // Form validation
@@ -92,6 +95,41 @@ router.post("/login", (req, res) => {
       }
     });
   });
+});
+
+//using multer for storage
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    // store files into a directory named 'uploads'
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now());
+  },
+});
+var upload = multer({ storage: storage });
+
+router.post("/:id/freelancer-setup", upload.single("photo"), (req, res) => {
+  const userId = req.params.id;
+
+  // TODO: save image
+
+  const freelancerProfile = new FreelancerProfile({
+    user: new mongoose.Types.ObjectId(userId),
+    name: req.body.name,
+    age: req.body.age,
+    school: req.body.school,
+    photo: "path-to-image",
+    role: req.body.role,
+    pay: req.body.pay,
+    experiences: req.body.experiences,
+    projects: req.body.projects,
+    email: req.body.email,
+    phone: req.body.phone,
+  });
+
+  freelancerProfile.save().then((data) => res.json(data));
 });
 
 module.exports = router;
