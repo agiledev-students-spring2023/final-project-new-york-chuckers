@@ -40,10 +40,6 @@ mongoose
   .then((data) => console.log(`Connected to MongoDB`))
   .catch((err) => console.error(`Failed to connect to MongoDB: ${err}`));
 
-app.get("/bios", function (req, res) {
-  res.json({ bio: "hi" });
-});
-
 app.get("/users", function (req, res) {
   const users = [
     { id: 1, name: "John Doe" },
@@ -52,7 +48,7 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get("/settings/:profileId", authenticateJwt, async (req, res) => {
+app.get("/settings/:profileId",  async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId);
     if (!profile) {
@@ -114,7 +110,7 @@ app.get("/settings/", authenticateJwt, async (req, res) => {
   res.json(users);
 });
 
-app.post("/settings/save", authenticateJwt, async (req, res) => {
+app.post("/settings/save",  async (req, res) => {
   try {
     Profile.create({
       id: req.body.id,
@@ -151,7 +147,7 @@ app.post("/settings/save", authenticateJwt, async (req, res) => {
   }
 });
 
-app.post("/settings/save/:profileId", authenticateJwt, async (req, res) => {
+app.post("/settings/save/:profileId", async (req, res) => {
   try {
     const profile = await Profile.findById(req.params.profileId);
     profile.name = req.body.name;
