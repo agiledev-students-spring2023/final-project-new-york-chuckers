@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { Header } from '../../components/common/Header';
 import BackButton from '../../components/common/BackButton/BackButton';
 
 function Profile() {
@@ -255,7 +256,9 @@ function Profile() {
   }
 
   return (
-    <div className="settings-container">
+    <div>
+      <Header />
+      <div className="settings-container">
       <div className="profile-container">
         <div className="profile__prev-btn">
           <BackButton size="large" />
@@ -394,6 +397,7 @@ function Profile() {
             Edit Freelancer Posting
           </Link>
         )}
+      </div>
       </div>
     </div>
   );
