@@ -59,7 +59,7 @@ function FreelancerSetup() {
         <div className="item__wrapper">
           <InputTitle>School:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="school" placeholder="Jedi Temple" />
+            <input type="text" name="school" placeholder="Hogwarts" />
           </div>
         </div>
         <div className="item__wrapper">
@@ -70,7 +70,7 @@ function FreelancerSetup() {
         <div className="item__wrapper">
           <InputTitle>Specialty Role:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="role" placeholder="My New Cool Links" />
+            <input type="text" name="role" placeholder="Auror" />
           </div>
         </div>
         <div className="item__wrapper">
@@ -86,7 +86,7 @@ function FreelancerSetup() {
           </div>
         </div>
         <div className="item__wrapper">
-          <InputTitle>Exeriences and Introduction:</InputTitle>
+          <InputTitle>Experiences and Introduction:</InputTitle>
           <div className="text-field__wrapper">
             <input
               type="text"

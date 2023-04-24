@@ -1,7 +1,7 @@
-const Freelancer = require("../../Models/freelancer");
+const FreelancerProfile = require("../../Models/freelancerProfile");
 
 const getFreelancerList = async () => {
-  const data = await Freelancer.find();
+  const data = await FreelancerProfile.find();
 
   return data;
 };
