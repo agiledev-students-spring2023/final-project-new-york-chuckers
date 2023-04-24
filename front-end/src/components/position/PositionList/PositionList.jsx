@@ -35,7 +35,7 @@ function PositionList() {
 
   const filteredPositions = positions.filter(
     p =>
-      p.name.toLowerCase().includes(query.toLowerCase()) ||
+      p.title.toLowerCase().includes(query.toLowerCase()) ||
       p.position.toLowerCase().includes(query.toLowerCase()),
   );
 
@@ -49,11 +49,11 @@ function PositionList() {
         <Button onClick={handleNew}>New Position</Button>
       </div>
       <List>
-        {filteredPositions.map(({ id, name, position, pay }) => (
+        {filteredPositions.map(({ _id, title, position, pay }) => (
           <PositionListItem
-            key={id}
-            id={id}
-            name={name}
+            key={_id}
+            id={_id}
+            name={title}
             position={position}
             pay={pay}
           />

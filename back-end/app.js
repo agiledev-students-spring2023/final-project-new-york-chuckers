@@ -13,6 +13,7 @@ const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Profile } = require("./Models/profile.js");
 const { Company } = require("./Models/company.js");
+const Position = require("./Models/position.js");
 const authenticateJwt = require("./middleware/passportAuth.js");
 
 const app = express(); // instantiate an Express object
@@ -283,16 +284,21 @@ app.post("/freelancer-setup", (req, res) => {
 });
 
 //route to validate and create new position
-app.post("/new-post", (req, res) => {
-  try {
-    //If some of the data is incomplete return a status fail and alert "incomplete"
-
-    //If no error or missing data return status approve and create new post
-    //Creating new post into database(mongoose)
+app.post("/new-position", (req, res) => {
+  //try {
+    Position.create({
+      title: req.body.title,
+      company: req.body.company,
+      position: req.body.position,
+      pay: req.body.pay,
+      description: req.body.description,
+      contact: req.body.contact,
+      recruiter: "someID13"
+    })
     res.json({ status: "approve", position: req.body, alert: null });
-  } catch (err) {
-    res.json({ status: "fail", alert: err });
-  }
+  //} catch (err) {
+    //res.json({ status: "fail", alert: err });
+  //}
 });
 
 // export the express app we created to make it available to other modules
