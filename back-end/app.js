@@ -174,6 +174,33 @@ app.post("/settings/save/:profileId", async (req, res) => {
   }
 });
 
+app.post("/settings/save/:companyId", async (req, res) => {
+  try {
+    const company = await Company.findById(req.params.companyId);
+    company.name = req.body.name;
+    company.email = req.body.email;
+    company.phone = req.body.phone;
+    company.industry = req.body.industry;
+    company.skills = req.body.skills;
+    company.wantWork = req.body.wantWork;
+    company.position = req.body.position;
+    company.companies = req.body.companies;
+    company.buffer = req.body.buffer;
+    company.mimetype = req.body.mimetype;
+    await company.save();
+    return res.json({
+      status: `Company successfully updated`,
+      company: company,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed to save`,
+    });
+  }
+});
+
 //using multer for storage
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
