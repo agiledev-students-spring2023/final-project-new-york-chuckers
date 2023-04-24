@@ -15,6 +15,7 @@ function Setup() {
 
   const signUp = async data => {
     const responseData = await userApi.signUp(data);
+    return responseData._id;
   };
 
   const handleSubmit = async e => {
@@ -32,8 +33,9 @@ function Setup() {
     };
 
     try {
-      await signUp(info);
+      const id = await signUp(info);
       if (info.role === 'freelancer') {
+        localStorage.setItem('signup_userid', id);
         navigate('/freelancer-setup');
       } else {
         navigate('/');
