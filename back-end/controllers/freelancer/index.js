@@ -1,9 +1,7 @@
-const {
-  getFreelancerListFromMockaroo,
-} = require("../../services/freelancer/index.js");
+const { getFreelancerList } = require("../../services/freelancer/index.js");
 
 const listFreelancer = async (req, res) => {
-  const data = await getFreelancerListFromMockaroo();
+  const data = await getFreelancerList();
   res.json(data);
 };
 

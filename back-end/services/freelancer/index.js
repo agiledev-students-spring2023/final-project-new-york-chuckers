@@ -1,13 +1,11 @@
-const { requestApiWithAuth } = require("../../api/requests.js");
+const Freelancer = require("../../Models/freelancer");
 
-const getFreelancerListFromMockaroo = async () => {
-  const response = await requestApiWithAuth("freelancers.json", {
-    method: "get",
-  });
+const getFreelancerList = async () => {
+  const data = await Freelancer.find();
 
-  return response.data;
+  return data;
 };
 
 module.exports = {
-  getFreelancerListFromMockaroo,
+  getFreelancerList,
 };
