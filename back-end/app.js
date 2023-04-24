@@ -174,7 +174,7 @@ app.post("/settings/save/:profileId", async (req, res) => {
   }
 });
 
-app.post("/settings/save/:companyId", async (req, res) => {
+app.post("/company-settings/save/:companyId", async (req, res) => {
   try {
     const company = await Company.findById(req.params.companyId);
     company.name = req.body.name;
