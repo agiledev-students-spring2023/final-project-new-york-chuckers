@@ -1,13 +1,11 @@
-const { requestApiWithAuth } = require("../../api/requests.js");
+const Position = require("../../Models/position.js");
 
-const getPositionListFromMockaroo = async () => {
-  const response = await requestApiWithAuth("positions.json", {
-    method: "get",
-  });
+const getPositionList = async () => {
+  const data = await Position.find();
 
-  return response.data;
+  return data;
 };
 
 module.exports = {
-  getPositionListFromMockaroo,
+  getPositionList,
 };
