@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
-import { BackButton } from '../../components/common/BackButton';
+import BackButton from '../../components/common/BackButton/BackButton';
 
 function Profile() {
   const [dbID, setdbID] = useState('6444829ce346bfe2aa6851c1');

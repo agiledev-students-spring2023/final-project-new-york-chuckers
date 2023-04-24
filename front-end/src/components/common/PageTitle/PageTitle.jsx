@@ -1,6 +1,6 @@
 import React from 'react';
 import './PageTitle.css';
-import { BackButton } from '../BackButton';
+import BackButton from '../BackButton/BackButton';
 
 function PageTitle({ children }) {
   return (
