@@ -52,106 +52,106 @@ function Settings() {
       .finally(() => {});
   };
 
-  //for the switch button, find the opposite
-  const handleNameChange = event => {
-    setName(event.target.value);
-  };
+  // //for the switch button, find the opposite
+  // const handleNameChange = event => {
+  //   setName(event.target.value);
+  // };
 
-  const handleEmailChange = event => {
-    setEmail(event.target.value);
-  };
+  // const handleEmailChange = event => {
+  //   setEmail(event.target.value);
+  // };
 
-  const handlePhoneChange = event => {
-    setPhone(event.target.value);
-  };
+  // const handlePhoneChange = event => {
+  //   setPhone(event.target.value);
+  // };
 
-  const handleIndustryChange = event => {
-    setIndustry(event.target.value);
-  };
+  // const handleIndustryChange = event => {
+  //   setIndustry(event.target.value);
+  // };
 
-  const handleEdit = event => {
-    const infoBox = event.target.parentElement;
-    const editField = infoBox.querySelector('.edit-field');
-    // const saveButton = infoBox.querySelector(".save-button");
+  // const handleEdit = event => {
+  //   const infoBox = event.target.parentElement;
+  //   const editField = infoBox.querySelector('.edit-field');
+  //   // const saveButton = infoBox.querySelector(".save-button");
 
-    if (!isEditable) {
-      infoBox.classList.add('editable');
-      editField.focus();
-    } else {
-      infoBox.classList.remove('editable');
-    }
+  //   if (!isEditable) {
+  //     infoBox.classList.add('editable');
+  //     editField.focus();
+  //   } else {
+  //     infoBox.classList.remove('editable');
+  //   }
 
-    setIsEditable(!isEditable);
-  };
+  //   setIsEditable(!isEditable);
+  // };
 
-  const handleSave = event => {
-    const infoBox = event.target.parentElement;
-    const infoValue = infoBox.querySelector('.info-value');
-    const editField = infoBox.querySelector('.edit-field');
+  // const handleSave = event => {
+  //   const infoBox = event.target.parentElement;
+  //   const infoValue = infoBox.querySelector('.info-value');
+  //   const editField = infoBox.querySelector('.edit-field');
 
-    infoValue.textContent = editField.value;
-    infoBox.classList.remove('editable');
-    setIsEditable(false);
-    // Would push this out to a server to save
-    console.log(name, email, phone, industry);
-  };
+  //   infoValue.textContent = editField.value;
+  //   infoBox.classList.remove('editable');
+  //   setIsEditable(false);
+  //   // Would push this out to a server to save
+  //   console.log(name, email, phone, industry);
+  // };
 
-  const handleEditCompany = event => {
-    const infoBox = event.target.parentElement;
-    if (!isEditableCompany) {
-      infoBox.classList.add('cancel');
-      const editButton = infoBox.querySelector('.edit-button');
-      editButton.textContent = 'Cancel';
-    } else {
-      infoBox.classList.remove('cancel');
-      const editButton = infoBox.querySelector('.edit-button');
-      editButton.textContent = 'Edit';
-    }
+  // const handleEditCompany = event => {
+  //   const infoBox = event.target.parentElement;
+  //   if (!isEditableCompany) {
+  //     infoBox.classList.add('cancel');
+  //     const editButton = infoBox.querySelector('.edit-button');
+  //     editButton.textContent = 'Cancel';
+  //   } else {
+  //     infoBox.classList.remove('cancel');
+  //     const editButton = infoBox.querySelector('.edit-button');
+  //     editButton.textContent = 'Edit';
+  //   }
 
-    setIsEditableCompany(!isEditableCompany);
-  };
+  //   setIsEditableCompany(!isEditableCompany);
+  // };
 
-  const handleSaveCompany = event => {
-    const infoBox = event.target.parentElement;
-    const editButton = infoBox.querySelector('.edit-button');
-    editButton.textContent = 'Edit';
-    infoBox.classList.remove('cancel');
-    setIsEditableCompany(false);
-  };
+  // const handleSaveCompany = event => {
+  //   const infoBox = event.target.parentElement;
+  //   const editButton = infoBox.querySelector('.edit-button');
+  //   editButton.textContent = 'Edit';
+  //   infoBox.classList.remove('cancel');
+  //   setIsEditableCompany(false);
+  // };
 
-  const handleProfileButtonClick = e => {
-    alert(`You clicked the button to edit your profile. Upload Image!`);
-  };
+  // const handleProfileButtonClick = e => {
+  //   alert(`You clicked the button to edit your profile. Upload Image!`);
+  // };
 
-  //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
-  //need to change the text, need to change the edit button to where its now an "Find your company" button
-  const switchPosition = () => {
-    if (isEditable || isEditableCompany) {
-      alert(`Please finish editing before switching profile type.`);
-    } else {
-      const newPosition =
-        position === 'Freelancer' ? 'Recruiter' : 'Freelancer';
-      setNotPosition(position);
-      settingsUpdate(newPosition);
-      setPosition(newPosition);
-    }
-  };
+  // //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
+  // //need to change the text, need to change the edit button to where its now an "Find your company" button
+  // const switchPosition = () => {
+  //   if (isEditable || isEditableCompany) {
+  //     alert(`Please finish editing before switching profile type.`);
+  //   } else {
+  //     const newPosition =
+  //       position === 'Freelancer' ? 'Recruiter' : 'Freelancer';
+  //     setNotPosition(position);
+  //     settingsUpdate(newPosition);
+  //     setPosition(newPosition);
+  //   }
+  // };
 
-  const settingsUpdate = async newPosition => {
-    await axios.post(
-      `${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`,
-      {
-        name: name,
-        email: email,
-        phone: phone,
-        industry: industry,
-        position: newPosition,
-        companies: companies,
-        skills: skills,
-        wantWork: wantWork,
-      },
-    );
-  };
+  // const settingsUpdate = async newPosition => {
+  //   await axios.post(
+  //     `${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`,
+  //     {
+  //       name: name,
+  //       email: email,
+  //       phone: phone,
+  //       industry: industry,
+  //       position: newPosition,
+  //       companies: companies,
+  //       skills: skills,
+  //       wantWork: wantWork,
+  //     },
+  //   );
+  // };
 
   useEffect(() => {
     fetchData();
@@ -161,23 +161,23 @@ function Settings() {
     <div>
       <Header />
       <div className="settings-container">
-      <h1>Hello {name}!</h1>
-      <div className="info-container">
-        <div className="info-box">
-          <div className="info-label">Edit {position} Profile</div>
-          <Link to="/profile" className="link-out">
-            Edit {position} Profile
-          </Link>
+        <h1>Hello {name}!</h1>
+        <div className="info-container">
+          <div className="info-box">
+            <div className="info-label">Edit {position} Profile</div>
+            <Link to="/profile" className="link-out">
+              Edit {position} Profile
+            </Link>
+          </div>
         </div>
-      </div>
-      <div className="info-container">
-        <div className="info-box">
-          <div className="info-label">Logout</div>
-          <Link to="/" className="link-out">
-            Click Here To Logout
-          </Link>
+        <div className="info-container">
+          <div className="info-box">
+            <div className="info-label">Logout</div>
+            <Link to="/" className="link-out">
+              Click Here To Logout
+            </Link>
+          </div>
         </div>
-      </div>
       </div>
     </div>
   );
