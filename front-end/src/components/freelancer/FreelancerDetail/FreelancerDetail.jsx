@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { freelancerApi } from '../../../api/freelancer';
 import { useConfirmDialog } from '../../../hooks/useConfirmDialog';
 import { Image } from '../../common/Image';
@@ -8,6 +9,9 @@ import './FreelancerDetail.css';
 
 function FreelancerDetail({ id }) {
   const [freelancer, setFreelancer] = useState(null);
+  const params = useParams();
+
+  console.log(params);
 
   const { openConfirmDialog, ConfirmDialog } = useConfirmDialog();
 
@@ -15,7 +19,7 @@ function FreelancerDetail({ id }) {
     const fetchFreelancer = async () => {
       const data = await freelancerApi.listFreelancers();
 
-      setFreelancer(data.find(f => f.id === id));
+      setFreelancer(data.find(f => f._id === params.id));
     };
 
     fetchFreelancer();
@@ -27,14 +31,15 @@ function FreelancerDetail({ id }) {
 
   const {
     name,
-    position,
+    role,
     pay,
     age,
     school,
-    introduction,
-    pastProject,
+    experiences,
+    projects,
     profile,
-    contact,
+    email,
+    phone
   } = freelancer;
 
   return (
@@ -48,12 +53,12 @@ function FreelancerDetail({ id }) {
         <TextCard title="School">{school}</TextCard>
       </div>
       <div className="freelancer-detail__info">
-        <TextCard title="Position">{position}</TextCard>
+        <TextCard title="Position">{role}</TextCard>
         <TextCard title="Pay">{pay}</TextCard>
       </div>
-      <TextCard title="Introduction">{introduction}</TextCard>
+      <TextCard title="Introduction">{experiences}</TextCard>
       <TextCard title="Past Project" wrapped>
-        <a href={pastProject}>{pastProject}</a>
+        <a href={projects}>{projects}</a>
       </TextCard>
       <TextCard title="Contact">
         <div
@@ -69,7 +74,9 @@ function FreelancerDetail({ id }) {
       >
         <div className="freelancer-detail__modal-contact-email">
           <div className="freelancer-detail__modal-contact-email-text">
-            {contact}
+            Email: {email}
+            <br />
+            Phone: {phone}
           </div>
         </div>
       </ConfirmDialog>

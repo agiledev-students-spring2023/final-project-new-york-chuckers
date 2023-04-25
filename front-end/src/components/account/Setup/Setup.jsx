@@ -9,7 +9,7 @@ import './Setup.css';
 
 function Setup() {
   const [gender, setGender] = useState({ male: '', female: '', sel: '' });
-  const [role, setRole] = useState({ recruiter: '', freelancer: '', sel: '' });
+  //const [role, setRole] = useState({ recruiter: '', freelancer: '', sel: '' });
 
   const navigate = useNavigate();
 
@@ -28,18 +28,13 @@ function Setup() {
       gender: gender.sel,
       dateOfBirth: e.target.birthday.value,
       school: e.target.school.value,
-      role: role.sel,
       ...signupInfo,
     };
 
     try {
       const id = await signUp(info);
-      if (info.role === 'freelancer') {
-        localStorage.setItem('signup_userid', id);
-        navigate('/freelancer-setup');
-      } else {
-        navigate('/');
-      }
+      localStorage.setItem('signup_userid', id);
+      navigate('/freelancer-setup');
     } catch (e) {
       console.log(e);
     }
@@ -53,10 +48,10 @@ function Setup() {
   }
 
   function recruiterClick() {
-    setRole({ recruiter: 'S', freelancer: '', sel: 'recruiter' });
+    //setRole({ recruiter: 'S', freelancer: '', sel: 'recruiter' });
   }
   function freelancerClick() {
-    setRole({ recruiter: '', freelancer: 'S', sel: 'freelancer' });
+    //setRole({ recruiter: '', freelancer: 'S', sel: 'freelancer' });
   }
 
   return (
@@ -99,26 +94,6 @@ function Setup() {
           <InputTitle>School:</InputTitle>
           <div className="text-field__wrapper">
             <input type="text" name="school" placeholder="Hogwarts" />
-          </div>
-        </div>
-        <div className="item_wrapper">
-          <div className="selection-buttons">
-            <div className="button__padding">
-              <button
-                type="button"
-                className={'selection-btn-ind' + role.recruiter}
-                onClick={recruiterClick}
-              >
-                I'm a Recruiter
-              </button>
-            </div>
-            <button
-              type="button"
-              className={'selection-btn-ind' + role.freelancer}
-              onClick={freelancerClick}
-            >
-              I'm a Freelancer
-            </button>
           </div>
         </div>
         <input className="submit-btn" type="submit" value="Save" />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import profileImage from '../../Assets/logo.svg';
+import { Header } from '../../components/common/Header';
 import './Settings.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 
@@ -157,7 +158,9 @@ function Settings() {
   }, []);
 
   return (
-    <div className="settings-container">
+    <div>
+      <Header />
+      <div className="settings-container">
       <h1>Hello {name}!</h1>
       <div className="info-container">
         <div className="info-box">
@@ -174,6 +177,7 @@ function Settings() {
             Click Here To Logout
           </Link>
         </div>
+      </div>
       </div>
     </div>
   );

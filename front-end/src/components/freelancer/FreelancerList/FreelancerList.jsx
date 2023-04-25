@@ -29,19 +29,19 @@ function FreelancerList() {
   const filteredFreelancers = freelancers.filter(
     p =>
       p.name.toLowerCase().includes(query.toLowerCase()) ||
-      p.position.toLowerCase().includes(query.toLowerCase()),
+      p.role.toLowerCase().includes(query.toLowerCase()),
   );
 
   return (
     <div className="freelancer-list__wrapper">
       <SearchBar onSearch={handleSearch} />
       <List>
-        {filteredFreelancers.map(({ id, name, position, pay }) => (
+        {filteredFreelancers.map(({ _id, name, role, pay }) => (
           <FreelancerListItem
-            key={id}
-            id={id}
+            key={_id}
+            id={_id}
             name={name}
-            position={position}
+            position={role}
             pay={pay}
           />
         ))}
