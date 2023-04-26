@@ -12,7 +12,7 @@ const path = require("path");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Profile } = require("./Models/profile.js");
-const { User } = require("./Models/user.js");
+const User = require("./Models/user.js");
 const { Company } = require("./Models/company.js");
 const Position = require("./Models/position.js");
 const authenticateJwt = require("./middleware/passportAuth.js");
@@ -51,7 +51,9 @@ app.get("/users", function (req, res) {
 
 app.get("/settings/:userId", async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(
+      new mongoose.Types.ObjectId(req.params.userId)
+    );
     if (!user) {
       return res.status(404).json({
         error: "User not found",
@@ -150,7 +152,9 @@ app.post("/settings/save", async (req, res) => {
 
 app.post("/settings/save/:userId", async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    const user = await User.findById(
+      new mongoose.Types.ObjectId(req.params.userId)
+    );
     user.name = req.body.name || user.name;
     user.school = req.body.school || user.school;
     await user.save();
