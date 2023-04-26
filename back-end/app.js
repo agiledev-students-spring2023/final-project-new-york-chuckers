@@ -12,6 +12,7 @@ const path = require("path");
 const multer = require("multer");
 const { v4: uuidv4 } = require("uuid");
 const { Profile } = require("./Models/profile.js");
+const { User } = require("./Models/user.js");
 const { Company } = require("./Models/company.js");
 const Position = require("./Models/position.js");
 const authenticateJwt = require("./middleware/passportAuth.js");
@@ -48,24 +49,24 @@ app.get("/users", function (req, res) {
   res.json(users);
 });
 
-app.get("/settings/:profileId",  async (req, res) => {
+app.get("/settings/:userId", async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.profileId);
-    if (!profile) {
+    const user = await User.findById(req.params.userId);
+    if (!user) {
       return res.status(404).json({
-        error: "Profile not found",
-        status: "failed to retrieve profile from the database",
+        error: "User not found",
+        status: "failed to retrieve user from the database",
       });
     }
     res.json({
-      profile: profile,
+      profile: user,
       status: "all good",
     });
   } catch (err) {
     console.error(err);
     res.status(400).json({
       error: err,
-      status: "failed to retrieve the profile from the database",
+      status: "failed to retrieve the user from the database",
     });
   }
 });
@@ -110,7 +111,7 @@ app.get("/settings/", authenticateJwt, async (req, res) => {
   res.json(users);
 });
 
-app.post("/settings/save",  async (req, res) => {
+app.post("/settings/save", async (req, res) => {
   try {
     Profile.create({
       id: req.body.id,
@@ -147,23 +148,15 @@ app.post("/settings/save",  async (req, res) => {
   }
 });
 
-app.post("/settings/save/:profileId", async (req, res) => {
+app.post("/settings/save/:userId", async (req, res) => {
   try {
-    const profile = await Profile.findById(req.params.profileId);
-    profile.name = req.body.name;
-    profile.email = req.body.email;
-    profile.phone = req.body.phone;
-    profile.industry = req.body.industry;
-    profile.skills = req.body.skills;
-    profile.wantWork = req.body.wantWork;
-    profile.position = req.body.position;
-    profile.companies = req.body.companies;
-    profile.buffer = req.body.buffer;
-    profile.mimetype = req.body.mimetype;
-    await profile.save();
+    const user = await User.findById(req.params.userId);
+    user.name = req.body.name || user.name;
+    user.school = req.body.school || user.school;
+    await user.save();
     return res.json({
       status: `Profile successfully updated`,
-      profile: profile,
+      profile: user,
     });
   } catch (err) {
     console.error(err);
@@ -282,18 +275,18 @@ app.post("/freelancer-setup", (req, res) => {
 //route to validate and create new position
 app.post("/new-position", (req, res) => {
   //try {
-    Position.create({
-      title: req.body.title,
-      company: req.body.company,
-      position: req.body.position,
-      pay: req.body.pay,
-      description: req.body.description,
-      contact: req.body.contact,
-      recruiter: "someID13"
-    })
-    res.json({ status: "approve", position: req.body, alert: null });
+  Position.create({
+    title: req.body.title,
+    company: req.body.company,
+    position: req.body.position,
+    pay: req.body.pay,
+    description: req.body.description,
+    contact: req.body.contact,
+    recruiter: "someID13",
+  });
+  res.json({ status: "approve", position: req.body, alert: null });
   //} catch (err) {
-    //res.json({ status: "fail", alert: err });
+  //res.json({ status: "fail", alert: err });
   //}
 });
 
