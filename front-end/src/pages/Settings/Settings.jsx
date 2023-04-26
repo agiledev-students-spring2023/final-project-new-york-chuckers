@@ -3,7 +3,7 @@ import axios from 'axios';
 import profileImage from '../../Assets/logo.svg';
 import { Header } from '../../components/common/Header';
 import './Settings.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
 
 function Settings() {
   const [dbID, setdbID] = useState('643d8f6c7a4f59072949dfbc');
@@ -20,6 +20,8 @@ function Settings() {
   const [notPosition, setNotPosition] = useState('');
   const [companies, setCompanies] = useState('');
   const [image, setImage] = useState(profileImage);
+
+  const navigate = useNavigate();
 
   const fetchData = () => {
     axios
@@ -50,6 +52,11 @@ function Settings() {
       })
       .catch(err => {})
       .finally(() => {});
+  };
+
+  const handleLogoutClick = () => {
+    localStorage.removeItem('id');
+    navigate('/');
   };
 
   // //for the switch button, find the opposite
@@ -153,9 +160,9 @@ function Settings() {
   //   );
   // };
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  // useEffect(() => {
+  //   fetchData();
+  // }, []);
 
   return (
     <div>
@@ -173,9 +180,9 @@ function Settings() {
         <div className="info-container">
           <div className="info-box">
             <div className="info-label">Logout</div>
-            <Link to="/" className="link-out">
+            <button className="link-out" onClick={handleLogoutClick}>
               Click Here To Logout
-            </Link>
+            </button>
           </div>
         </div>
       </div>
