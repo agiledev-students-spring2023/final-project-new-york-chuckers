@@ -15,6 +15,7 @@ import { SetupPage } from './pages/SetupPage';
 import { NewPositionPage } from './pages/NewPositionPage';
 import { FreelancerSetupPage } from './pages/FreelancerSetupPage';
 import { BottomNavigation } from './components/layout/BottomNavigation';
+import { FreelancerUpdatePage } from './pages/FreelancerUpdatePage';
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
           <Route path="/setup" element={<SetupPage />} />
           <Route path="/new-position" element={<NewPositionPage />} />
           <Route path="/freelancer-setup" element={<FreelancerSetupPage />} />
+          <Route path="/freelancer-update" element={<FreelancerUpdatePage />} />
         </Routes>
         <BottomNavigation />
       </Router>
