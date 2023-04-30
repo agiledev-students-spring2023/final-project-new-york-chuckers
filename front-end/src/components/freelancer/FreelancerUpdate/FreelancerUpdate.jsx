@@ -107,11 +107,11 @@ function FreelancerUpdate() {
             />
           </div>
         </div>
-        <div className="item__wrapper">
+        {/* <div className="item__wrapper">
           <div className="add-photo" onClick={handlePhotoClick}>
             Add Photo
           </div>
-        </div>
+        </div> */}
         <div className="item__wrapper">
           <InputTitle>Specialty Role:</InputTitle>
           <div className="text-field__wrapper">

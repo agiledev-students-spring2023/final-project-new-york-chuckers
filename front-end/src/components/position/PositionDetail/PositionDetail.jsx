@@ -39,9 +39,9 @@ function PositionDetail({ id }) {
   return (
     <div className="position-detail__wrapper">
       <TextCard title="Name">{title}</TextCard>
-      <div className="position-detail__image">
+      {/* <div className="position-detail__image">
         <Image src={profile} height="160px" />
-      </div>
+      </div> */}
       <TextCard title="Company Info">{company}</TextCard>
       <div className="position-detail__info">
         <TextCard title="Position">{position}</TextCard>

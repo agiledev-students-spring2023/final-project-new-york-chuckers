@@ -39,14 +39,14 @@ function FreelancerDetail({ id }) {
     projects,
     profile,
     email,
-    phone
+    phone,
   } = freelancer;
 
   return (
     <div className="freelancer-detail__wrapper">
-      <div className="freelancer-detail__image">
+      {/* <div className="freelancer-detail__image">
         <Image src={profile} height="160px" />
-      </div>
+      </div> */}
       <div className="freelancer-detail__info">
         <TextCard title="Name">{name}</TextCard>
         <TextCard title="Age">{age}</TextCard>

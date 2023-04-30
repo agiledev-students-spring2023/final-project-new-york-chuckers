@@ -253,7 +253,7 @@ function Profile() {
           <div className="profile__prev-btn">
             <BackButton size="large" />
           </div>
-          <div className="profile-image">
+          {/* <div className="profile-image">
             <img src={image} alt="Profile" />
           </div>
           <div className="edit-file-button">
@@ -261,7 +261,7 @@ function Profile() {
               onChange={handleImageChange}
               className="edit-profile-button"
             />
-          </div>
+          </div> */}
         </div>
         <h1>Your {position} Profile</h1>
         <div className="info-container">
