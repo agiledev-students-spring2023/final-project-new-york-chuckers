@@ -131,4 +131,36 @@ router.post("/:id/freelancer-setup", upload.single("photo"), (req, res) => {
   freelancerProfile.save().then((data) => res.json(data));
 });
 
+router.get("/:id/freelancer-setup", async (req, res) => {
+  const userId = req.params.id;
+
+  const profile = await FreelancerProfile.findOne({
+    user: new mongoose.Types.ObjectId(userId),
+  });
+
+  res.json({ profile: profile, status: "all good" });
+});
+
+router.put("/:id/freelancer-setup", async (req, res) => {
+  const userId = req.params.id;
+
+  // TODO: save image
+
+  const profile = await FreelancerProfile.findOne({
+    user: new mongoose.Types.ObjectId(userId),
+  });
+
+  profile.name = req.body.name;
+  profile.age = req.body.age;
+  profile.school = req.body.school;
+  profile.role = req.body.role;
+  profile.pay = req.body.pay;
+  profile.experiences = req.body.experiences;
+  profile.projects = req.body.projects;
+  profile.email = req.body.email;
+  profile.phone = req.body.phone;
+
+  profile.save().then((data) => res.json(data));
+});
+
 module.exports = router;
