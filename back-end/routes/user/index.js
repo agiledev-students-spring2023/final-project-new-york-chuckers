@@ -69,24 +69,29 @@ router.post("/login", (req, res) => {
       if (isMatch) {
         // User matched
         // Create JWT Payload
-        const payload = {
-          id: user.id,
-          name: user.name,
-        };
-        // Sign token
-        jwt.sign(
-          payload,
-          "secret",
-          {
-            expiresIn: 31556926, // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token,
-            });
-          }
-        );
+        FreelancerProfile.findOne({
+          user: new mongoose.Types.ObjectId(user.id),
+        }).then((profile) => {
+          const payload = {
+            id: user.id,
+            name: user.name,
+            type: profile !== null ? "freelancer" : "recruiter",
+          };
+          // Sign token
+          jwt.sign(
+            payload,
+            "secret",
+            {
+              expiresIn: 31556926, // 1 year in seconds
+            },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token,
+              });
+            }
+          );
+        });
       } else {
         return res
           .status(400)
