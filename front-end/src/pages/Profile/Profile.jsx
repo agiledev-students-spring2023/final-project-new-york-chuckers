@@ -379,7 +379,7 @@ function Profile() {
             <div></div>
           ) : (
             <Link
-              to="/freelancer-setup"
+              to="/freelancer-update"
               className="edit-freelance-profile-button"
             >
               Edit Freelancer Posting
