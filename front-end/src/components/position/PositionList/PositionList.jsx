@@ -6,6 +6,7 @@ import { positionApi } from '../../../api/position';
 import Button from '../../common/Button/Button';
 import { SearchBar } from '../../common/SearchBar';
 import './PositionList.css';
+import { getLoginUserType } from '../../../utils/parseToken';
 
 function PositionList() {
   const [positions, setPositions] = useState([]);
@@ -13,6 +14,8 @@ function PositionList() {
 
   //create the navigate variable for the link to create new position
   const navigate = useNavigate();
+
+  const userType = getLoginUserType();
 
   useEffect(() => {
     const fetchPositions = async () => {
@@ -45,9 +48,11 @@ function PositionList() {
         //here I added the create new position button
       }
       <SearchBar onSearch={handleSearch} />
-      <div className="open-button__wrapper">
-        <Button onClick={handleNew}>New Position</Button>
-      </div>
+      {userType === 'recruiter' && (
+        <div className="open-button__wrapper">
+          <Button onClick={handleNew}>New Position</Button>
+        </div>
+      )}
       <List>
         {filteredPositions.map(({ _id, title, position, pay }) => (
           <PositionListItem
