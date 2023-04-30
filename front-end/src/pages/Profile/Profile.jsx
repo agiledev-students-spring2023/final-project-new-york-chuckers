@@ -6,7 +6,7 @@ import './Profile.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 import BackButton from '../../components/common/BackButton/BackButton';
-import { getLoginUserId } from '../../utils/parseToken';
+import { getLoginUserId, getLoginUserType } from '../../utils/parseToken';
 
 function Profile() {
   const [dbID, setdbID] = useState('');
@@ -32,6 +32,8 @@ function Profile() {
   // const reader = new FileReader();
   // const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
   // reader.readAsDataURL(file);
+
+  const userType = getLoginUserType();
 
   useEffect(() => {
     const loginUserId = getLoginUserId();
@@ -375,9 +377,7 @@ function Profile() {
           </div> */}
         </div>
         <div>
-          {position === 'Recruiter' ? (
-            <div></div>
-          ) : (
+          {userType === 'freelancer' && (
             <Link
               to="/freelancer-update"
               className="edit-freelance-profile-button"
