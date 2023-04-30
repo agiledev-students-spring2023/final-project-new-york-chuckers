@@ -62,35 +62,38 @@ router.post("/login", (req, res) => {
   User.findOne({ email }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ emailnotfound: "Email not found" });
+      return res.status(404).json({ email: "Email not found" });
     }
     // Check password
     bcrypt.compare(password, user.password).then((isMatch) => {
       if (isMatch) {
         // User matched
         // Create JWT Payload
-        const payload = {
-          id: user.id,
-          name: user.name,
-        };
-        // Sign token
-        jwt.sign(
-          payload,
-          "secret",
-          {
-            expiresIn: 31556926, // 1 year in seconds
-          },
-          (err, token) => {
-            res.json({
-              success: true,
-              token: "Bearer " + token,
-            });
-          }
-        );
+        FreelancerProfile.findOne({
+          user: new mongoose.Types.ObjectId(user.id),
+        }).then((profile) => {
+          const payload = {
+            id: user.id,
+            name: user.name,
+            type: profile !== null ? "freelancer" : "recruiter",
+          };
+          // Sign token
+          jwt.sign(
+            payload,
+            "secret",
+            {
+              expiresIn: 31556926, // 1 year in seconds
+            },
+            (err, token) => {
+              res.json({
+                success: true,
+                token: "Bearer " + token,
+              });
+            }
+          );
+        });
       } else {
-        return res
-          .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+        return res.status(400).json({ password: "Password incorrect" });
       }
     });
   });
@@ -129,6 +132,38 @@ router.post("/:id/freelancer-setup", upload.single("photo"), (req, res) => {
   });
 
   freelancerProfile.save().then((data) => res.json(data));
+});
+
+router.get("/:id/freelancer-setup", async (req, res) => {
+  const userId = req.params.id;
+
+  const profile = await FreelancerProfile.findOne({
+    user: new mongoose.Types.ObjectId(userId),
+  });
+
+  res.json({ profile: profile, status: "all good" });
+});
+
+router.put("/:id/freelancer-setup", async (req, res) => {
+  const userId = req.params.id;
+
+  // TODO: save image
+
+  const profile = await FreelancerProfile.findOne({
+    user: new mongoose.Types.ObjectId(userId),
+  });
+
+  profile.name = req.body.name;
+  profile.age = req.body.age;
+  profile.school = req.body.school;
+  profile.role = req.body.role;
+  profile.pay = req.body.pay;
+  profile.experiences = req.body.experiences;
+  profile.projects = req.body.projects;
+  profile.email = req.body.email;
+  profile.phone = req.body.phone;
+
+  profile.save().then((data) => res.json(data));
 });
 
 module.exports = router;

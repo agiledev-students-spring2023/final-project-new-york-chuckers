@@ -1,39 +1,51 @@
 import axios from 'axios';
+import { useEffect } from 'react';
 import { React, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { getLoginUserId } from '../../../utils/parseToken';
 import { InputTitle } from '../../common/input/InputTitle';
-import './FreelancerSetup.css';
+import './FreelancerUpdate.css';
 
-function FreelancerSetup() {
-  const [status, setStatus] = useState({});
+function FreelancerUpdate() {
+  const [status, setStatus] = useState({
+    name: '',
+    age: '',
+    school: '',
+    role: '',
+    pay: '',
+    experiences: '',
+    projects: '',
+    email: '',
+    phone: '',
+    // photo: '',
+  });
+
+  const { name, age, school, role, pay, experiences, projects, email, phone } =
+    status;
+
   const navigate = useNavigate();
+
+  const onStatusChange = e => {
+    const { name, value } = e.target;
+    setStatus({
+      ...status,
+      [name]: value,
+    });
+  };
 
   let isPhoto = false;
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const info = {
-      name: e.target.name.value,
-      age: e.target.age.value,
-      school: e.target.school.value,
-      role: e.target.role.value,
-      pay: e.target.pay.value,
-      experiences: e.target.experiences.value,
-      projects: e.target.projects.value,
-      email: e.target.email.value,
-      phone: e.target.phone.value,
-      photo: isPhoto,
-    };
+    const userId = getLoginUserId();
 
-    const userId = localStorage.getItem('signup_userid');
-
-    const response = await axios.post(
+    const response = await axios.put(
       window.backend + '/user/' + userId + '/freelancer-setup',
-      info,
+      status,
     );
 
-    navigate('/');
+    navigate('/profile');
   };
 
   function handlePhotoClick() {
@@ -41,25 +53,58 @@ function FreelancerSetup() {
     alert('You are Uploading a new Photo');
   }
 
+  useEffect(() => {
+    const fetchFreelancerSetup = async () => {
+      const userId = getLoginUserId();
+      const {
+        data: { profile },
+      } = await axios.get(
+        window.backend + '/user/' + userId + '/freelancer-setup',
+      );
+
+      setStatus(profile);
+    };
+
+    fetchFreelancerSetup();
+  }, []);
+
   return (
     <div className="new-post__wrapper">
       <form onSubmit={handleSubmit}>
         <div className="item__wrapper">
           <InputTitle>Name:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="name" placeholder="Harry Potter" />
+            <input
+              type="text"
+              name="name"
+              placeholder="Harry Potter"
+              value={name}
+              onChange={onStatusChange}
+            />
           </div>
         </div>
         <div className="item__wrapper">
           <InputTitle>Age:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="number" name="age" placeholder="21" />
+            <input
+              type="number"
+              name="age"
+              placeholder="21"
+              value={age}
+              onChange={onStatusChange}
+            />
           </div>
         </div>
         <div className="item__wrapper">
           <InputTitle>School:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="school" placeholder="Hogwarts" />
+            <input
+              type="text"
+              name="school"
+              placeholder="Hogwarts"
+              value={school}
+              onChange={onStatusChange}
+            />
           </div>
         </div>
         {/* <div className="item__wrapper">
@@ -70,7 +115,13 @@ function FreelancerSetup() {
         <div className="item__wrapper">
           <InputTitle>Specialty Role:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="text" name="role" placeholder="Auror" />
+            <input
+              type="text"
+              name="role"
+              placeholder="Auror"
+              value={role}
+              onChange={onStatusChange}
+            />
           </div>
         </div>
         <div className="item__wrapper">
@@ -82,6 +133,8 @@ function FreelancerSetup() {
               step="0.01"
               name="pay"
               placeholder="10"
+              value={pay}
+              onChange={onStatusChange}
             />
           </div>
         </div>
@@ -92,6 +145,8 @@ function FreelancerSetup() {
               type="text"
               name="experiences"
               placeholder="Defeated Voldemort, I use glasses and my favorite spell is Expelliarmus"
+              value={experiences}
+              onChange={onStatusChange}
             />
           </div>
         </div>
@@ -102,6 +157,8 @@ function FreelancerSetup() {
               type="url"
               name="projects"
               placeholder="Link to Portfolio/Github/etc."
+              value={projects}
+              onChange={onStatusChange}
             />
           </div>
         </div>
@@ -112,13 +169,21 @@ function FreelancerSetup() {
               type="email"
               name="email"
               placeholder="harry.potter@hogwarts.edu"
+              value={email}
+              onChange={onStatusChange}
             />
           </div>
         </div>
         <div className="item__wrapper">
           <InputTitle>Phone:</InputTitle>
           <div className="text-field__wrapper">
-            <input type="tel" name="phone" placeholder="222-222-2222" />
+            <input
+              type="tel"
+              name="phone"
+              placeholder="222-222-2222"
+              value={phone}
+              onChange={onStatusChange}
+            />
           </div>
         </div>
         <input className="submit-btn" type="submit" value="Post" />
@@ -130,4 +195,4 @@ function FreelancerSetup() {
   );
 }
 
-export default FreelancerSetup;
+export default FreelancerUpdate;

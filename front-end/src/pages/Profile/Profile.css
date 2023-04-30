@@ -11,6 +11,8 @@
 .profile-container {
   margin-bottom: 20px;
   position: relative;
+  min-height: 40px;
+  width: 100%;
 }
 
 .profile__prev-btn {

@@ -6,7 +6,7 @@ import './Profile.css';
 import { BrowserRouter as Router, Link } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 import BackButton from '../../components/common/BackButton/BackButton';
-import { getLoginUserId } from '../../utils/parseToken';
+import { getLoginUserId, getLoginUserType } from '../../utils/parseToken';
 
 function Profile() {
   const [dbID, setdbID] = useState('');
@@ -32,6 +32,8 @@ function Profile() {
   // const reader = new FileReader();
   // const file = new File([image], 'profile.jpg', { type: 'image/jpeg' });
   // reader.readAsDataURL(file);
+
+  const userType = getLoginUserType();
 
   useEffect(() => {
     const loginUserId = getLoginUserId();
@@ -251,7 +253,7 @@ function Profile() {
           <div className="profile__prev-btn">
             <BackButton size="large" />
           </div>
-          <div className="profile-image">
+          {/* <div className="profile-image">
             <img src={image} alt="Profile" />
           </div>
           <div className="edit-file-button">
@@ -259,7 +261,7 @@ function Profile() {
               onChange={handleImageChange}
               className="edit-profile-button"
             />
-          </div>
+          </div> */}
         </div>
         <h1>Your {position} Profile</h1>
         <div className="info-container">
@@ -375,11 +377,9 @@ function Profile() {
           </div> */}
         </div>
         <div>
-          {position === 'Recruiter' ? (
-            <div></div>
-          ) : (
+          {userType === 'freelancer' && (
             <Link
-              to="/freelancer-setup"
+              to="/freelancer-update"
               className="edit-freelance-profile-button"
             >
               Edit Freelancer Posting

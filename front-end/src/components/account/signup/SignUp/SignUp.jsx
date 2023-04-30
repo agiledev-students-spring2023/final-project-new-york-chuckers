@@ -32,8 +32,10 @@ function SignUp() {
   //Adding a handleSignup function to link to profile setup, edit it as you please (Joey)
 
   function handleSignup() {
-    localStorage.setItem('signup_info', JSON.stringify(inputs));
-    navigate('/setup');
+    if (!confirmPasswordError) {
+      localStorage.setItem('signup_info', JSON.stringify(inputs));
+      navigate('/setup');
+    }
   }
 
   const validatePassword = () => {
