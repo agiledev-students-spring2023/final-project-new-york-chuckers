@@ -14,9 +14,9 @@ const Home = props => {
     <div className="Home">
       <Header />
       {/* <h1>Welcome to Tester Connector!</h1> */}
-      <div class="hero-container">
-        <div class="left-block">
-          <p class="hero-text">
+      <div className="hero-container">
+        <div className="left-block">
+          <p className="hero-text">
             Tester Connector connects students like you with the{' '}
             <mark>top companies</mark> in the world. You get a{' '}
             <mark>high paying gig</mark> and to{' '}
@@ -24,20 +24,20 @@ const Home = props => {
             <mark>the next generation of talent</mark>.
           </p>
         </div>
-        <div class="right-block">
+        <div className="right-block">
           <img src={freelancers} alt="Freelancers" />
         </div>
       </div>
 
       {/* CTA */}
       {!isLogined && (
-        <div class="cta-container">
-          <div class="cta-box">
+        <div className="cta-container">
+          <div className="cta-box">
             <p>
               Join the ranks of hundreds of students in working with the world's
               leading companies.
             </p>
-            <Link to="/signup" class="cta-button">
+            <Link to="/signup" className="cta-button">
               Sign-Up Here
             </Link>
           </div>
@@ -45,46 +45,46 @@ const Home = props => {
       )}
 
       {/* Company Logos */}
-      <section class="companies-section">
-        <div class="partners-header">
+      <section className="companies-section">
+        <div className="partners-header">
           <h2>Some of Our Partners</h2>
         </div>
-        <div class="companies-container">
-          <div class="company-logo">
+        <div className="companies-container">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
-          <div class="company-logo">
+          <div className="company-logo">
             <img src={partnerLogo} alt="Company Logo" />
           </div>
         </div>
-        <div class="find-more-button">
+        <div className="find-more-button">
           <Link to="/position">Find More Companies</Link>
         </div>
       </section>
 
       {/* Check out positions*/}
-      <div class="cta-container">
-        <div class="cta-box">
+      <div className="cta-container">
+        <div className="cta-box">
           <p>Check out some potential positions.</p>
-          <Link to="/freelancer" class="cta-button">
+          <Link to="/freelancer" className="cta-button">
             See Freelance Projects
           </Link>
         </div>
