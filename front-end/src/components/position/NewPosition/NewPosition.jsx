@@ -1,14 +1,21 @@
 import axios from 'axios';
-import { useState, React } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useGoPrevPage } from '../../../hooks/useGoPrevPage';
 import { InputTitle } from '../../common/input/InputTitle';
 import './NewPosition.css';
+import { getLoginUserId, getLoginUserType } from '../../../utils/parseToken';
 
 function NewPosition() {
+  const [dbID, setdbID] = useState('');
   const navigate = useNavigate();
   const [status, setStatus] = useState({});
   const [goPrevPage] = useGoPrevPage();
+
+  useEffect(() => {
+    const loginUserId = getLoginUserId();
+    setdbID(loginUserId);
+  }, []);
 
   const handleSubmit = async e => {
     e.preventDefault();
@@ -20,6 +27,7 @@ function NewPosition() {
       description: e.target.description.value,
       pay: e.target.pay.value || '0',
       contact: e.target.contact.value,
+      recruiter: dbID,
     };
 
     const response = await axios.post(window.backend + "/new-position", info);
@@ -53,13 +61,13 @@ function NewPosition() {
           </div>
         </div>
         <div className="item__wrapper">
-          <InputTitle>Pay:</InputTitle>
+          <InputTitle>Hourly Pay:</InputTitle>
           <div className="text-field__wrapper">
             <input
               type="number"
-              step="0.1"
+              step="0.01"
               name="pay"
-              placeholder="2"
+              placeholder="$10.00"
             />
           </div>
         </div>

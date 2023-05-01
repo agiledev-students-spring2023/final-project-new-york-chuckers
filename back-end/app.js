@@ -286,7 +286,7 @@ app.post("/new-position", (req, res) => {
     pay: req.body.pay,
     description: req.body.description,
     contact: req.body.contact,
-    recruiter: "someID13",
+    recruiter: req.body.recruiter || "A Recruiter",
   });
   res.json({ status: "approve", position: req.body, alert: null });
   //} catch (err) {
