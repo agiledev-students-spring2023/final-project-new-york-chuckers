@@ -24,3 +24,44 @@
 .position-detail__contact-button {
   text-align: center;
 }
+
+.recruiter-buttons {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.edit-button, .delete-button {
+  width: 200px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.edit-button {
+  background-color: #68bcd9;
+  color: white;
+  margin-bottom: 10px;
+}
+
+.delete-button {
+  background-color: #68bcd9;
+  color: white;
+}
+
+.delete-button:hover {
+  background-color: red;
+  color: white;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+}

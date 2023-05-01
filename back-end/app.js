@@ -171,6 +171,7 @@ app.post("/settings/save/:userId", async (req, res) => {
   }
 });
 
+
 //using multer for storage
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -292,6 +293,55 @@ app.post("/new-position", (req, res) => {
   //} catch (err) {
   //res.json({ status: "fail", alert: err });
   //}
+});
+
+//route to edit a current position
+app.post("/edit-position/:posId", async (req, res) => {
+  try {
+    const position = await Position.findById(
+      new mongoose.Types.ObjectId(req.params.posId)
+    );
+    position.title = req.body.title,
+    position.company =  req.body.company,
+    position.position = req.body.position,
+    position.pay = req.body.pay,
+    position.description = req.body.description,
+    position.contact = req.body.contact,
+    position.recruiter = req.body.recruiter || "A Recruiter",
+    await position.save();
+    return res.json({
+      status: `approve`,
+      profile: position,
+    });
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed`,
+    });
+  }
+});
+
+//route to delete a position
+app.post("/delete-position/:posId", async (req, res) => {
+  try {
+    const result = await Position.deleteOne({_id: new mongoose.Types.ObjectId(req.params.posId)});
+    if (result.deletedCount === 1) {
+      return res.json({
+        status: `Position successfully deleted`,
+      });
+    } else {
+      return res.status(404).json({
+        error: `Position with ID ${req.params.posId} not found`,
+      });
+    }
+  } catch (err) {
+    console.error(err);
+    return res.status(400).json({
+      error: err,
+      status: `failed to delete`,
+    });
+  }
 });
 
 // export the express app we created to make it available to other modules
