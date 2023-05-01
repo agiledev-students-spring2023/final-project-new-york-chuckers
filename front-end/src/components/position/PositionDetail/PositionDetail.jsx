@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { positionApi } from '../../../api/position';
 import { useConfirmDialog } from '../../../hooks/useConfirmDialog';
@@ -9,6 +10,7 @@ import './PositionDetail.css';
 function PositionDetail({ id }) {
   const [positionObj, setPositionObj] = useState(null);
   const params = useParams();
+  const [name, setName] = useState('');
 
   const { openConfirmDialog, ConfirmDialog } = useConfirmDialog();
 
@@ -17,14 +19,35 @@ function PositionDetail({ id }) {
       const data = await positionApi.listPositions();
       setPositionObj(data.find(f => f._id === params.id));
     };
-
+  
     fetchPosition();
-  }, []);
+  }, [params.id]);
+  
+  const fetchRecruiter = async () => {
+    if (!positionObj) {
+      return;
+    }
+    const { recruiter } = positionObj;
+    try {
+      const response = await axios.get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/${recruiter}`);
+      const { name: recruiterName} = response.data.profile;
+      setName(recruiterName);
+      console.log(recruiterName)
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  if (positionObj === null) {
+  useEffect(() => {
+    if (positionObj) {
+      fetchRecruiter();
+    }
+  }, [positionObj]);
+  
+  if (!positionObj) {
     return <div>Loading...</div>;
   }
-
+  
   const {
     title,
     position,
@@ -35,6 +58,7 @@ function PositionDetail({ id }) {
     contact,
     company,
   } = positionObj;
+  
 
   return (
     <div className="position-detail__wrapper">
@@ -45,10 +69,10 @@ function PositionDetail({ id }) {
       <TextCard title="Company Info">{company}</TextCard>
       <div className="position-detail__info">
         <TextCard title="Position">{position}</TextCard>
-        <TextCard title="Pay">{pay}</TextCard>
+        <TextCard title="Hourly Pay">${pay}</TextCard>
       </div>
       <TextCard title="Description">{description}</TextCard>
-      <TextCard title="Recruiter Name">{recruiter}</TextCard>
+      <TextCard title="Recruiter Name">{name}</TextCard>
       <TextCard title="Contact">
         <div
           className="position-detail__contact-button"
