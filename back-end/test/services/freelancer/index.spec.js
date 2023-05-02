@@ -1,11 +1,11 @@
 const {
-  getFreelancerListFromMockaroo,
+  getFreelancerList,
 } = require("../../../services/freelancer/index.js");
 const { assert } = require("chai");
 
-describe("getFreelancerListFromMockaroo function", () => {
+describe("getFreelancerList function", () => {
   it("should succeed", async () => {
-    const data = await getFreelancerListFromMockaroo();
+    const data = await getFreelancerList();
 
     assert.isArray(data);
     assert.isAbove(data.length, 0);
