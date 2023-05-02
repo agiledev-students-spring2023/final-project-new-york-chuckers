@@ -190,21 +190,35 @@ var upload = multer({ storage: storage });
 
 app.post(
   "/settings/save_image/:profileId",
-  authenticateJwt,
   upload.single("image"),
   async (req, res) => {
-    if (req.file) {
-      const profile = await Profile.findById(req.params.profileId);
-      const encodedImage = req.file.buffer.toString("base64");
-      profile.image = encodedImage;
-      profile.mimetype = req.file.mimetype;
-      res.json({
-        success: true,
-        message: `Worked`,
-        mimetype: req.file.mimetype,
-        buffer: encodedImage,
-      });
-    } else {
+    try {
+      if (req.file) {
+        const encodedImage = req.file.buffer.toString("base64");
+        const mimetype = req.file.mimetype;
+        const newValues = {
+          buffer: encodedImage,
+          mimetype: mimetype
+        };
+        const updatedDoc = await User.findByIdAndUpdate(
+          req.params.profileId,
+          newValues,
+          { new: true }
+        );
+        res.json({
+          success: true,
+          message: `Worked`,
+          mimetype: req.file.mimetype,
+          buffer: encodedImage,
+        });
+      } else {
+        res.status(500).send({
+          success: false,
+          message: "Something went wrong with image storage.!",
+        });
+      }
+    } catch (err) {
+      console.error(err);
       res.status(500).send({
         success: false,
         message: "Something went wrong with image storage.!",
@@ -212,6 +226,7 @@ app.post(
     }
   }
 );
+
 
 app.get("/edit-company", function (req, res) {
   const users = [

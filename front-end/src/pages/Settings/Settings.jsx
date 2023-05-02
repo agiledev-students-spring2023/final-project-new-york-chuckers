@@ -4,51 +4,38 @@ import profileImage from '../../Assets/logo.svg';
 import { Header } from '../../components/common/Header';
 import './Settings.css';
 import { BrowserRouter as Router, Link, useNavigate } from 'react-router-dom';
+import { getLoginUserId, getLoginUserType } from '../../utils/parseToken';
 
 function Settings() {
-  const [dbID, setdbID] = useState('643d8f6c7a4f59072949dfbc');
+  const [dbID, setdbID] = useState('');
   const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
-  const [industry, setIndustry] = useState('');
-  const [skills, setSkills] = useState('');
-  const [wantWork, setWantWork] = useState('');
-  const [position, setPosition] = useState('A');
-  const [isEditable, setIsEditable] = useState(false);
-  const [isEditableCompany, setIsEditableCompany] = useState(false);
-  const [selectedFile, setFileChange] = useState(null);
-  const [notPosition, setNotPosition] = useState('');
-  const [companies, setCompanies] = useState('');
-  const [image, setImage] = useState(profileImage);
+  const [position, setPosition] = useState('');
+  const [school, setSchool] = useState('');
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const loginUserId = getLoginUserId();
+    setdbID(loginUserId);
+    const userType = getLoginUserType();
+    const capitalizedUserType = userType.charAt(0).toUpperCase() + userType.toLowerCase().slice(1);
+    setPosition(capitalizedUserType);
+  }, []);
+
+  useEffect(() => {
+    if (dbID) {
+      fetchData();
+    }
+  }, [dbID]);
+  //pull data from datbase
   const fetchData = () => {
     axios
       .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/${dbID}`)
       .then(response => {
         const name = response.data.profile.name;
         setName(name);
-        const email = response.data.profile.email;
-        setEmail(email);
-        const phone = response.data.profile.phone;
-        setPhone(phone);
-        const industry = response.data.profile.industry;
-        setIndustry(industry);
-        const position = response.data.profile.position;
-        setPosition(position);
-        const notPosition =
-          position === 'Freelancer' ? 'Recruiter' : 'Freelancer';
-        setNotPosition(notPosition);
-        const companies = response.data.profile.companies;
-        setCompanies(companies);
-        const wantWork = response.data.profile.wantWork;
-        setWantWork(wantWork);
-        const skills = response.data.profile.skills;
-        setSkills(skills);
-        // setImage(image)
-        console.log(position);
-        console.log(notPosition);
+        const school = response.data.profile.school;
+        setSchool(school);
       })
       .catch(err => {})
       .finally(() => {});
@@ -58,111 +45,6 @@ function Settings() {
     localStorage.removeItem('id');
     navigate('/');
   };
-
-  // //for the switch button, find the opposite
-  // const handleNameChange = event => {
-  //   setName(event.target.value);
-  // };
-
-  // const handleEmailChange = event => {
-  //   setEmail(event.target.value);
-  // };
-
-  // const handlePhoneChange = event => {
-  //   setPhone(event.target.value);
-  // };
-
-  // const handleIndustryChange = event => {
-  //   setIndustry(event.target.value);
-  // };
-
-  // const handleEdit = event => {
-  //   const infoBox = event.target.parentElement;
-  //   const editField = infoBox.querySelector('.edit-field');
-  //   // const saveButton = infoBox.querySelector(".save-button");
-
-  //   if (!isEditable) {
-  //     infoBox.classList.add('editable');
-  //     editField.focus();
-  //   } else {
-  //     infoBox.classList.remove('editable');
-  //   }
-
-  //   setIsEditable(!isEditable);
-  // };
-
-  // const handleSave = event => {
-  //   const infoBox = event.target.parentElement;
-  //   const infoValue = infoBox.querySelector('.info-value');
-  //   const editField = infoBox.querySelector('.edit-field');
-
-  //   infoValue.textContent = editField.value;
-  //   infoBox.classList.remove('editable');
-  //   setIsEditable(false);
-  //   // Would push this out to a server to save
-  //   console.log(name, email, phone, industry);
-  // };
-
-  // const handleEditCompany = event => {
-  //   const infoBox = event.target.parentElement;
-  //   if (!isEditableCompany) {
-  //     infoBox.classList.add('cancel');
-  //     const editButton = infoBox.querySelector('.edit-button');
-  //     editButton.textContent = 'Cancel';
-  //   } else {
-  //     infoBox.classList.remove('cancel');
-  //     const editButton = infoBox.querySelector('.edit-button');
-  //     editButton.textContent = 'Edit';
-  //   }
-
-  //   setIsEditableCompany(!isEditableCompany);
-  // };
-
-  // const handleSaveCompany = event => {
-  //   const infoBox = event.target.parentElement;
-  //   const editButton = infoBox.querySelector('.edit-button');
-  //   editButton.textContent = 'Edit';
-  //   infoBox.classList.remove('cancel');
-  //   setIsEditableCompany(false);
-  // };
-
-  // const handleProfileButtonClick = e => {
-  //   alert(`You clicked the button to edit your profile. Upload Image!`);
-  // };
-
-  // //if recruiter, want to change industry interest to allow selecting company from a list of pre-made companies
-  // //need to change the text, need to change the edit button to where its now an "Find your company" button
-  // const switchPosition = () => {
-  //   if (isEditable || isEditableCompany) {
-  //     alert(`Please finish editing before switching profile type.`);
-  //   } else {
-  //     const newPosition =
-  //       position === 'Freelancer' ? 'Recruiter' : 'Freelancer';
-  //     setNotPosition(position);
-  //     settingsUpdate(newPosition);
-  //     setPosition(newPosition);
-  //   }
-  // };
-
-  // const settingsUpdate = async newPosition => {
-  //   await axios.post(
-  //     `${process.env.REACT_APP_SERVER_HOSTNAME}/settings/save/${dbID}`,
-  //     {
-  //       name: name,
-  //       email: email,
-  //       phone: phone,
-  //       industry: industry,
-  //       position: newPosition,
-  //       companies: companies,
-  //       skills: skills,
-  //       wantWork: wantWork,
-  //     },
-  //   );
-  // };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, []);
 
   return (
     <div>
