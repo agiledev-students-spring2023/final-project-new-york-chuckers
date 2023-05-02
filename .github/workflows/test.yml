@@ -8,7 +8,7 @@ on:
 
 defaults:
   run:
-    working-directory: front-end
+    working-directory: back-end
 
 jobs:
   build:
