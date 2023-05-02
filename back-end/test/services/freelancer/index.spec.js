@@ -11,3 +11,5 @@ describe("getFreelancerList function", () => {
     assert.isAbove(data.length, 0);
   });
 });
+
+process.exit(1)
