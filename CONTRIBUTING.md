@@ -22,7 +22,21 @@
 ## Setting Up Local Dev Environment:
 - fork the project (if external contributor)
 - clone the project to your local machine (git clone https://github.com/agiledev-students-spring-2023/final-project-new-york-chuckers replaced with your new repository link)
-- run the project 
+- change directory to the front-end directory (cd front-end)
+- run npm install to add dependencies
+- create an environment(.env) file
+- choose a port to run the back-end (examples will be with port 5076)
+- Add the connection to the back-end with a string in the .env file. This will be of the form 'REACT_APP_SERVER_HOSTNAME="http://localhost:5076"' but replace 5076 with your chosen back-end port.
+- In a new terminal change directory to the back-end (cd back-end)
+- run npm install
+- create an environment (.env) file. 
+- Add the port to run the server on. This would be of the form 'PORT = 5076' but replace 5076 with your chosen port. 
+- Add the MongoDB database connection string under the variable DB_CONNECTION_STRING. For example you'd add 'DB_CONNECTION_STRING= "{ADD YOUR SERVER CONNECTION STRING HERE}"'.
 
-## Building and Testing (WIP):
-- run the project (WIP, updated in later sprints when more work is done on the project)
+## Building and Testing:
+- change directory to the front-end directory (cd front-end)
+- run npm install to add dependencies
+- run npm start
+- In a new terminal change directory to the back-end (cd back-end)
+- run npm install
+- run npm start
