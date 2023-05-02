@@ -1,5 +1,4 @@
-# Tester Connector
-
+# TesterConnector
 Our project is a solution that connects talented student freelancers looking for work experience and small jobs with companies willing provide them. The solution allows students to create profiles and connect with different companies to potentially freelance for. Companies receive talented students that, despite lacking credentials, are talented and work for cheaper rates than professional freelancers. On the otherhand, students receive the ability to have side-jobs, gain experience in their preferred field, and generate a portfolio of work.
 
 ## Product Vision:
@@ -12,7 +11,8 @@ The history of the project came from the entrepreneurial backgrounds of its foun
 
 ## How to Run:
 To run the program you'll need to start both the back-end server and the front-end react app. Enter (cd) into each of the folders (front-end for the react app) and (back-end for the server). Once on each folder you'll need to run the following commands "npm install" (to install the node_modules dependencies) and "npm start" (to start both the server and the react app).The code should be running. If you search for the localhost:port where the react app is running you'll be able to access around the app. 
-The react app defaults to the localhost port 3000, and the server is set to port 5076. On this dev version we still have the calls for the server (on the react app) hard coded into the files as (http://localhost:5076/...). 
+
+In the front-end directory, create an environment file (.env) that has the port you would like the back-end to run on. For example, add 'REACT_APP_SERVER_HOSTNAME="http://localhost:5076"' if you would like to have the server run on port 5076. Similarly, in the back-end add the same port in another environment(.env) file. This would be of the form 'PORT = 5076'. In that, also add a MongoDB database connection string under the variable DB_CONNECTION_STRING. For example you'd add 'DB_CONNECTION_STRING= "{ADD YOUR SERVER CONNECTION STRING HERE}"' 
 
 ## Contributors:
 Tiffany Lee: [Github](https://github.com/les5185)
