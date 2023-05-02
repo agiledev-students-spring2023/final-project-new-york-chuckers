@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
-import { BrowserRouter as Router, Link } from 'react-router-dom';
+import { BrowserRouter as Link } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 import BackButton from '../../components/common/BackButton/BackButton';
 import { getLoginUserId, getLoginUserType } from '../../utils/parseToken';
@@ -14,6 +13,7 @@ function Profile() {
   const [school, setSchool] = useState('');
   const userType = getLoginUserType();
   const [profileButtonText, setProfileButtonText] = useState("Edit");
+  //set position based on the local info, but fix capitalization
   const [position, setPosition] = useState(userType.charAt(0).toUpperCase() + userType.slice(1));
   const [isEditable, setIsEditable] = useState(false);
   const [image, setImage] = useState(profileImage);
