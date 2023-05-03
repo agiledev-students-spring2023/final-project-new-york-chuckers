@@ -29,7 +29,7 @@ function FreelancerSetup() {
     const userId = localStorage.getItem('signup_userid');
 
     const response = await axios.post(
-      process.env.BACK_SERVER + '/user/' + userId + '/freelancer-setup',
+      window.backend + '/user/' + userId + '/freelancer-setup',
       info,
     );
 

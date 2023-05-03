@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
-const DEV_API_HOST = process.env.BACK_SERVER;
+const DEV_API_HOST = "http://24.199.92.187:5076";
 const PROD_API_HOST = ''; // TODO
 
 function getRequestURL(path) {
