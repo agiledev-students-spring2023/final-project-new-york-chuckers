@@ -51,28 +51,28 @@ const Home = props => {
         </div>
         <div className="companies-container">
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/1.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/2.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/3.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/4.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/5.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/6.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/7.png" alt="Company Logo" />
           </div>
           <div className="company-logo">
-            <img src={partnerLogo} alt="Company Logo" />
+            <img src="img/company_logos/8.png" alt="Company Logo" />
           </div>
         </div>
         <div className="find-more-button">

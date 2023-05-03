@@ -1,11 +1,9 @@
-const {
-  getPositionListFromMockaroo,
-} = require("../../../services/position/index.js");
+const { getPositionList } = require("../../../services/position/index.js");
 const { assert } = require("chai");
 
-describe("getPositionListFromMockaroo function", () => {
+describe("getPositionList function", () => {
   it("should succeed", async () => {
-    const data = await getPositionListFromMockaroo();
+    const data = await getPositionList();
 
     assert.isArray(data);
     assert.isAbove(data.length, 0);
