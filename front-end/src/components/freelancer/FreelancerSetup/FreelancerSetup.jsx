@@ -33,7 +33,7 @@ function FreelancerSetup() {
       info,
     );
 
-    navigate('/');
+    navigate('/signin');
   };
 
   function handlePhotoClick() {
