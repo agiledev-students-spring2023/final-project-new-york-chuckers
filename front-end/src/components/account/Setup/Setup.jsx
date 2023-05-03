@@ -37,7 +37,7 @@ function Setup() {
         localStorage.setItem('signup_userid', id);
         navigate('/freelancer-setup');
       } else {
-        navigate('/');
+        navigate('/signin');
       }
     } catch (e) {
       console.log(e);
