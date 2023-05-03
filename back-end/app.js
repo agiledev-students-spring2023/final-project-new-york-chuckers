@@ -37,7 +37,7 @@ app.use("/position/", positionRouter);
 app.use("/user/", userRouter);
 
 mongoose
-  .connect(`${process.env.DB_CONNECTION_STRING}`)
+  .connect("mongodb+srv://pkanchi:testPassword@testerconnector.wlcl1op.mongodb.net/?retryWrites=true&w=majority")
   .then((data) => console.log(`Connected to MongoDB`))
   .catch((err) => console.error(`Failed to connect to MongoDB: ${err}`));
 
