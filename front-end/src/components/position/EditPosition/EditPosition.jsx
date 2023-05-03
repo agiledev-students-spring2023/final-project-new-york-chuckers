@@ -54,7 +54,7 @@ function EditPosition() {
       recruiter: dbID,
     };
 
-    const response = await axios.post(window.backend + "/edit-position/"+`${postID}`, info);
+    const response = await axios.post(process.env.BACK_SERVER + "/edit-position/"+`${postID}`, info);
     if (response.data.status === "approve"){
       setStatus(response.data.position);
       navigate("/position");

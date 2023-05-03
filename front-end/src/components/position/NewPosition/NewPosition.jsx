@@ -30,7 +30,7 @@ function NewPosition() {
       recruiter: dbID,
     };
 
-    const response = await axios.post(window.backend + "/new-position", info);
+    const response = await axios.post(process.env.BACK_SERVER + "/new-position", info);
     if (response.data.status === "approve"){
       setStatus(response.data.position);
       navigate("/position");

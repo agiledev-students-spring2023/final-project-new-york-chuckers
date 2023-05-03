@@ -41,7 +41,7 @@ function FreelancerUpdate() {
     const userId = getLoginUserId();
 
     const response = await axios.put(
-      window.backend + '/user/' + userId + '/freelancer-setup',
+      process.env.BACK_SERVER + '/user/' + userId + '/freelancer-setup',
       status,
     );
 
