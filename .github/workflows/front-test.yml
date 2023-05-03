@@ -27,3 +27,13 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: CI=false npm run build
+    
+  deployment:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Deploy Stage
+      uses: fjogeleit/http-request-action@v1
+      with:
+        url: 'https://api.render.com/deploy/srv-ch8u08dgk4qeoo7muus0?key=ZM9s3pjCO1c'
+        method: 'POST'
