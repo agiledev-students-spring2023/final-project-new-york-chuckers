@@ -1,4 +1,4 @@
-![Workflow Status](https://github.com/agiledev-students-spring-2023/final-project-what-s-for-dinner/actions/workflows/back-end.yml/badge.svg?event=push)
+![Workflow Status](https://github.com/agiledev-students-spring-2023/final-project-new-york-chuckers/actions/workflows/back-test.yml/badge.svg?event=push)
 
 ![Workflow Status](https://github.com/agiledev-students-spring-2023/final-project-new-york-chuckers/actions/workflows/front-test.yml/badge.svg?event=push)
 
