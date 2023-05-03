@@ -7,7 +7,7 @@
 
 .main-content {
   margin: 20px;
-  display: flex; 
+  display: flex;
 }
 
 .router-link {
@@ -37,7 +37,7 @@ p {
   align-items: center;
   width: 95%;
   margin-left: 2.5%;
-  margin-right: 2.5%; 
+  margin-right: 2.5%;
 }
 
 mark {
@@ -46,32 +46,31 @@ mark {
 }
 
 .left-block {
-  width: 47%; 
+  width: 47%;
   height: 25%;
   text-align: center;
   font-size: 2.76vw;
-  border: .4vw solid #204a80;
+  border: 0.4vw solid #204a80;
   border-radius: 10px;
 }
 
 .right-block {
-  width: 47%; 
+  width: 47%;
   height: 40%;
   text-align: center;
   overflow: hidden;
 }
 
-.hero-text{
-  color:#204a80;
+.hero-text {
+  color: #204a80;
 }
 
 .right-block img {
-  height: 23vw; 
-  width: 100%; 
+  height: 23vw;
+  width: 100%;
   border-radius: 10px;
   object-fit: cover;
 }
-
 
 .cta-container {
   display: flex;
@@ -114,13 +113,12 @@ mark {
   font-weight: bold;
 }
 
-
 .companies-section {
   background-color: #204a80;
   justify-content: flex-start;
   align-items: center;
   border-radius: 10px;
-  padding: 3%; 
+  padding: 3%;
   margin: 2.5%;
   width: 95%;
 }
@@ -129,14 +127,12 @@ mark {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-gap: 20px;
-  overflow:hidden;
-  
+  overflow: hidden;
 }
 
 .company-logo {
   background-color: #68bcd9;
   border-radius: 10px;
-  padding: 20px;
   text-align: center;
 }
 
