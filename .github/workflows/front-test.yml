@@ -2,7 +2,7 @@ name: frontend test CI
 
 on:
   push:
-    branches: [ master, Jlalo01-patch-12 ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
