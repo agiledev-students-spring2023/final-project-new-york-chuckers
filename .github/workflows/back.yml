@@ -27,4 +27,4 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm install
     - run: npm ci
-    - run: DB_CONNECTION_STRING="mongodb+srv://pkanchi:testPassword@testerconnector.wlcl1op.mongodb.net/?retryWrites=true&w=majority" npm run coverage
+    - run: CI=true DB_CONNECTION_STRING="mongodb+srv://pkanchi:testPassword@testerconnector.wlcl1op.mongodb.net/?retryWrites=true&w=majority" npm run coverage
