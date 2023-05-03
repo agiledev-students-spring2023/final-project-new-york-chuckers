@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import axios from 'axios';
 import qs from 'qs';
 
-const DEV_API_HOST = process.env.BACK_SRV;
+const DEV_API_HOST = "https://chuckers-back-cd.onrender.com";
 const PROD_API_HOST = ''; // TODO
 
 function getRequestURL(path) {
