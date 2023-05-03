@@ -83,9 +83,9 @@ const Home = props => {
       {/* Check out positions*/}
       <div className="cta-container">
         <div className="cta-box">
-          <p>Check out some potential positions.</p>
-          <Link to="/position" className="cta-button">
-            See Freelance Projects
+          <p>Check out some freelancers.</p>
+          <Link to="/freelancer" className="cta-button">
+            See Freelancers
           </Link>
         </div>
       </div>
