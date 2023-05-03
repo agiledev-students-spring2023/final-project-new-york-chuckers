@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha --recursive",
+    "test": "mocha test/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
   "author": "",
