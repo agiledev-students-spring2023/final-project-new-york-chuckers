@@ -33,7 +33,7 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: DB_CONNECTION_STRING="mongodb+srv://pkanchi:testPassword@testerconnector.wlcl1op.mongodb.net/?retryWrites=true&w=majority" Deploy Stage
+    - name: Deploy Stage
       uses: fjogeleit/http-request-action@v1
       with:
         url: 'https://api.render.com/deploy/srv-ch8v2rlgk4qeoo09jp6g?key=NF8dTp_o-UE'
