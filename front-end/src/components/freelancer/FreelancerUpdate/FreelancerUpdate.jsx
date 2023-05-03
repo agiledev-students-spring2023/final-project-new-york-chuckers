@@ -189,7 +189,7 @@ function FreelancerUpdate() {
         <input className="submit-btn" type="submit" value="Post" />
       </form>
       <div className="cancel-btn">
-        <Link to="/">Cancel</Link>
+        <Link to="/profile">Cancel</Link>
       </div>
     </div>
   );
