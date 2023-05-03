@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import profileImage from '../../Assets/logo.svg';
 import './Profile.css';
-import { BrowserRouter as Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Header } from '../../components/common/Header';
 import BackButton from '../../components/common/BackButton/BackButton';
 import { getLoginUserId, getLoginUserType } from '../../utils/parseToken';
@@ -12,9 +12,11 @@ function Profile() {
   const [name, setName] = useState('');
   const [school, setSchool] = useState('');
   const userType = getLoginUserType();
-  const [profileButtonText, setProfileButtonText] = useState("Edit");
+  const [profileButtonText, setProfileButtonText] = useState('Edit');
   //set position based on the local info, but fix capitalization
-  const [position, setPosition] = useState(userType.charAt(0).toUpperCase() + userType.slice(1));
+  const [position, setPosition] = useState(
+    userType.charAt(0).toUpperCase() + userType.slice(1),
+  );
   const [isEditable, setIsEditable] = useState(false);
   const [image, setImage] = useState(profileImage);
   const reader = new FileReader();
@@ -35,17 +37,16 @@ function Profile() {
         setName(name);
         const school = response.data.profile.school;
         setSchool(school);
-        try{
+        try {
           const buffer = response.data.profile.buffer;
           const mimetype = response.data.profile.mimetype;
           const imageUrl = 'data:' + mimetype + ';base64,' + buffer;
-          if(buffer != null && mimetype != null){
+          if (buffer != null && mimetype != null) {
             setImage(imageUrl);
-          } else{
-            setProfileButtonText("Add Profile Picture");
+          } else {
+            setProfileButtonText('Add Profile Picture');
           }
-        }catch(err){
-        }
+        } catch (err) {}
       })
       .catch(err => {})
       .finally(() => {});
@@ -104,7 +105,7 @@ function Profile() {
   //image handling section
   const handleImageChange = newImage => {
     setImage(newImage);
-    setProfileButtonText("Edit");
+    setProfileButtonText('Edit');
     handleImageUpload(newImage);
   };
 
