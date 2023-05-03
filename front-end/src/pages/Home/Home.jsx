@@ -12,6 +12,7 @@ const Home = props => {
 
   return (
     <div className="Home">
+      <div> HELLOOOOOOOOOO!!!! </div>
       <Header />
       {/* <h1>Welcome to Tester Connector!</h1> */}
       <div className="hero-container">
