@@ -9,9 +9,11 @@ defaults:
     working-directory: front-end
 
 jobs:
-    deployment:
-        - name: Deploy To Ploi
-            uses: fjogeleit/http-request-action@master
-            with:
-                url: 'https://api.render.com/deploy/srv-ch8u08dgk4qeoo7muus0?key=ZM9s3pjCO1c'
-                method: 'POST'
+  deployment:
+    uses: fjogeleit/http-request-action@master
+    
+    name: Deploy To Ploi
+    
+    with:
+      url: 'https://ploi.io/webhooks/servers/1/sites/1/deploy?token=xxx'
+      method: 'POST'
