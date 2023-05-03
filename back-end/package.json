@@ -4,7 +4,7 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "server.js",
   "scripts": {
-    "start": "cp ../.env .env && nodemon server.js",
+    "start": "nodemon server.js",
     "test": "mocha test/**/*.spec.js --exit",
     "coverage": "nyc npm run test"
   },
