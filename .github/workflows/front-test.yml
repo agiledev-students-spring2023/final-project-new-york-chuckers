@@ -26,7 +26,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
-    - run: CI=false npm run build
+    - run: CI=false BACK_SRV="http://24.199.92.187:5076" npm run build
     
   deployment:
     needs: build
