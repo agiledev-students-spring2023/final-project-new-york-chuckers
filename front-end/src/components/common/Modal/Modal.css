@@ -7,6 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
 }
 
 .modal__inner-wrapper {
@@ -15,7 +16,7 @@
   padding: 16px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.12);
-  background-color: var(--gray-light);
+  background-color: #fff;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -29,8 +30,13 @@
 }
 
 .modal__subtitle,
-.modal_content {
+.modal__content {
   font-size: 18px;
+}
+
+.modal__content {
+  border: 0.5px solid var(--primary-dark);
+  border-radius: 4px;
 }
 
 .modal__subtitle {
