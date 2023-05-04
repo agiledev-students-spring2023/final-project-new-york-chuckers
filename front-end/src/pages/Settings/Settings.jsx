@@ -30,7 +30,7 @@ function Settings() {
   //pull data from datbase
   const fetchData = () => {
     axios
-      .get(`${process.env.REACT_APP_SERVER_HOSTNAME}/settings/${dbID}`)
+      .get("https://chuckers-back-cd.onrender.com/settings/" + dbID)
       .then(response => {
         const name = response.data.profile.name;
         setName(name);
