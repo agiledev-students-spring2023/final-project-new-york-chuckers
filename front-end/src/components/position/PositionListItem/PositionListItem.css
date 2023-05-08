@@ -1,0 +1,21 @@
+.position-list-item__wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.position-list-item__content {
+  max-width: 60%;
+}
+
+.position-list-item__content-name {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.position-list-item__content-info {
+  font-size: 12px;
+}

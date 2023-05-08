@@ -1,0 +1,185 @@
+.settings-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #FFFF;
+  padding: 20px;
+  color: #204A80;
+  font-size: 100%;
+}
+
+.profile-container {
+  margin-bottom: 20px;
+}
+
+.profile-image {
+  position: relative;
+  width:25vw;
+  max-height:25vw;
+  display: flex; 
+  align-items: center; 
+  justify-content: center; 
+}
+
+.profile-image img {
+  max-width:20vw;
+  height:20vw;
+  border-radius: 5%;
+  padding: 10%;
+  margin: 15%; 
+  border-radius: 10%; 
+  background-color: #204A80; 
+}
+
+.edit-profile-button {
+  position: absolute;
+  bottom: 0;
+  right: 50%;
+  transform: translateX(50%);
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+
+.edit-file-button{
+  position: relative;
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+}
+
+.info-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.invisible{
+  opacity: 0;
+}
+
+.info-box {
+  width: 100%;
+  max-width: 500px;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: #1F3A64;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.industry-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  color: #FFFFFF;
+  position: relative;
+}
+
+.info-box .info-label {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info-box .info-value {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.info-box .edit-button{
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.info-box .edit-field {
+  display: none; 
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  font-size: 16px;
+  background-color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+}
+
+.info-box .save-button {
+  display: none;
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.info-box.editable .info-value {
+  display: none;
+}
+
+.info-box.editable .edit-field {
+  display: block; 
+}
+
+.info-box.editable .edit-button {
+  display: none; 
+}
+
+.info-box.editable .save-button {
+  display: block; /* show the save button when editable */
+}
+.info-box.cancel .cancel-button {
+  display: block; 
+}
+.info-box.cancel .cancel-button {
+  display: none; 
+}
+.info-box.cancel .save-button{
+  display: block;
+}
+
+.info-box.cancel .info-value{
+  display: none;
+}
+
+.switch-button{
+  margin-top: 10px;
+  padding: 5px 10px;
+  background-color: #68BCD9;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 5px;
+}
+
+.file-input-wrapper {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+}
+
+.file-input-wrapper input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}

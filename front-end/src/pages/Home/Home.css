@@ -1,0 +1,166 @@
+.App-logo-2 {
+  height: 10vh;
+  pointer-events: none;
+  display: flex;
+  align-content: last baseline;
+}
+
+.main-content {
+  margin: 20px;
+  display: flex;
+}
+
+.router-link {
+  color: white;
+}
+
+.router-link:visited {
+  color: white;
+}
+
+h1 {
+  text-align: center;
+  font-family: georgia;
+}
+
+p {
+  font-family: helvetica;
+  color: #204a80;
+}
+
+.hero-container {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 95%;
+  margin-left: 2.5%;
+  margin-right: 2.5%;
+}
+
+mark {
+  background-color: #68bcd9;
+  color: #204a80;
+}
+
+.left-block {
+  width: 47%;
+  height: 25%;
+  text-align: center;
+  font-size: 2.76vw;
+  border: 0.4vw solid #204a80;
+  border-radius: 10px;
+}
+
+.right-block {
+  width: 47%;
+  height: 40%;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero-text {
+  color: #204a80;
+}
+
+.right-block img {
+  height: 23vw;
+  width: 100%;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.cta-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  background-color: #ffff;
+  flex-direction: column;
+  margin-bottom: 0.5%;
+  margin-top: 0.5%;
+}
+
+.cta-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  height: 80%;
+  border-radius: 20px;
+  padding: 20px;
+  background-color: #204a80;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.cta-box p {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+  color: #ffffff;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #68bcd9;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.companies-section {
+  background-color: #204a80;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 10px;
+  padding: 3%;
+  margin: 2.5%;
+  width: 95%;
+}
+
+.companies-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 20px;
+  overflow: hidden;
+}
+
+.company-logo {
+  background-color: #68bcd9;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.company-logo img {
+  max-width: 100%;
+  max-height: 100%;
+  height: auto;
+}
+
+.find-more-button {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.find-more-button a {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #68bcd9;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.partners-header {
+  text-align: center;
+  margin-bottom: 20px;
+  color: white;
+}
